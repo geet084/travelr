@@ -8,7 +8,8 @@ import { fetchURL } from '../../thunks/fetchURL';
 class App extends Component {
 
   componentDidMount = async () => {
-    const url = `https://cors-anywhere.herokuapp.com/https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`
+    const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
+    const url = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`
     this.props.fetchURL(url)
   }
 
@@ -18,7 +19,7 @@ class App extends Component {
         <header className="App-header">
           TRAVELR
         </header>
-        <img src={this.props.content.url} alt=""/>
+        <img className="apod-img" src={this.props.content.url} alt=""/>
       </div>
     );
   }
