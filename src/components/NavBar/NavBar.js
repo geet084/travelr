@@ -4,14 +4,14 @@ import Collapsible from 'react-collapsible';
 
 class NavBar extends Component {
   render() {
-    const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
+    const planetNames = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
     return (
       <nav>
         <ul>
           <NavBtn name={'Home'} path='/' />
           <NavBtn name={'Moon'} path='/moon' />
           <Collapsible trigger="Planets">
-            {planets.map(planet => <NavBtn name={planet} path={`/planets/${planet}`} key={planet} />)}
+            {planetNames.map(name => <NavBtn name={name} path={`/planets/${name}`} key={name} />)}
           </Collapsible>
           <NavBtn name={'Sun'} path='/sun' />
         </ul>
