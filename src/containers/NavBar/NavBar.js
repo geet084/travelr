@@ -4,7 +4,7 @@ import Collapsible from 'react-collapsible';
 
 class NavBar extends Component {
   render() {
-    const planets = ['mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'pluto']
+    const planets = ['Mercury', 'Venus', 'Earth', 'Mars', 'Jupiter', 'Saturn', 'Uranus', 'Neptune']
     return (
       <nav>
         <ul>
