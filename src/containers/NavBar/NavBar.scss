@@ -1,0 +1,17 @@
+ul {
+  list-style-type: none;
+}
+
+nav {
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+li {
+  &:hover {
+    color: red;
+  }
+}
+.Collapsible {
+  color: red;
+}
