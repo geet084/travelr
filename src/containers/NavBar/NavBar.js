@@ -8,7 +8,7 @@ class NavBar extends Component {
     return (
       <nav>
         <ul>
-          <NavBtn name={'Home'} path='/home'/>
+          <NavBtn name={'Home'} path='/'/>
           <NavBtn name={'Moon'} path='/moon'/>
           <Collapsible trigger="Planets">
             {planets.map(planet => <NavBtn name={planet} path={`/planets/${planet}`} key={planet} />)}

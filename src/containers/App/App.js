@@ -21,29 +21,21 @@ class App extends Component {
   }
 
   render() {
-    
+    let { content, planets } = this.props;
+
     return (
       <div className="App">
         <NavBar />
-        <img className='apod-img' src={this.props.content.url} alt="apod" />
+        <img className='apod-img' src={content.url} alt="apod" />
         <Switch>
-          <Route exact path='/' render={() => {
-            return <Display name='HOME' />
-          }}/>
-          <Route exact path='/home' render={() => {
-            return <Display name='HOME' />
-          }}/>
-          <Route  path='/moon' render={() => {
-            return <Display name='MOON' />
-          }}/>
+          <Route exact path='/' render={() => <Display name='HOME' />} />
+          <Route path='/moon' render={() => <Display name='MOON' />} />
           <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
-            const planet = this.props.planets.find(planet => planet.name === id)
+            const planet = planets.find(planet => planet.name.toLowerCase() === id)
             return <Display info={planet} />
           }} />
-          <Route  path='/sun' render={() => {
-            return <Display name='SUN' />
-          }} />
+          <Route path='/sun' render={() => <Display name='SUN' />} />
           <Route component={NotFound} />
         </Switch>
       </div>

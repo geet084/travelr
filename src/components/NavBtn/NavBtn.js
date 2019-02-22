@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 export const NavBtn = ({ name, path }) => {
   return (
     <li>
-      <Link to={path}>
+      <Link to={path.toLowerCase()}>
         {name}
       </Link>
     </li>
