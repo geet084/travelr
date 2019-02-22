@@ -1,4 +1,4 @@
-import { isLoading, hasErrored, fetchSuccess } from '../actions'
+import { isLoading, hasErrored, fetchAPODSuccess } from '../actions'
 
 export const fetchURL = (url) => {
   return async (dispatch) => {
@@ -10,7 +10,7 @@ export const fetchURL = (url) => {
       }
       dispatch(isLoading(false));
       const result = await response.json();
-      dispatch(fetchSuccess(result))
+      dispatch(fetchAPODSuccess(result))
     } catch (error) {
       dispatch(hasErrored(error.message))
     }
