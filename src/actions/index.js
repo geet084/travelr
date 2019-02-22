@@ -9,7 +9,12 @@ export const hasErrored = (message) => ({
   message
 })
 
-export const fetchSuccess = (content) => ({
-  type: 'FETCH_SUCCESS',
+export const fetchAPODSuccess = (content) => ({
+  type: 'FETCH_APOD_SUCCESS',
   content
+})
+
+export const fetchPlanetsSuccess = (planets) => ({
+  type: 'FETCH_PLANETS_SUCCESS',
+  planets
 })
