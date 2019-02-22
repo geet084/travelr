@@ -12,6 +12,17 @@ li {
     color: red;
   }
 }
+
 .Collapsible {
-  color: red;
+  color: purple;
+  &:hover {
+    color: red;
+  }
+}
+
+a {
+  text-decoration: none;
+  &:hover {
+    color: red;
+  }
 }
