@@ -6,6 +6,11 @@
 
 nav {
   display: flex;
-  width: 200px;
-  
+  width: 200px; 
+  background-color: lightgrey;
+}
+
+.apod-img {
+  position: absolute;
+  z-index: -1;
 }

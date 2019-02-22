@@ -25,13 +25,13 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <img src={this.props.content.url} alt="apod" />
+        <img className='apod-img' src={this.props.content.url} alt="apod" />
         <Switch>
           <Route exact path='/' render={() => {
-            return <Display name='DISPLAY' />
+            return <Display name='HOME' />
           }}/>
           <Route exact path='/home' render={() => {
-            return <Display name='DISPLAY' />
+            return <Display name='HOME' />
           }}/>
           <Route  path='/moon' render={() => {
             return <Display name='MOON' />
