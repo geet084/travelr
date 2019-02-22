@@ -9,7 +9,7 @@ export const hasErrored = (message) => ({
   message
 })
 
-export const fetchAPODSuccess = (content) => ({
+export const fetchApodSuccess = (content) => ({
   type: 'FETCH_APOD_SUCCESS',
   content
 })

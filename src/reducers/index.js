@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import { isLoadingReducer } from './isLoadingReducer';
 import { hasErroredReducer } from './hasErroredReducer';
-import { fetchAPODSuccessReducer } from './fetchAPODSuccessReducer'
-import { fetchPlanetsSuccessReducer } from './fetchPlanetsSuccessReducer'
+import { fetchApodReducer } from './fetchApodReducer'
+import { fetchPlanetsReducer } from './fetchPlanetsReducer'
 
 export const rootReducer = combineReducers({
   isLoading: isLoadingReducer,
   hasErrored: hasErroredReducer,
-  content: fetchAPODSuccessReducer,
-  planets: fetchPlanetsSuccessReducer,
+  content: fetchApodReducer,
+  planets: fetchPlanetsReducer,
 });

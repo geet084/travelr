@@ -3,7 +3,7 @@ import '../../Main.scss';
 import { nasaApiKey, planetsApiKey } from '../../ApiKeys';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { fetchURL } from '../../thunks/fetchURL';
+import { fetchApod } from '../../thunks/fetchApod';
 import { fetchPlanets } from '../../thunks/fetchPlanets';
 import Display from '../Display/Display';
 import NavBar from '../NavBar/NavBar';
@@ -16,7 +16,7 @@ class App extends Component {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`
     const planetsURL = `https://galaxcyclopedia.herokuapp.com/solarsystem/?api_key=${planetsApiKey}`;
-    this.props.fetchURL(nasaURL);
+    this.props.fetchApod(nasaURL);
     this.props.fetchPlanets(planetsURL);
   }
 
@@ -44,7 +44,7 @@ class App extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchURL: (url) => dispatch(fetchURL(url)),
+  fetchApod: (url) => dispatch(fetchApod(url)),
   fetchPlanets: (url) => dispatch(fetchPlanets(url)),
 })
 

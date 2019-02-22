@@ -1,6 +1,6 @@
-import { isLoading, hasErrored, fetchAPODSuccess } from '../actions'
+import { isLoading, hasErrored, fetchApodSuccess } from '../actions'
 
-export const fetchURL = (url) => {
+export const fetchApod = (url) => {
   return async (dispatch) => {
     try {
       dispatch(isLoading(true));
@@ -10,7 +10,7 @@ export const fetchURL = (url) => {
       }
       dispatch(isLoading(false));
       const result = await response.json();
-      dispatch(fetchAPODSuccess(result))
+      dispatch(fetchApodSuccess(result))
     } catch (error) {
       dispatch(hasErrored(error.message))
     }
