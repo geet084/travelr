@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavBtn from '../../components/NavBtn/NavBtn'
+import { NavBtn } from '../../components'
 import Collapsible from 'react-collapsible';
 
 class NavBar extends Component {
@@ -8,12 +8,12 @@ class NavBar extends Component {
     return (
       <nav>
         <ul>
-          <NavBtn name={'Home'} path='/'/>
-          <NavBtn name={'Moon'} path='/moon'/>
+          <NavBtn name={'Home'} path='/' />
+          <NavBtn name={'Moon'} path='/moon' />
           <Collapsible trigger="Planets">
             {planets.map(planet => <NavBtn name={planet} path={`/planets/${planet}`} key={planet} />)}
           </Collapsible>
-          <NavBtn name={'Sun'} path='/sun'/>
+          <NavBtn name={'Sun'} path='/sun' />
         </ul>
       </nav>
     )

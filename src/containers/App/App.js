@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import '../../Main.scss';
-import { nasaApiKey, planetsApiKey } from '../../ApiKeys';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { fetchApod } from '../../thunks/fetchApod';
-import { fetchPlanets } from '../../thunks/fetchPlanets';
-import Display from '../Display/Display';
-import NavBar from '../NavBar/NavBar';
-import NotFound from '../../components/NotFound/NotFound'
-
+import { nasaApiKey, planetsApiKey } from '../../ApiKeys';
+import { fetchApod, fetchPlanets } from '../../thunks';
+import '../../Main.scss';
+import { Display, NavBar } from '../'
+import { NotFound } from '../../components'
 
 class App extends Component {
 
