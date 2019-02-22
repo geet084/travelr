@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import '../../Main.scss';
 import { nasaApiKey } from '../../ApiKeys';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Route, Switch } from 'react-router-dom';
 import { fetchURL } from '../../thunks/fetchURL';
+import Display from '../Display/Display';
+import NavBar from '../NavBar/NavBar';
+import NotFound from '../../components/NotFound/NotFound'
+
 
 class App extends Component {
 
@@ -14,12 +18,29 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div className="App">
-        <header className="App-header">
-          TRAVELR
-        </header>
-        <img className="apod-img" src={this.props.content.url} alt=""/>
+        <NavBar />
+        <img src={this.props.content.url} alt="apod" />
+        <Switch>
+          <Route exact path='/' render={() => {
+            return <Display name='DISPLAY' />
+          }}/>
+          <Route exact path='/home' render={() => {
+            return <Display name='DISPLAY' />
+          }}/>
+          <Route  path='/moon' render={() => {
+            return <Display name='MOON' />
+          }}/>
+          <Route  path='/planets' render={() => {
+            return <Display name='PLANETS' />
+          }}/>
+          <Route  path='/sun' render={() => {
+            return <Display name='SUN' />
+          }} />
+          <Route component={NotFound} />
+        </Switch>
       </div>
     );
   }

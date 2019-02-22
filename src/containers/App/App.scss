@@ -1,17 +1,11 @@
 .App {
   text-align: center;
-  background-color: #000;
-}
-.App-header {
-  font-size: calc(10px + 2vmin);
-  color: white;
+  display: flex;
+
 }
 
-.apod-img {
-  width: 100%;
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+nav {
+  display: flex;
+  width: 200px;
+  
 }
-
