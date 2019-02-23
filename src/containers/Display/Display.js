@@ -13,7 +13,7 @@ class Display extends Component {
     const { info, images } = this.props;
 
     return (
-      <div>
+      <div className='display'>
         {info && <p>{'name  - ' + info.name}</p>}
         {info && <p>{'temp  - ' + info.average_temperature}</p>}
         {info && <p>{'dist  - ' + info.distance_from_sun}</p>}

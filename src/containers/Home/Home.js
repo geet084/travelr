@@ -22,7 +22,7 @@ class Home extends Component {
     let totalMovement = this.counter(0, 213230000)
 
     return (
-      <div>
+      <div className='home'>
         <img className='apod-img' src={url} alt="apod" />
         <header className="App-header">
           <h4>HOW FAST YOU ARE MOVING RIGHT NOW</h4>

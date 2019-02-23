@@ -5,6 +5,10 @@ ul {
 nav {
   font-size: calc(10px + 2vmin);
   color: white;
+  position: fixed;
+  top: 10%;
+  width: 175px;
+  border-radius: 7px;
 }
 
 li {

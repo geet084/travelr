@@ -1,13 +1,15 @@
-div {
+.display {
   color: white;
+  margin-left: 200px;
+  padding: 50px;
+  font-size: 2rem;
 }
 
 .imgs {
   position: fixed;
   top: 0;
-  // left: 10%;
+  left: 200px;
   margin: auto;
   height: 100%;
-  
   z-index: -1;
 }
