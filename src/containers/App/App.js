@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { nasaApiKey, planetsApiKey } from '../../ApiKeys';
+import { nasaApiKey, planetsApiKey } from '../../utils/ApiKeys';
 import { fetchApod, fetchPlanets } from '../../thunks';
 import '../../Main.scss';
-import { Display, NavBar } from '../'
-import { NotFound } from '../../components'
+import { Display, Home } from '../'
+import { NavBar, NotFound } from '../../components'
 
 class App extends Component {
 
@@ -23,16 +23,15 @@ class App extends Component {
     return (
       <div className="App">
         <NavBar />
-        <img className='apod-img' src={content.url} alt="apod" />
         <Switch>
-          <Route exact path='/' render={() => <Display name='HOME' />} />
-          <Route path='/moon' render={() => <Display name='MOON' />} />
+          <Route exact path='/' render={() => <Home key='home' url={content.url} />} />
+          <Route path='/moon' render={() => <Display key='moon' info='MOON' />} />
           <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
-            const planet = planets.find(planet => planet.name.toLowerCase() === id)
-            return <Display info={planet} />
+            const info = planets.find(planet => planet.name.toLowerCase() === id)
+            return <Display key={id} info={info} />
           }} />
-          <Route path='/sun' render={() => <Display name='SUN' />} />
+          <Route path='/sun' render={() => <Display key='sun' info='SUN' />} />
           <Route component={NotFound} />
         </Switch>
       </div>
