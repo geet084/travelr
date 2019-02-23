@@ -1,4 +1,5 @@
 import { isLoading, hasErrored, fetchPlanetsSuccess } from '../actions';
+import addImageIds from '../utils/addImageIds'
 
 export const fetchPlanets = (url) => {
   return async (dispatch) => {
@@ -10,7 +11,8 @@ export const fetchPlanets = (url) => {
       }
       dispatch(isLoading(false));
       const result = await response.json();
-      dispatch(fetchPlanetsSuccess(result.data))
+      const planets = addImageIds(result.data)
+      dispatch(fetchPlanetsSuccess(planets))
     } catch (error) {
       dispatch(hasErrored(error.message));
     }
