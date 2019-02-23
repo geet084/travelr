@@ -54,12 +54,13 @@ class Home extends Component {
 
   render() {
     const { url } = this.props;
-    let timeInSeconds = this.counter(0, 1000000, 1, ' seconds')
-    let earthSpin = this.counter(0, 280000, 1)
-    let earthOrbit = this.counter(0, 18500000)
-    let solarSystemOrbit = this.counter(0, 124450000)
-    let galaxyMovement = this.counter(0, 70000000)
-    let totalMovement = this.counter(0, 213230000)
+    let { time } = this.state;
+    let timeInSeconds = this.counter((time), 1000000, 1, ' seconds')
+    let earthSpin = this.counter((time * .28), 280000, 1)
+    let earthOrbit = this.counter((time * 18.5), 18500000)
+    let solarSystemOrbit = this.counter((time * 124.45), 124450000)
+    let galaxyMovement = this.counter((time * 70), 70000000)
+    let totalMovement = this.counter((time * 213.23), 213230000)
 
     return (
       <div className='home'>
