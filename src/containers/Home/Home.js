@@ -2,6 +2,28 @@ import React, { Component } from 'react'
 import CountUp from 'react-countup';
 
 class Home extends Component {
+  constructor() {
+    super();
+    this.state = {
+      time: 0,
+      today: '',
+      userDate: null,
+      elapsedDays: 0,
+      showMore: false
+    }
+  }
+  componentDidMount = () => {
+    this.calcTime(this.props.time)
+    const date = new Date();
+    this.setState({ today: date.toISOString() })
+  }
+
+  calcTime = (arrivalTime) => {
+    const now = Date.now() / 1000
+    let time = now - (arrivalTime / 1000)
+    if (time === now) time = 0
+    this.setState({ time })
+  }
 
   counter = (start, stop, decimal = 0, suffix = ' miles per second') => {
     return (
