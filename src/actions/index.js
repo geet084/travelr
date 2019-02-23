@@ -18,3 +18,8 @@ export const fetchPlanetsSuccess = (planets) => ({
   type: 'FETCH_PLANETS_SUCCESS',
   planets
 })
+
+export const fetchImagesSuccess = (images) => ({
+  type: 'FETCH_IMAGES_SUCCESS',
+  images
+})
