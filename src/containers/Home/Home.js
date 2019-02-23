@@ -66,26 +66,43 @@ class Home extends Component {
       <div className='home'>
         <img className='apod-img' src={url} alt="apod" />
         <header className="App-header">
-          <h4>HOW FAST YOU ARE MOVING RIGHT NOW</h4>
-          <h6>distance from new york to san francisco: <span>2,569 miles</span></h6>
-          <h6>distance from san francisco to paris: <span>5,560 miles</span> </h6>
-          <h6>distance from new york to australia: <span>10,512 miles</span></h6>
-          <h6>circumference of the earth: <span>24,901 miles</span></h6>
-          <h6>distance to the moon: <span>238,900 miles</span></h6>
-
-          <p>elapsed time</p>
-          <p>{timeInSeconds}</p>
-          <p>Earth spinning</p>
-          <p>{earthSpin}</p>
-          <p>Earth orbiting the Sun</p>
-          <p>{earthOrbit}</p>
-          <p>Solar system orbiting in the galaxy</p>
-          <p>{solarSystemOrbit}</p>
-          <p>Milky Way moving towards Andromeda</p>
-          <p>{galaxyMovement}</p>
-          <p>Your total speed right now</p>
-          <p>{totalMovement}</p>
+          <label htmlFor="">input a date
+            <div className="counter">
+              <DateInput shouldValidate minDate="0000-01-01" maxDate={this.state.today} onChange={this.handleDate} />
+            </div>
+            {this.state.elapsedDays !== 0 &&
+              <div>
+                <p>elapsed days: {this.state.elapsedDays.toLocaleString()}</p>
+                <p>total distance: {(this.state.elapsedDays * 24000).toLocaleString()} miles</p>
+              </div>}
+          </label>
+          {!this.state.showMore && this.state.elapsedDays > 0 && <button onClick={this.showMoreLess}>Show More</button>}
+          {this.state.showMore && <button onClick={this.showMoreLess}>Show Less</button>}
         </header>
+        {
+          this.state.showMore &&
+          <section>
+            <h4>HOW FAST YOU ARE MOVING RIGHT NOW</h4>
+            <h6>distance from new york to san francisco: <span>2,569 miles</span></h6>
+            <h6>distance from san francisco to paris: <span>5,560 miles</span> </h6>
+            <h6>distance from new york to australia: <span>10,512 miles</span></h6>
+            <h6>circumference of the earth: <span>24,901 miles</span></h6>
+            <h6>distance to the moon: <span>238,900 miles</span></h6>
+
+            <p>elapsed time</p>
+            <p>{timeInSeconds}</p>
+            <p>Earth spinning</p>
+            <p>{earthSpin}</p>
+            <p>Earth orbiting the Sun</p>
+            <p>{earthOrbit}</p>
+            <p>Solar system orbiting in the galaxy</p>
+            <p>{solarSystemOrbit}</p>
+            <p>Milky Way moving towards Andromeda</p>
+            <p>{galaxyMovement}</p>
+            <p>Your total speed right now</p>
+            <p>{totalMovement}</p>
+          </section>
+        }
       </div>
     )
   }
