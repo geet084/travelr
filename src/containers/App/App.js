@@ -26,7 +26,7 @@ class App extends Component {
       <div className="App">
         <NavBar />
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={content.url} />} />
+          <Route exact path='/' render={() => <Home key='home' url={content.url} time={this.props.arrivalTime} />} />
           <Route path='/moon' render={() => <Display key='moon' info='MOON' />} />
           <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
@@ -50,6 +50,7 @@ export const mapDispatchToProps = (dispatch) => ({
 export const mapStateToProps = (state) => ({
   content: state.content,
   planets: state.planets,
+  arrivalTime: state.arrivalTime,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
