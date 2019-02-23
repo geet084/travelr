@@ -7,7 +7,7 @@ class Home extends Component {
     return (
       <CountUp
         start={start} end={stop} decimals={decimal} suffix={suffix} duration='1000000' delay={0} useEasing={false} separator=','>
-        {({ countUpRef }) => <div><span ref={countUpRef} /></div>}
+        {({ countUpRef }) => <span ref={countUpRef} />}
       </CountUp>
     )
   }
@@ -32,12 +32,18 @@ class Home extends Component {
           <h6>circumference of the earth: <span>24,901 miles</span></h6>
           <h6>distance to the moon: <span>238,900 miles</span></h6>
 
-          <p>elapsed time {timeInSeconds}</p>
-          <p>Earth spinning {earthSpin}</p>
-          <p>Earth orbiting the Sun {earthOrbit}</p>
-          <p>Solar system orbiting in the galaxy {solarSystemOrbit}</p>
-          <p>Milky Way moving towards Andromeda {galaxyMovement}</p>
-          <p>Your total speed right now {totalMovement}</p>
+          <p>elapsed time</p>
+          <p>{timeInSeconds}</p>
+          <p>Earth spinning</p>
+          <p>{earthSpin}</p>
+          <p>Earth orbiting the Sun</p>
+          <p>{earthOrbit}</p>
+          <p>Solar system orbiting in the galaxy</p>
+          <p>{solarSystemOrbit}</p>
+          <p>Milky Way moving towards Andromeda</p>
+          <p>{galaxyMovement}</p>
+          <p>Your total speed right now</p>
+          <p>{totalMovement}</p>
         </header>
       </div>
     )
