@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import CountUp from 'react-countup';
+import DateInput from 'date-input';
 
 class Home extends Component {
   constructor() {
@@ -32,6 +33,23 @@ class Home extends Component {
         {({ countUpRef }) => <span ref={countUpRef} />}
       </CountUp>
     )
+  }
+
+  showMoreLess = () => {
+    this.setState({ showMore: !this.state.showMore })
+  }
+
+  handleDate = (e) => {
+    const userDate = new Date(e);
+    const singleDay = (1000 * 60 * 60 * 24);
+    const thisTime = new Date();
+    const diff = thisTime.getTime() - userDate.getTime();
+    const elapsedDays = Math.floor(diff / singleDay)
+    
+    const date = e.split('')
+
+    if (date.length < 10 || elapsedDays <= 0) this.setState({ userDate, elapsedDays: 0 });
+    else this.setState({ userDate, elapsedDays })
   }
 
   render() {
