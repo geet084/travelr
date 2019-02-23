@@ -23,3 +23,8 @@ export const fetchImagesSuccess = (images) => ({
   type: 'FETCH_IMAGES_SUCCESS',
   images
 })
+
+export const setArrivalTime = (arrivalTime) => ({
+  type: 'SET_ARRIVAL_TIME',
+  arrivalTime
+})

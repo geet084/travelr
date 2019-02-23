@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { nasaApiKey, planetsApiKey } from '../../utils/ApiKeys';
 import { fetchApod, fetchPlanets } from '../../thunks';
+import { setArrivalTime } from '../../actions/'
 import '../../Main.scss';
 import { Display, Home } from '../'
 import { NavBar, NotFound } from '../../components'
@@ -15,6 +16,7 @@ class App extends Component {
     const planetsURL = `https://galaxcyclopedia.herokuapp.com/solarsystem/?api_key=${planetsApiKey}`;
     this.props.fetchApod(nasaURL);
     this.props.fetchPlanets(planetsURL);
+    this.props.setArrivalTime(Date.now())
   }
 
   render() {
@@ -40,6 +42,7 @@ class App extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
+  setArrivalTime: (time) => dispatch(setArrivalTime(time)),
   fetchApod: (url) => dispatch(fetchApod(url)),
   fetchPlanets: (url) => dispatch(fetchPlanets(url)),
 })
