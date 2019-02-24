@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { nasaApiKey, planetsApiKey } from '../../utils/ApiKeys';
 import { fetchApod, fetchPlanets } from '../../thunks';
-import { setArrivalTime } from '../../actions/'
+import { setArrivalTime } from '../../actions'
 import '../../Main.scss';
 import { Display, Home } from '../'
 import { NavBar, NotFound } from '../../components'
