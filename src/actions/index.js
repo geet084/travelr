@@ -28,3 +28,9 @@ export const setArrivalTime = (arrivalTime) => ({
   type: 'SET_ARRIVAL_TIME',
   arrivalTime
 })
+
+export const setUserInfo = ({ userDate, elapsedDays }) => ({
+  type: 'SET_USER_INFO',
+  userDate,
+  elapsedDays
+})
