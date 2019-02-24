@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import CountUp from 'react-countup';
-import DateInput from 'date-input';
+import { DateForm } from '../../components';
+
 
 class Home extends Component {
   constructor() {
@@ -8,22 +9,21 @@ class Home extends Component {
     this.state = {
       time: 0,
       today: '',
-      userDate: null,
-      elapsedDays: 0,
       showMore: false
     }
   }
+
   componentDidMount = () => {
-    this.calcTime(this.props.time)
-    const date = new Date();
-    this.setState({ today: date.toISOString() })
+    this.calculateDateAndTime();
   }
 
-  calcTime = (arrivalTime) => {
+  calculateDateAndTime = () => {
     const now = Date.now() / 1000
-    let time = now - (arrivalTime / 1000)
+    let time = now - (this.props.time / 1000)
+    const date = new Date();
     if (time === now) time = 0
-    this.setState({ time })
+
+    this.setState({ time, today: date.toISOString() })
   }
 
   counter = (start, stop, decimal = 0, suffix = ' miles per second') => {
@@ -39,22 +39,9 @@ class Home extends Component {
     this.setState({ showMore: !this.state.showMore })
   }
 
-  handleDate = (e) => {
-    const userDate = new Date(e);
-    const singleDay = (1000 * 60 * 60 * 24);
-    const thisTime = new Date();
-    const diff = thisTime.getTime() - userDate.getTime();
-    const elapsedDays = Math.floor(diff / singleDay)
-    
-    const date = e.split('')
-
-    if (date.length < 10 || elapsedDays <= 0) this.setState({ userDate, elapsedDays: 0 });
-    else this.setState({ userDate, elapsedDays })
-  }
-
   render() {
     const { url } = this.props;
-    let { time } = this.state;
+    let { showMore, time, today } = this.state;
     let timeInSeconds = this.counter((time), 1000000, 1, ' seconds')
     let earthSpin = this.counter((time * .28), 280000, 1)
     let earthOrbit = this.counter((time * 18.5), 18500000)
@@ -65,22 +52,9 @@ class Home extends Component {
     return (
       <div className='home'>
         <img className='apod-img' src={url} alt="apod" />
-        <header className="App-header">
-          <label htmlFor="">input a date
-            <div className="counter">
-              <DateInput shouldValidate minDate="0000-01-01" maxDate={this.state.today} onChange={this.handleDate} />
-            </div>
-            {this.state.elapsedDays !== 0 &&
-              <div>
-                <p>elapsed days: {this.state.elapsedDays.toLocaleString()}</p>
-                <p>total distance: {(this.state.elapsedDays * 24000).toLocaleString()} miles</p>
-              </div>}
-          </label>
-          {!this.state.showMore && this.state.elapsedDays > 0 && <button onClick={this.showMoreLess}>Show More</button>}
-          {this.state.showMore && <button onClick={this.showMoreLess}>Show Less</button>}
-        </header>
+        <DateForm key={today} today={today} showMoreLess={this.showMoreLess} />
         {
-          this.state.showMore &&
+          showMore &&
           <section>
             <h4>HOW FAST YOU ARE MOVING RIGHT NOW</h4>
             <h6>distance from new york to san francisco: <span>2,569 miles</span></h6>
