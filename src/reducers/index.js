@@ -5,6 +5,7 @@ import { fetchApodReducer } from './fetchApodReducer';
 import { fetchPlanetsReducer } from './fetchPlanetsReducer';
 import { fetchImagesReducer } from './fetchImagesReducer';
 import { setArrivalTimeReducer } from './setArrivalTimeReducer';
+import { setUserInfoReducer } from './setUserInfoReducer'
 
 export const rootReducer = combineReducers({
   isLoading: isLoadingReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   planets: fetchPlanetsReducer,
   images: fetchImagesReducer,
   arrivalTime: setArrivalTimeReducer,
+  userInfo: setUserInfoReducer,
 });
