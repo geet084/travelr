@@ -77,13 +77,13 @@ export class DateForm extends Component {
         {
           elapsedDays !== 0 &&
           <div>
-            <p>Time elapsed since {userDate}: </p>
-            <p>
+            <p className="test">Time elapsed since {userDate}: </p>
+            <p className="test">
               <span>{days.toLocaleString()} days and </span>
               <span> ~{hours.toLocaleString()} hours</span>
             </p>
-            <p>Approx. distance you've gone on Earth: </p>
-            <p> {total.toLocaleString()} miles</p>
+            <p className="test">Approx. distance you've gone on Earth: </p>
+            <p className="test"> {total.toLocaleString()} miles</p>
           </div>
         }
       </div>

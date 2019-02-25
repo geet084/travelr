@@ -49,36 +49,36 @@ class Home extends Component {
         <img className='apod-img' src={url} alt="apod" />
         <header>
           <div className="prompt">
-            <h3>How far do you think you've traveled today?</h3>
-            <h3>How far have you traveled this week?</h3>
-            <h3>Enter a date to find out</h3>
+            <h3 className="test">How far do you think you've traveled today?</h3>
+            <h3 className="test">How far have you traveled this week?</h3>
+            <h3 className="test">Enter a date to find out</h3>
           </div>
-          <DateForm key={today} today={today} />
+          <DateForm className="test" key={today} today={today} />
         </header>
         <div className='stats'>
-          <h4>HOW FAST YOU ARE MOVING RIGHT NOW</h4>
-          <h6>distance from new york to san francisco: <span>2,569 miles</span></h6>
-          <h6>distance from san francisco to paris: <span>5,560 miles</span> </h6>
-          <h6>distance from new york to australia: <span>10,512 miles</span></h6>
-          <h6>circumference of the earth: <span>24,901 miles</span></h6>
-          <h6>distance to the moon: <span>238,900 miles</span></h6>
+          <h4 className="test">HOW FAST YOU ARE MOVING RIGHT NOW</h4>
+          <h6 className="test">distance from new york to san francisco: <span>2,569 miles</span></h6>
+          <h6 className="test">distance from san francisco to paris: <span>5,560 miles</span> </h6>
+          <h6 className="test">distance from new york to australia: <span>10,512 miles</span></h6>
+          <h6 className="test">circumference of the earth: <span>24,901 miles</span></h6>
+          <h6 className="test">distance to the moon: <span>238,900 miles</span></h6>
         </div>
         <section className="details">
           <div className="title">
-            <p>elapsed time since you arrived on this page in seconds</p>
-            <p>Earth spinning miles per second</p>
-            <p>Earth orbiting the Sun miles per second</p>
-            <p>Solar system orbiting in the galaxy miles per second</p>
-            <p>Milky Way moving towards Andromeda miles per second</p>
-            <p>Your total speed right now in miles per second</p>
+            <p className="test">elapsed time since you arrived on this page in seconds</p>
+            <p className="test">Earth spinning miles per second</p>
+            <p className="test">Earth orbiting the Sun miles per second</p>
+            <p className="test">Solar system orbiting in the galaxy miles per second</p>
+            <p className="test">Milky Way moving towards Andromeda miles per second</p>
+            <p className="test">Your total speed right now in miles per second</p>
           </div>
           <div className="counter-info">
-            <p>{timeInSeconds}</p>
-            <p>{earthSpin}</p>
-            <p>{earthOrbit}</p>
-            <p>{solarSystemOrbit}</p>
-            <p>{galaxyMovement}</p>
-            <p>{totalMovement}</p>
+            <p className="test">{timeInSeconds}</p>
+            <p className="test">{earthSpin}</p>
+            <p className="test">{earthOrbit}</p>
+            <p className="test">{solarSystemOrbit}</p>
+            <p className="test">{galaxyMovement}</p>
+            <p className="test">{totalMovement}</p>
           </div>
         </section>
       </div>
