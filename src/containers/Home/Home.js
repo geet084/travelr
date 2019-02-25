@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import { DateForm } from '../';
+import Collapsible from 'react-collapsible';
 
 class Home extends Component {
   constructor() {
@@ -55,6 +56,8 @@ class Home extends Component {
           </div>
           <DateForm className="test" key={today} today={today} />
         </header>
+        <Collapsible className="test" trigger="Show More">
+        
         <div className='stats'>
           <h4 className="test">HOW FAST YOU ARE MOVING RIGHT NOW</h4>
           <h6 className="test">distance from new york to san francisco: <span>2,569 miles</span></h6>
@@ -80,7 +83,8 @@ class Home extends Component {
             <p className="test">{galaxyMovement}</p>
             <p className="test">{totalMovement}</p>
           </div>
-        </section>
+          </section>
+        </Collapsible>
       </div>
     )
   }
