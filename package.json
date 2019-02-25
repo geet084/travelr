@@ -42,7 +42,8 @@
       "src/**/*.{js,jsx}",
       "!/node_modules/",
       "!src/index.js",
-      "!src/setupTest.js"
+      "!src/utils/ApiKeys.js",
+      "!src/setupTests.js"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
