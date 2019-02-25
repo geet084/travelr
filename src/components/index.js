@@ -1,5 +1,6 @@
-import NavBar from './NavBar/NavBar'
-import NavBtn from './NavBtn/NavBtn'
-import NotFound from './NotFound/NotFound'
+import NavBar from './NavBar/NavBar';
+import NavBtn from './NavBtn/NavBtn';
+import NotFound from './NotFound/NotFound';
+import Home from './Home/Home';
 
-export { NavBar, NavBtn, NotFound }
+export { Home, NavBar, NavBtn, NotFound }

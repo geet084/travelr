@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
-import { DateForm } from '../';
+import { DateForm } from '../../containers';
 import Collapsible from 'react-collapsible';
 
 class Home extends Component {
