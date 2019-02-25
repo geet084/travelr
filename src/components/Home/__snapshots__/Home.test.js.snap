@@ -1,0 +1,314 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home initial state should match snapshot 1`] = `
+<div
+  className="home"
+>
+  <img
+    alt="apod"
+    className="apod-img"
+    src="http://someurl"
+  />
+  <header>
+    <div
+      className="prompt"
+    >
+      <h3
+        className="test"
+      >
+        How far do you think you've traveled today?
+      </h3>
+      <h3
+        className="test"
+      >
+        How far have you traveled this week?
+      </h3>
+      <h3
+        className="test"
+      >
+        Enter a date to find out
+      </h3>
+    </div>
+    <Connect(DateForm)
+      className="test"
+      key="Sun Feb 24 2019"
+      today="Sun Feb 24 2019"
+    />
+  </header>
+  <Collapsible
+    className="test"
+    classParentString="Collapsible"
+    contentContainerTagName="div"
+    contentInnerClassName=""
+    contentOuterClassName=""
+    easing="linear"
+    lazyRender={false}
+    onClose={[Function]}
+    onClosing={[Function]}
+    onOpen={[Function]}
+    onOpening={[Function]}
+    open={false}
+    openedClassName=""
+    overflowWhenOpen="hidden"
+    tabIndex={null}
+    transitionCloseTime={null}
+    transitionTime={400}
+    trigger="Show More"
+    triggerClassName=""
+    triggerDisabled={false}
+    triggerOpenedClassName=""
+    triggerSibling={null}
+    triggerStyle={null}
+    triggerTagName="span"
+  >
+    <div
+      className="stats"
+    >
+      <h4
+        className="test"
+      >
+        HOW FAST YOU ARE MOVING RIGHT NOW
+      </h4>
+      <h6
+        className="test"
+      >
+        distance from new york to san francisco: 
+        <span>
+          2,569 miles
+        </span>
+      </h6>
+      <h6
+        className="test"
+      >
+        distance from san francisco to paris: 
+        <span>
+          5,560 miles
+        </span>
+         
+      </h6>
+      <h6
+        className="test"
+      >
+        distance from new york to australia: 
+        <span>
+          10,512 miles
+        </span>
+      </h6>
+      <h6
+        className="test"
+      >
+        circumference of the earth: 
+        <span>
+          24,901 miles
+        </span>
+      </h6>
+      <h6
+        className="test"
+      >
+        distance to the moon: 
+        <span>
+          238,900 miles
+        </span>
+      </h6>
+    </div>
+    <section
+      className="details"
+    >
+      <div
+        className="title"
+      >
+        <p
+          className="test"
+        >
+          elapsed time since you arrived on this page in seconds
+        </p>
+        <p
+          className="test"
+        >
+          Earth spinning miles per second
+        </p>
+        <p
+          className="test"
+        >
+          Earth orbiting the Sun miles per second
+        </p>
+        <p
+          className="test"
+        >
+          Solar system orbiting in the galaxy miles per second
+        </p>
+        <p
+          className="test"
+        >
+          Milky Way moving towards Andromeda miles per second
+        </p>
+        <p
+          className="test"
+        >
+          Your total speed right now in miles per second
+        </p>
+      </div>
+      <div
+        className="counter-info"
+      >
+        <p
+          className="test"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={1}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={1000000}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={0}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+        <p
+          className="test"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={1}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={280000}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={0}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+        <p
+          className="test"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={0}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={18500000}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={0}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+        <p
+          className="test"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={0}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={124450000}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={0}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+        <p
+          className="test"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={0}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={70000000}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={0}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+        <p
+          className="test"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={0}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={213230000}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={0}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+      </div>
+    </section>
+  </Collapsible>
+</div>
+`;
