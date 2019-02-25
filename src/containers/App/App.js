@@ -7,7 +7,7 @@ import { setArrivalTime } from '../../actions'
 import '../../Main.scss';
 import { Display, Home } from '../'
 import { NavBar, NotFound } from '../../components'
-const backupImage = 'https://images-assets.nasa.gov/image/iss044e045215/iss044e045215~orig.jpg';
+import backupUrl from '../../images/back-img.jpg';
 
 class App extends Component {
 
@@ -21,15 +21,16 @@ class App extends Component {
   }
 
   render() {
-    let { arrivalTime, content, planets } = this.props;
-    let url = content.url
-    if (content.media_type === 'video') url = backupImage
+    const { arrivalTime, planets } = this.props;
+    const { media_type, url } = this.props.content;
+    let currentUrl = url
+    if (media_type === 'video' || url === undefined) currentUrl = backupUrl
 
     return (
       <div className="App">
         <NavBar />
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={url} time={arrivalTime} />} />
+          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} />} />
           <Route path='/moon' render={() => <Display key='moon' info='MOON' />} />
           <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
