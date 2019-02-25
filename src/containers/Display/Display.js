@@ -11,14 +11,14 @@ class Display extends Component {
   
   render() {
     const { info, images } = this.props;
-
+    
     return (
       <div className='display'>
         {info && <p>{'name  - ' + info.name}</p>}
         {info && <p>{'temp  - ' + info.average_temperature}</p>}
         {info && <p>{'dist  - ' + info.distance_from_sun}</p>}
         {info && <p>{'day  - ' + info.length_of_day}</p>}
-        {info && <p>{'year  - ' + info.orbital_period}</p>}
+        {info && <p>{'orbit  - ' + info.orbital_period.toLocaleString()}</p>}
         
         {images.length !== 0 && <img className='imgs' src={images[0].items[0].href} alt="" />}
       </div>
