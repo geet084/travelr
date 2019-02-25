@@ -29,6 +29,11 @@ export const setArrivalTime = (arrivalTime) => ({
   arrivalTime
 })
 
+export const setBodies = (bodies) => ({
+  type: 'SET_BODIES',
+  bodies
+})
+
 export const setUserInfo = ({userDate, elapsedDays}) => ({
   type: 'SET_USER_INFO',
   userDate,

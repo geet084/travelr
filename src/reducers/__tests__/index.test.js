@@ -13,6 +13,7 @@ describe('rootReducer', () => {
       images: [],
       arrivalTime: 0,
       userInfo: { userDate: '', elapsedDays: 0 },
+      bodies: [],
     }
 
     expect(store.getState()).toEqual(expected)
@@ -75,5 +76,12 @@ describe('rootReducer', () => {
     
     store.dispatch(action)
     expect(store.getState().userInfo).toEqual(expected)
+  })
+
+  it('should dispatch setBodies action', () => {
+    let action = { type: 'SET_BODIES', bodies: [] };
+    let expected = []
+    store.dispatch(action)
+    expect(store.getState().bodies).toEqual(expected);
   })
 })
