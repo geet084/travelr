@@ -1,7 +1,11 @@
 .home {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   color: white;
   margin-left: 200px;
-  padding: 100px;
+  margin: 0 auto;
 }
 
 .test {
@@ -10,10 +14,11 @@
 }
 
 .apod-img {
-  position: fixed;
-  top: 0;
-  left: 0;
   height: 100%;
+  position: fixed; 
+  left: 50%; 
+  top: 0;
+  transform: translateX(-50%);
   z-index: -1;
 }
 
@@ -27,6 +32,7 @@ header {
  display: flex;
  justify-content: center;
 }
+
 .stats {
   width: 300px;
   margin: 0 auto;
@@ -43,6 +49,13 @@ header {
   height: 250px;
 }
 
+.home .Collapsible {
+  position: relative;
+}
+
+.extra {
+  width: 390px;
+}
 
 .counter-info {
   text-align: left;
@@ -53,5 +66,13 @@ header {
 
 .prompt {
   text-align: left;
-  padding-left: 15px;
+}
+
+.input-date {
+  height: 33px;
+  padding-top: 5px;
+}
+
+.user-dist {
+  text-align: center;
 }
