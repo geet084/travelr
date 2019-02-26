@@ -24,16 +24,17 @@ class App extends Component {
   }
 
   render() {
-    const { arrivalTime, bodies, planets } = this.props;
+    const { arrivalTime, bodies, planets, userInfo } = this.props;
     const { media_type, url } = this.props.content;
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
-
+    
     return (
       <div className="App">
+        <h1 className="logo">TRAVELR</h1>
         <NavBar />
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} />} />
+          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo}/>} />
           <Route path='/moon' render={() => <Display key='moon' info={bodies[1]} />} />
           <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
@@ -60,6 +61,7 @@ export const mapStateToProps = (state) => ({
   planets: state.planets,
   arrivalTime: state.arrivalTime,
   bodies: state.bodies,
+  userInfo: state.userInfo,
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
