@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import DateForm from './DateForm';
-import { mapStateToProps, mapDispatchToProps } from './DateForm'
+import { mapDispatchToProps } from './DateForm'
 
 
 describe('DateForm', () => {
@@ -25,20 +25,4 @@ describe('DateForm', () => {
     expect(mockDispatch).toHaveBeenCalled()
   })
 
-  it('should mapStateToProps', () => {
-    const mockState = {
-      userInfo: {
-        userDate: 'Oct, 1, 2018',
-        elapsedDays: 199
-      },
-      extra: 'stuff',
-      things: 'things'
-    }
-    const expected = {
-      userDate: 'Oct, 1, 2018',
-      elapsedDays: 199,
-    }
-    const mappedProps = mapStateToProps(mockState);
-    expect(mappedProps).toEqual(expected)
-  })
 })

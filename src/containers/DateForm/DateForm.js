@@ -9,11 +9,9 @@ export class DateForm extends Component {
     this.state = {
       minDate: '0000-01-01',
       maxDate: '',
-      userDate: this.props.userDate,
-      elapsedDays: this.props.elapsedDays,
     }
   }
-  
+
   componentDidMount = () => {
     this.setMaxDate();
   }
@@ -64,28 +62,11 @@ export class DateForm extends Component {
   }
 
   render() {
-    const { elapsedDays, maxDate, minDate, userDate } = this.state;
-    const days = Math.floor(elapsedDays)
-    const hours = Math.floor(((elapsedDays - days) * 24) - 7)
-    const total = ((days + (hours / 24)) * 24000);
+    const { maxDate, minDate } = this.state;
 
     return (
       <div className="date-form">
-        <div className="counter">
-          <DateInput shouldValidate minDate={minDate} maxDate={maxDate} onChange={this.handleDate} />
-        </div>
-        {
-          elapsedDays !== 0 &&
-          <div>
-            <p className="test">Time elapsed since {userDate}: </p>
-            <p className="test">
-              <span>{days.toLocaleString()} days and </span>
-              <span> ~{hours.toLocaleString()} hours</span>
-            </p>
-            <p className="test">Approx. distance you've gone on Earth: </p>
-            <p className="test"> {total.toLocaleString()} miles</p>
-          </div>
-        }
+        <DateInput shouldValidate minDate={minDate} maxDate={maxDate} onChange={this.handleDate} />
       </div>
     )
   }
@@ -95,9 +76,4 @@ export const mapDispatchToProps = (dispatch) => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
 })
 
-export const mapStateToProps = (state) => ({
-  userDate: state.userInfo.userDate,
-  elapsedDays: state.userInfo.elapsedDays,
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(DateForm);
+export default connect(null, mapDispatchToProps)(DateForm);
