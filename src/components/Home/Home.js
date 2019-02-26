@@ -7,43 +7,57 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      time: 0,
       today: '',
+      timeInSeconds: 0,
+      earthSpin: 0,
+      earthOrbit: 0,
+      solarSystemOrbit: 0,
+      galaxyMovement: 0,
+      totalMovement: 0,
     }
   }
 
-  componentDidMount = () => {
-    this.calculateDateAndTime();
+  componentDidMount = async () => {
+    await this.props.time;
+    await this.calculateDateAndTime();
   }
 
   calculateDateAndTime = () => {
     const now = Date.now() / 1000;
-    let time = now - (this.props.time / 1000);
+    const timeInSeconds = now - (this.props.time / 1000);
     const date = new Date();
     date.setDate(date.getDate() - 1);
-    if (time === now) time = 0;
 
-    this.setState({ time, today: date.toDateString() });
+    this.setState({
+      timeInSeconds,
+      today: date.toDateString(),
+      earthSpin: (timeInSeconds * .28),
+      earthOrbit: (timeInSeconds * 18.5),
+      solarSystemOrbit: (timeInSeconds * 124.45),
+      galaxyMovement: (timeInSeconds * 70),
+      totalMovement: (timeInSeconds * 213.23),
+    });
   }
 
-  counter = (start, stop, decimal = 0) => {
+  counter = (start, end, decimal = 0) => {
     return (
       <CountUp
-        start={start} end={stop} decimals={decimal} duration='1000000' delay={0} useEasing={false} separator=','>
+        start={start} end={end} decimals={decimal} duration='1000000' delay={0} useEasing={false} separator=','>
         {({ countUpRef }) => <span ref={countUpRef} />}
       </CountUp>
     );
   }
 
   render() {
-    const { url } = this.props;
-    let { time, today } = this.state;
-    let timeInSeconds = this.counter((time), 1000000, 1);
-    let earthSpin = this.counter((time * .28), 280000, 1);
-    let earthOrbit = this.counter((time * 18.5), 18500000);
-    let solarSystemOrbit = this.counter((time * 124.45), 124450000);
-    let galaxyMovement = this.counter((time * 70), 70000000);
-    let totalMovement = this.counter((time * 213.23), 213230000);
+    const { url, userInfo } = this.props;
+    const { userDate, elapsedDays } = this.props.userInfo;
+    let { today, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement, } = this.state;
+
+    const days = Math.floor(elapsedDays)
+    const hours = Math.floor(((elapsedDays - days) * 24) - 7)
+    const total = ((days + (hours / 24)) * 24000);
+
+    let num = this.counter((total + totalMovement), (total + totalMovement + 213230000), 1);
 
     return (
       <div className='home'>
@@ -52,39 +66,56 @@ class Home extends Component {
           <div className="prompt">
             <h3 className="test">How far do you think you've traveled today?</h3>
             <h3 className="test">How far have you traveled this week?</h3>
-            <h3 className="test">Enter a date to find out</h3>
+            <h3 className="test input-date">
+              Enter a date to find out:
+              <DateForm className="test" key={today} today={today} />
+            </h3>
+            {
+              elapsedDays !== 0 &&
+              <div>
+                <p className="test">Time elapsed since {userDate}: </p>
+                <p className="test">
+                  <span>{days.toLocaleString()} days and </span>
+                  <span> ~{hours.toLocaleString()} hours</span>
+                </p>
+                <p className="test">Approx. total miles you've gone in that time: </p>
+                <p className="test user-dist">{num}</p>
+              </div>
+            }
           </div>
-          <DateForm className="test" key={today} today={today} />
         </header>
-        <Collapsible className="test" trigger="Show More">
-        
-        <div className='stats'>
-          <h4 className="test">HOW FAST YOU ARE MOVING RIGHT NOW</h4>
-          <h6 className="test">distance from new york to san francisco: <span>2,569 miles</span></h6>
-          <h6 className="test">distance from san francisco to paris: <span>5,560 miles</span> </h6>
-          <h6 className="test">distance from new york to australia: <span>10,512 miles</span></h6>
-          <h6 className="test">circumference of the earth: <span>24,901 miles</span></h6>
-          <h6 className="test">distance to the moon: <span>238,900 miles</span></h6>
-        </div>
-        <section className="details">
-          <div className="title">
-            <p className="test">elapsed time since you arrived on this page in seconds</p>
-            <p className="test">Earth spinning miles per second</p>
-            <p className="test">Earth orbiting the Sun miles per second</p>
-            <p className="test">Solar system orbiting in the galaxy miles per second</p>
-            <p className="test">Milky Way moving towards Andromeda miles per second</p>
-            <p className="test">Your total speed right now in miles per second</p>
-          </div>
-          <div className="counter-info">
-            <p className="test">{timeInSeconds}</p>
-            <p className="test">{earthSpin}</p>
-            <p className="test">{earthOrbit}</p>
-            <p className="test">{solarSystemOrbit}</p>
-            <p className="test">{galaxyMovement}</p>
-            <p className="test">{totalMovement}</p>
-          </div>
-          </section>
-        </Collapsible>
+        {
+          userInfo && userInfo.elapsedDays !== 0 &&
+          <Collapsible className="test extra" trigger="Show More">
+
+            <div className='stats'>
+              <h4 className="test">HOW FAST YOU ARE MOVING RIGHT NOW</h4>
+              <h6 className="test">distance from new york to san francisco: <span>2,569 miles</span></h6>
+              <h6 className="test">distance from san francisco to paris: <span>5,560 miles</span> </h6>
+              <h6 className="test">distance from new york to australia: <span>10,512 miles</span></h6>
+              <h6 className="test">circumference of the earth: <span>24,901 miles</span></h6>
+              <h6 className="test">distance to the moon: <span>238,900 miles</span></h6>
+            </div>
+            <section className="details">
+              <div className="title">
+                <p className="test">elapsed time since you arrived on this page in seconds</p>
+                <p className="test">Distance covered in miles due to Earth spinning</p>
+                <p className="test">Distance covered in miles due to the Earth orbiting the Sun</p>
+                <p className="test">Distance covered in miles due to the Solar system orbiting in the galaxy</p>
+                <p className="test">Distance covered in miles due to the Milky Way moving towards Andromeda</p>
+                <p className="test">Your total distance covered in that time</p>
+              </div>
+              <div className="counter-info">
+                <p className="test">{this.counter(timeInSeconds, (timeInSeconds + 1000000), 1)}</p>
+                <p className="test">{this.counter(earthSpin, (earthSpin + 280000), 1)}</p>
+                <p className="test">{this.counter(earthOrbit, (earthOrbit, 18500000))}</p>
+                <p className="test">{this.counter(solarSystemOrbit, (solarSystemOrbit, 124450000))}</p>
+                <p className="test">{this.counter(galaxyMovement, (galaxyMovement, 70000000))}</p>
+                <p className="test">{this.counter(totalMovement, (totalMovement, 213230000))}</p>
+              </div>
+            </section>
+          </Collapsible>
+        }
       </div>
     )
   }
