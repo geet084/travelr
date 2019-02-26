@@ -14,11 +14,12 @@ class Display extends Component {
     
     return (
       <div className='display'>
-        {info && <p>{'name  - ' + info.name}</p>}
-        {info && <p>{'temp  - ' + info.average_temperature}</p>}
-        {info && <p>{'dist  - ' + info.distance_from_sun}</p>}
-        {info && <p>{'day  - ' + info.length_of_day}</p>}
-        {info && <p>{'orbit  - ' + info.orbital_period.toLocaleString()}</p>}
+        {info && <p>{'Name  - ' + info.name}</p>}
+        {info && <p>{'Avg. Temp  - ' + info.average_temperature}</p>}
+        {info && <p>{'Distance from the sun  - '}</p>}
+        {info && <p>{info.distance_from_sun}</p>}
+        {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
+        {info && <p>{'Orbital period  - ' + info.orbital_period.toLocaleString()}</p>}
         
         {images.length !== 0 && <img className='imgs' src={images[0].items[0].href} alt="" />}
       </div>
