@@ -9,6 +9,8 @@ export class DateForm extends Component {
     this.state = {
       minDate: '0000-01-01',
       maxDate: '',
+      userDate: '',
+      elapsedDays: 0,
     }
   }
 
@@ -42,7 +44,7 @@ export class DateForm extends Component {
     userDate = this.fixDateError(userDate);
 
     this.setState({ userDate, elapsedDays });
-    this.props.setUserInfo({ userDate, elapsedDays })
+    if (elapsedDays > 0) this.props.setUserInfo({ userDate, elapsedDays })
   }
 
   fixElapsedDays = (elapsedDays, date) => {
