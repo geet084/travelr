@@ -1,18 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NavBar should match snapshot 1`] = `
-<nav>
+<nav
+  className="nav-bar"
+>
   <ul>
     <NavBtn
       name="Home"
       path="/"
     />
-    <NavBtn
-      name="Moon"
-      path="/moon"
-    />
     <Collapsible
-      className=""
+      className="drop-down"
       classParentString="Collapsible"
       contentContainerTagName="div"
       contentInnerClassName=""
@@ -29,7 +27,7 @@ exports[`NavBar should match snapshot 1`] = `
       tabIndex={null}
       transitionCloseTime={null}
       transitionTime={400}
-      trigger="Planets"
+      trigger="Solar System"
       triggerClassName=""
       triggerDisabled={false}
       triggerOpenedClassName=""
@@ -37,6 +35,14 @@ exports[`NavBar should match snapshot 1`] = `
       triggerStyle={null}
       triggerTagName="span"
     >
+      <NavBtn
+        name="Sun"
+        path="/sun"
+      />
+      <NavBtn
+        name="Moon"
+        path="/moon"
+      />
       <NavBtn
         key="Mercury"
         name="Mercury"
@@ -78,10 +84,6 @@ exports[`NavBar should match snapshot 1`] = `
         path="/planets/Neptune"
       />
     </Collapsible>
-    <NavBtn
-      name="Sun"
-      path="/sun"
-    />
   </ul>
 </nav>
 `;

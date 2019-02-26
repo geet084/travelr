@@ -2,11 +2,13 @@
 
 exports[`NavBtn should match snapshot 1`] = `
 <li>
-  <Link
-    replace={false}
+  <NavLink
+    activeClassName="active"
+    aria-current="page"
+    exact={true}
     to="/"
   >
     name
-  </Link>
+  </NavLink>
 </li>
 `;

@@ -65,14 +65,16 @@ describe('App', () => {
       planets: [{ id: 1 }],
       arrivalTime: 99,
       bodies: [{ name: 'sun' }, { name: 'moon' }],
-      userInfo: "should't show up",
-      fakeData: 'stuff'
+      userInfo: {arrivalTime: 5, elapsedTime: 88},
+      fakeData1: "should't show up",
+      fakeData2: 'stuff'
     }
     const expected = {
       content: [{ url: 'some url' }],
       planets: [{ id: 1 }],
       arrivalTime: 99,
-      bodies: [{ name: 'sun' }, { name: 'moon' }]
+      bodies: [{ name: 'sun' }, { name: 'moon' }],
+      userInfo: { arrivalTime: 5, elapsedTime: 88 },
     }
     const mappedProps = mapStateToProps(mockState);
     expect(mappedProps).toEqual(expected)

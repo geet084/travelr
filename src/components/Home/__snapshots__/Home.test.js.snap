@@ -24,19 +24,71 @@ exports[`Home initial state should match snapshot 1`] = `
         How far have you traveled this week?
       </h3>
       <h3
-        className="test"
+        className="test input-date"
       >
-        Enter a date to find out
+        Enter a date to find out:
+        <Connect(DateForm)
+          className="test"
+          key="Mon Feb 25 2019"
+          today="Mon Feb 25 2019"
+        />
       </h3>
+      <div>
+        <p
+          className="test"
+        >
+          Time elapsed since 
+          : 
+        </p>
+        <p
+          className="test"
+        >
+          <span>
+            NaN
+             days and 
+          </span>
+          <span>
+             ~
+            NaN
+             hours
+          </span>
+        </p>
+        <p
+          className="test"
+        >
+          Approx. total miles you've gone in that time: 
+        </p>
+        <p
+          className="test user-dist"
+        >
+          <CountUp$$1
+            decimal="."
+            decimals={1}
+            delay={0}
+            duration="1000000"
+            easingFn={null}
+            end={NaN}
+            formattingFn={null}
+            onEnd={[Function]}
+            onPauseResume={[Function]}
+            onReset={[Function]}
+            onStart={[Function]}
+            onUpdate={[Function]}
+            prefix=""
+            redraw={false}
+            separator=","
+            start={NaN}
+            suffix=""
+            useEasing={false}
+          >
+            <Component />
+          </CountUp$$1>
+        </p>
+      </div>
     </div>
-    <Connect(DateForm)
-      className="test"
-      key="Sun Feb 24 2019"
-      today="Sun Feb 24 2019"
-    />
   </header>
   <Collapsible
-    className="test"
+    className="test extra"
     classParentString="Collapsible"
     contentContainerTagName="div"
     contentInnerClassName=""
@@ -125,27 +177,27 @@ exports[`Home initial state should match snapshot 1`] = `
         <p
           className="test"
         >
-          Earth spinning miles per second
+          Distance covered in miles due to Earth spinning
         </p>
         <p
           className="test"
         >
-          Earth orbiting the Sun miles per second
+          Distance covered in miles due to the Earth orbiting the Sun
         </p>
         <p
           className="test"
         >
-          Solar system orbiting in the galaxy miles per second
+          Distance covered in miles due to the Solar system orbiting in the galaxy
         </p>
         <p
           className="test"
         >
-          Milky Way moving towards Andromeda miles per second
+          Distance covered in miles due to the Milky Way moving towards Andromeda
         </p>
         <p
           className="test"
         >
-          Your total speed right now in miles per second
+          Your total distance covered in that time
         </p>
       </div>
       <div
@@ -160,7 +212,7 @@ exports[`Home initial state should match snapshot 1`] = `
             delay={0}
             duration="1000000"
             easingFn={null}
-            end={1000000}
+            end={1000004}
             formattingFn={null}
             onEnd={[Function]}
             onPauseResume={[Function]}
@@ -170,7 +222,7 @@ exports[`Home initial state should match snapshot 1`] = `
             prefix=""
             redraw={false}
             separator=","
-            start={0}
+            start={4}
             suffix=""
             useEasing={false}
           >
@@ -186,7 +238,7 @@ exports[`Home initial state should match snapshot 1`] = `
             delay={0}
             duration="1000000"
             easingFn={null}
-            end={280000}
+            end={280001.12}
             formattingFn={null}
             onEnd={[Function]}
             onPauseResume={[Function]}
@@ -196,7 +248,7 @@ exports[`Home initial state should match snapshot 1`] = `
             prefix=""
             redraw={false}
             separator=","
-            start={0}
+            start={1.12}
             suffix=""
             useEasing={false}
           >
@@ -222,7 +274,7 @@ exports[`Home initial state should match snapshot 1`] = `
             prefix=""
             redraw={false}
             separator=","
-            start={0}
+            start={74}
             suffix=""
             useEasing={false}
           >
@@ -248,7 +300,7 @@ exports[`Home initial state should match snapshot 1`] = `
             prefix=""
             redraw={false}
             separator=","
-            start={0}
+            start={497.8}
             suffix=""
             useEasing={false}
           >
@@ -274,7 +326,7 @@ exports[`Home initial state should match snapshot 1`] = `
             prefix=""
             redraw={false}
             separator=","
-            start={0}
+            start={280}
             suffix=""
             useEasing={false}
           >
@@ -300,7 +352,7 @@ exports[`Home initial state should match snapshot 1`] = `
             prefix=""
             redraw={false}
             separator=","
-            start={0}
+            start={852.92}
             suffix=""
             useEasing={false}
           >

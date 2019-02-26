@@ -1,7 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NotFound should match snapshot 1`] = `
-<div>
-  NOT FOUND NOT FOUND NOT FOUND
+<div
+  class="not-found"
+>
+  <h3>
+    404 NOT FOUND
+  </h3>
+  <Link
+    replace={false}
+    to="/"
+  >
+    HOME
+  </Link>
 </div>
 `;
