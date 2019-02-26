@@ -4,7 +4,7 @@ export const addBodiesInfo = () => {
   let bodyData = [{
     average_temperature: "5778 K",
     diameter: "1392000 km",
-    distance_from_sun: "0",
+    distance_from_sun: "0 km",
     id: 11,
     length_of_day: "587 hours",
     moons: 0,
