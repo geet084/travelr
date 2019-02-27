@@ -8,6 +8,9 @@
 # API keys
 ApiKeys.js
 
+# Github images
+/GithubImages
+
 # testing
 /coverage
 
