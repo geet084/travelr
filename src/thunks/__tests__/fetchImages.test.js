@@ -4,10 +4,10 @@ import { fetchImages } from '../';
 describe('fetchImages', () => {
   const mockURL = 'https://nasa';
   const mockDispatch = jest.fn();
-  const mockIdArray = ['1', '2', '3']
+  const mockContent = 'a NASA picture obj'
 
   it('should dispatch isLoading(true)', () => {
-    const thunk = fetchImages(mockIdArray);
+    const thunk = fetchImages(mockURL);
     thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(isLoading(true))
@@ -18,20 +18,27 @@ describe('fetchImages', () => {
       ok: false,
       statusText: 'not OK'
     }));
-    const thunk = fetchImages(mockIdArray);
+    const thunk = fetchImages(mockURL);
     await thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('not OK'));
   })
 
-  it.skip('should dispatch isLoading(false) if response is OK', async () => {
-    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockURL),
-      ok: true
-    }));
-    const thunk = fetchImages(mockIdArray);
+  it('should dispatch isLoading(false) if response is OK', async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ ok: true }));
+    const thunk = fetchImages(mockURL);
     await thunk(mockDispatch);
 
-    expect(mockDispatch).toHaveBeenCalledWith(isLoading('false'))
+    expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
+  })
+
+  it('should dispatch fetchImageSuccess with the retrieved urls', async () => {
+    window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
+      json: () => Promise.resolve(mockContent),
+      ok: true
+    }));
+    const thunk = fetchImages(mockURL);
+    await thunk(mockDispatch)
+    expect(mockDispatch).toHaveBeenCalledWith(fetchImagesSuccess(mockContent.collection))
   })
 })
