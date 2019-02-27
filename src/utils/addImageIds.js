@@ -1,17 +1,17 @@
 const Planets = {
-  Mercury: ['PIA14250', 'PIA16341'],
-  Venus: ['PIA00271', 'PIA01544'],
-  Earth: ['GSFC_20171208_Archive_e001150','PIA00342', 'PIA18033'],
-  Mars: ['PIA02181', 'PIA13163', 'PIA18595', 'PIA17305', 'PIA07269'],
-  Jupiter: ['PIA22425','PIA21390','PIA00343', 'PIA01370'],
-  Saturn: ['PIA22766','PIA01464', 'PIA07538'],
-  Uranus: ['GSFC_20171208_Archive_e000100','PIA00034', 'PIA17306'],
-  Neptune: ['PIA01492','PIA01142','PIA02210', 'PIA01142'],
+  Mercury: 'PIA14250',
+  Venus: 'PIA00271',
+  Earth: 'GSFC_20171208_Archive_e001150',
+  Mars: 'PIA02181',
+  Jupiter: 'PIA22425',
+  Saturn: 'PIA22766',
+  Uranus: 'GSFC_20171208_Archive_e000100',
+  Neptune: 'PIA01492',
 }
 
 const Bodies = {
-  Moon: ['PIA00404', 'PIA00126'],
-  Sun: ['GSFC_20171208_Archive_e001435','GSFC_20171208_Archive_e002108', 'PIA17669']
+  Moon: 'PIA00404',
+  Sun: 'GSFC_20171208_Archive_e001435'
 }
 
 export const addPlanetImageIds = (planets) => {
