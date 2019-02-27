@@ -3,8 +3,11 @@
 
 ### Set-Up Front-End
 Clone this repo: ```git clone git@github.com:geet084/travelr.git```
+
 Run ```npm install``` from root directory
+
 Run ```npm start```
+
 
 #### Background/About
 Travelr is an app were users can discover how far they have traveled through space in given amount of time. The original idea came from a video describing how the whole univers is moving and what the impact was for us in the grander scheme of things.
