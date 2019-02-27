@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchImages } from '../../thunks';
 
-class Display extends Component {
+export class Display extends Component {
  
   componentDidMount = () => {
     let { info, images, fetchImages } = this.props;
-    if (info && images !== []) fetchImages(info.imageIDs)
+    const url = 'https://images-api.nasa.gov/asset/'
+    
+    if (info && images !== []) fetchImages(url + info.imageIDs)
   }
   
   render() {
     const { info, images } = this.props;
-    
+ 
     return (
       <div className='display'>
         {info && <p>{'Name  - ' + info.name}</p>}
@@ -19,16 +21,16 @@ class Display extends Component {
         {info && <p>{'Distance from the sun  - '}</p>}
         {info && <p>{info.distance_from_sun}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
-        {info && <p>{'Orbital period  - ' + info.orbital_period.toLocaleString()}</p>}
+        {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
         
-        {images.length !== 0 && <img className='imgs' src={images[0].items[0].href} alt="" />}
+        {images.length !== 0 && <img className='imgs' src={images.items[0].href} alt="" />}
       </div>
     )
   }
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchImages: (arr) => dispatch(fetchImages(arr))
+  fetchImages: (url) => dispatch(fetchImages(url))
 })
 
 export const mapStateToProps = (state) => ({
