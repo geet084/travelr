@@ -3,7 +3,7 @@ import CountUp from 'react-countup';
 import { DateForm } from '../../containers';
 import Collapsible from 'react-collapsible';
 
-class Home extends Component {
+export class Home extends Component {
   constructor() {
     super();
     this.state = {
