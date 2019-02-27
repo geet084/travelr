@@ -32,7 +32,13 @@ Jest and Enzyme
 Run npm test from the root directory
 
 #### Enhancements
-- Enhancements
+- Switch to moment.js for date/time keeping
+- Add dynamic picture on the Home page to give an example of distance relative to planets and a link to that planet
+- Add an image library for each planet/sun/moon
+- Store Astronomy picture of the day and be able to display as an archive
+- Add animations for illustrating distance covered
+- Add more data for other planetary bodies like the asteroid belt, keiper belt, other galaxies, etc.
+- Build backend database
 
 ### Contributors
 
