@@ -8,6 +8,7 @@ describe('NotFound', () => {
   beforeEach(() => {
     wrapper = shallow(<NotFound />)
   })
+
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   })

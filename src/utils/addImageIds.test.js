@@ -2,8 +2,8 @@ import * as func from './addImageIds';
 
 describe('addImageIds', () => {
   it('should add image ids to planets', () => {
-    const mockPlanets = [{ name: 'Mars' }, {name: 'Venus'}]
-    const expected = [{ name: 'Mars', imageIDs: 'PIA02181' }, { name: 'Venus', imageIDs: 'PIA00271'}]
+    const mockPlanets = [{ name: 'Mars' }, { name: 'Venus' }]
+    const expected = [{ name: 'Mars', imageIDs: 'PIA02181' }, { name: 'Venus', imageIDs: 'PIA00271' }]
     const result = func.addPlanetImageIds(mockPlanets)
 
     expect(result).toEqual(expected)

@@ -79,7 +79,7 @@ describe('actions', () => {
         type: 'SET_BODIES',
         bodies: [{ name: 'sun' }, { name: 'moon' }]
       }
-      
+
       const result = actions.setBodies([{ name: 'sun' }, { name: 'moon' }]);
       expect(result).toEqual(expected)
     })
@@ -90,7 +90,7 @@ describe('actions', () => {
       const expected = {
         type: 'SET_USER_INFO',
         userDate: '10-01-2018',
-        elapsedDays: 1.2 
+        elapsedDays: 1.2
       }
 
       const result = actions.setUserInfo({ userDate: '10-01-2018', elapsedDays: 1.2 });

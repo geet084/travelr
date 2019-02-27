@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CountUp from 'react-countup';
 import { DateForm } from '../../containers';
 import Collapsible from 'react-collapsible';
+import PropTypes from 'prop-types';
 
 export class Home extends Component {
   constructor() {
@@ -119,6 +120,18 @@ export class Home extends Component {
       </div>
     )
   }
+}
+
+Home.propTypes = {
+  time: PropTypes.number,
+  url: PropTypes.string,
+  userInfo: PropTypes.object,
+}
+
+Home.defaultProps = {
+  time: 0,
+  url: '',
+  userInfo: {},
 }
 
 export default Home;

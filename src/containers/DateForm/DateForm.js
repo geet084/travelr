@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { setUserInfo } from '../../actions'
 import DateInput from 'date-input';
+import PropTypes from 'prop-types';
 
 export class DateForm extends Component {
   constructor() {
@@ -39,7 +40,7 @@ export class DateForm extends Component {
     const diff = thisTime.getTime() - userDate.getTime();
     let elapsedDays = (diff / singleDay);
     const date = e.split('');
-    
+
     elapsedDays = this.fixElapsedDays(elapsedDays, date);
     userDate = this.fixDateError(userDate);
 
@@ -77,5 +78,14 @@ export class DateForm extends Component {
 export const mapDispatchToProps = (dispatch) => ({
   setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
 })
+
+DateForm.propTypes = {
+  setUserInfo: PropTypes.func,
+  today: PropTypes.string,
+}
+
+DateForm.defaultProps = {
+  today: '',
+}
 
 export default connect(null, mapDispatchToProps)(DateForm);

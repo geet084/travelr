@@ -33,7 +33,7 @@ export const setBodies = (bodies) => ({
   bodies
 })
 
-export const setUserInfo = ({userDate, elapsedDays}) => ({
+export const setUserInfo = ({ userDate, elapsedDays }) => ({
   type: 'SET_USER_INFO',
   userDate,
   elapsedDays,

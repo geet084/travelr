@@ -8,6 +8,7 @@ describe('NavBar', () => {
   beforeEach(() => {
     wrapper = shallow(<NavBar />)
   })
+
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   })

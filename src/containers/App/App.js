@@ -9,6 +9,7 @@ import { Display } from '../'
 import { Home, NavBar, NotFound } from '../../components'
 import backupUrl from '../../images/back-img.jpg';
 import addBodiesInfo from '../../utils/addBodiesInfo'
+import PropTypes from 'prop-types';
 
 export class App extends Component {
 
@@ -28,13 +29,13 @@ export class App extends Component {
     const { media_type, url } = this.props.content;
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
-    
+
     return (
       <div className="App">
         <h1 className="logo">TRAVELR</h1>
         <NavBar />
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo}/>} />
+          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo} />} />
           <Route path='/moon' render={() => <Display key='moon' info={bodies[1]} />} />
           <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
@@ -63,5 +64,25 @@ export const mapStateToProps = (state) => ({
   bodies: state.bodies,
   userInfo: state.userInfo,
 })
+
+App.propTypes = {
+  arrivalTime: PropTypes.number,
+  bodies: PropTypes.array,
+  content: PropTypes.object,
+  fetchApod: PropTypes.func,
+  fetchPlanets: PropTypes.func,
+  planets: PropTypes.array,
+  setArrivalTime: PropTypes.func,
+  setBodies: PropTypes.func,
+  userInfo: PropTypes.object,
+}
+
+App.defaultProps = {
+  arrivalTime: 0,
+  bodies: [],
+  content: {},
+  planets: [],
+  userInfo: { userDate: "", elapsedDays: 0 },
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

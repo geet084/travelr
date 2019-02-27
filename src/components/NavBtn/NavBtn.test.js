@@ -12,6 +12,7 @@ describe('NavBtn', () => {
       <NavBtn name={mockName} path={mockPath} />
     )
   })
+
   it('should match snapshot', () => {
     expect(wrapper).toMatchSnapshot();
   })

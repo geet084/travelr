@@ -7,7 +7,7 @@ describe('DateForm', () => {
   let wrapper;
   const mockToday = 'Mon Oct 01 2018'
   const mockSetUserInfo = jest.fn()
-  
+
   beforeEach(() => {
     wrapper = shallow(<DateForm setUserInfo={mockSetUserInfo} today={mockToday} />)
   })
@@ -43,8 +43,8 @@ describe('DateForm', () => {
       initial.setDate(initial.getDate() - 1);
 
       const expectedElapsedDays = 0
-      
-      
+
+
       wrapper.instance().handleDate(initial.toDateString())
       expect(wrapper.state('userDate')).toEqual(currentDate)
       expect(wrapper.state('elapsedDays')).toEqual(expectedElapsedDays)
