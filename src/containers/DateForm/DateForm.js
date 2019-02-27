@@ -4,8 +4,8 @@ import { setUserInfo } from '../../actions'
 import DateInput from 'date-input';
 
 export class DateForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       minDate: '0000-01-01',
       maxDate: '',
@@ -39,7 +39,7 @@ export class DateForm extends Component {
     const diff = thisTime.getTime() - userDate.getTime();
     let elapsedDays = (diff / singleDay);
     const date = e.split('');
-
+    
     elapsedDays = this.fixElapsedDays(elapsedDays, date);
     userDate = this.fixDateError(userDate);
 
