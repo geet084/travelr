@@ -10,7 +10,7 @@ import { Home, NavBar, NotFound } from '../../components'
 import backupUrl from '../../images/back-img.jpg';
 import addBodiesInfo from '../../utils/addBodiesInfo'
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount = async () => {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'

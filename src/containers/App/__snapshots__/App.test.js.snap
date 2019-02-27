@@ -1,7 +1,71 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should match snapshot 1`] = `
-<Route>
-  <Component />
-</Route>
+exports[`App should match snapshot with bad url 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="logo"
+  >
+    TRAVELR
+  </h1>
+  <NavBar />
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      path="/moon"
+      render={[Function]}
+    />
+    <Route
+      path="/planets/:id"
+      render={[Function]}
+    />
+    <Route
+      path="/sun"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+</div>
+`;
+
+exports[`App should match snapshot with good url 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="logo"
+  >
+    TRAVELR
+  </h1>
+  <NavBar />
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      path="/moon"
+      render={[Function]}
+    />
+    <Route
+      path="/planets/:id"
+      render={[Function]}
+    />
+    <Route
+      path="/sun"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+</div>
 `;
