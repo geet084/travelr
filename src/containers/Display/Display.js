@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchImages } from '../../thunks';
+import { fetchImages } from '../../thunks/fetchImages';
 import PropTypes from 'prop-types';
 
 export class Display extends Component {

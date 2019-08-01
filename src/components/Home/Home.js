@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CountUp from 'react-countup';
-import { DateForm } from '../../containers';
+import DateForm from '../../containers/DateForm/DateForm';
 import Collapsible from 'react-collapsible';
 import PropTypes from 'prop-types';
 

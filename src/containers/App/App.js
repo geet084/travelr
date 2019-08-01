@@ -2,11 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { nasaApiKey, planetsApiKey } from '../../utils/ApiKeys';
-import { fetchApod, fetchPlanets } from '../../thunks';
+import { fetchApod } from '../../thunks/fetchApod';
+import { fetchPlanets } from '../../thunks/fetchPlanets';
 import { setArrivalTime, setBodies } from '../../actions'
 import '../../Main.scss';
-import { Display } from '../'
-import { Home, NavBar, NotFound } from '../../components'
+import Display from '../Display/Display';
+import NavBar from '../../components/NavBar/NavBar'
+import Home from '../../components/Home/Home'
+import NotFound from '../../components/NotFound/NotFound'
 import backupUrl from '../../images/back-img.jpg';
 import addBodiesInfo from '../../utils/addBodiesInfo'
 import PropTypes from 'prop-types';
@@ -17,6 +20,7 @@ export class App extends Component {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${nasaApiKey}`
     const planetsURL = `https://galaxcyclopedia.herokuapp.com/solarsystem/?api_key=${planetsApiKey}`;
+
     this.props.fetchApod(nasaURL);
     this.props.fetchPlanets(planetsURL);
     this.props.setArrivalTime(Date.now())

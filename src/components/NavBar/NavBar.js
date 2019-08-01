@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { NavBtn } from '../'
+import NavBtn from '../NavBtn/NavBtn';
 import Collapsible from 'react-collapsible';
 
 class NavBar extends Component {
