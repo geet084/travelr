@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
-import { fetchApod } from '../../thunks/fetchApod';
 import { handleObjects } from '../../thunks/handleObjects';
 import { handleImages } from '../../thunks/handleImages';
-import { setArrivalTime, handleImagesSuccess } from '../../actions'
+import { setArrivalTime, handleImagesSuccess, fetchApodSuccess } from '../../actions'
 import '../../Main.scss';
 import Display from '../Display/Display';
 import NavBar from '../../components/NavBar/NavBar'
@@ -21,9 +20,9 @@ export class App extends Component {
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
     const serverURL = 'https://travelr-be.herokuapp.com/api/v1'
     
+    this.props.handleImages(nasaURL, fetchApodSuccess)
     this.props.handleObjects(serverURL + '/objects')
     this.props.handleImages(serverURL + '/images', handleImagesSuccess)
-    this.props.fetchApod(nasaURL);
     this.props.setArrivalTime(Date.now())
   }
 
@@ -55,7 +54,6 @@ export class App extends Component {
 
 export const mapDispatchToProps = (dispatch) => ({
   setArrivalTime: (time) => dispatch(setArrivalTime(time)),
-  fetchApod: (url) => dispatch(fetchApod(url)),
   handleObjects: (url) => dispatch(handleObjects(url)),
   handleImages: (url, actionToDispatch) => dispatch(handleImages(url, actionToDispatch))
 })
@@ -71,7 +69,6 @@ export const mapStateToProps = (state) => ({
 App.propTypes = {
   arrivalTime: PropTypes.number,
   content: PropTypes.object,
-  fetchApod: PropTypes.func,
   handleObjects: PropTypes.func,
   handleImages: PropTypes.func,
   objects: PropTypes.array,
