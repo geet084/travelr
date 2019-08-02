@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleImages } from '../../thunks/handleImages';
+import { getImageSuccess } from '../../actions/';
 import PropTypes from 'prop-types';
 
 export class Display extends Component {
 
   componentDidMount = () => {
-    let { info, images, handleImages } = this.props;
-    const url = 'https://images-api.nasa.gov/asset/'
-
-    if (info && images.items !== []) handleImages(url + info.imageIDs)
+    let { images, handleImages } = this.props;
+    const url = `https://images-api.nasa.gov/asset/${images.image_id}`
+    
+    if(images.image_id) handleImages(url, getImageSuccess)
   }
 
   render() {
-    const { info, images } = this.props;
+    const { info, currentImage } = this.props;
     return (
       <div className='display'>
         {info && <p>{'Name  - ' + info.object_name}</p>}
@@ -23,23 +24,23 @@ export class Display extends Component {
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
 
-        {images.length !== 0 && <img className='imgs' src={images.items[0].href} alt="" />}
+        {currentImage && <img className='imgs' src={currentImage.items[0].href} alt="" />}
       </div>
     )
   }
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  handleImages: (url) => dispatch(handleImages(url))
+  handleImages: (url, actionToDispatch) => dispatch(handleImages(url, actionToDispatch))
 })
 
 export const mapStateToProps = (state) => ({
-  images: state.images,
+  currentImage: state.currentImage,
 })
 
 Display.propTypes = {
   handleImages: PropTypes.func,
-  images: PropTypes.object,
+  currentImage: PropTypes.object,
   info: PropTypes.object,
 }
 
