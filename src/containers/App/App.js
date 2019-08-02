@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { handleObjects } from '../../thunks/handleObjects';
 import { handleImages } from '../../thunks/handleImages';
-import { setArrivalTime, handleImagesSuccess, fetchApodSuccess, handleObjectImages } from '../../actions'
+import { setArrivalTime, handleImagesSuccess, handleApodImage, handleObjectImages } from '../../actions'
 import '../../Main.scss';
 import Display from '../Display/Display';
 import NavBar from '../../components/NavBar/NavBar'
@@ -20,7 +20,7 @@ export class App extends Component {
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
     const serverURL = 'https://travelr-be.herokuapp.com/api/v1'
     
-    this.props.handleImages(nasaURL, fetchApodSuccess)
+    this.props.handleImages(nasaURL, handleApodImage)
     this.props.handleObjects(serverURL + '/objects')
     this.props.handleImages(serverURL + '/images', handleObjectImages)
     this.props.setArrivalTime(Date.now())
@@ -28,7 +28,7 @@ export class App extends Component {
 
   render() {
     const { arrivalTime, objects, userInfo } = this.props;
-    const { media_type, url } = this.props.content;
+    const { media_type, url } = this.props.images.apod;
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
     

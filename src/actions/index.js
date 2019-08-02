@@ -8,9 +8,9 @@ export const hasErrored = (message) => ({
   message
 })
 
-export const fetchApodSuccess = (content) => ({
-  type: 'FETCH_APOD_SUCCESS',
-  content
+export const handleApodImage = (apodImage) => ({
+  type: 'HANDLE_APOD_IMAGE',
+  apodImage
 })
 
 export const handleObjectsSuccess = (objects) => ({
