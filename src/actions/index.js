@@ -23,6 +23,11 @@ export const handleImagesSuccess = (images) => ({
   images
 })
 
+export const getImageSuccess = (currentImage) => ({
+  type: 'GET_IMAGE_SUCCESS',
+  currentImage
+})
+
 export const setArrivalTime = (arrivalTime) => ({
   type: 'SET_ARRIVAL_TIME',
   arrivalTime
