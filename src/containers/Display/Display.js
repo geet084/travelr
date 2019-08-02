@@ -14,7 +14,9 @@ export class Display extends Component {
   }
 
   render() {
-    const { info, currentImage } = this.props;
+    const { info } = this.props;
+    const { currentImage } = this.props.images;
+    
     return (
       <div className='display'>
         {info && <p>{'Name  - ' + info.object_name}</p>}
@@ -24,7 +26,7 @@ export class Display extends Component {
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
 
-        {currentImage && <img className='imgs' src={currentImage.items[0].href} alt="" />}
+        {currentImage.href !== '' && <img className='imgs' src={currentImage.href} alt="" />}
       </div>
     )
   }
@@ -35,12 +37,12 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export const mapStateToProps = (state) => ({
-  currentImage: state.currentImage,
+  images: state.images,
 })
 
 Display.propTypes = {
   handleImages: PropTypes.func,
-  currentImage: PropTypes.object,
+  images: PropTypes.object,
   info: PropTypes.object,
 }
 

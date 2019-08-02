@@ -18,11 +18,6 @@ export const handleObjectsSuccess = (objects) => ({
   objects
 })
 
-export const handleImagesSuccess = (images) => ({
-  type: 'HANDLE_IMAGES_SUCCESS',
-  images
-})
-
 export const handleObjectImages = (objectImages) => ({
   type: 'HANDLE_OBJECT_IMAGES',
   objectImages
