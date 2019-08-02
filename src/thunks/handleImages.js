@@ -1,6 +1,6 @@
-import { isLoading, hasErrored, fetchImagesSuccess } from '../actions'
+import { isLoading, hasErrored, handleImagesSuccess } from '../actions'
 
-export const fetchImages = (url) => {
+export const handleImages = (url) => {
   return async (dispatch) => {
     try {
       dispatch(isLoading(true));
@@ -10,7 +10,7 @@ export const fetchImages = (url) => {
       }
       dispatch(isLoading(false));
       const result = await response.json()
-      dispatch(fetchImagesSuccess(result.collection))
+      dispatch(handleImagesSuccess(result.collection))
     } catch (error) {
       dispatch(hasErrored(error.message));
     }
