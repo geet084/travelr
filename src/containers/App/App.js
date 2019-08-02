@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { fetchApod } from '../../thunks/fetchApod';
 import { handleObjects } from '../../thunks/handleObjects';
-import { setArrivalTime } from '../../actions'
+import { handleImages } from '../../thunks/handleImages';
+import { setArrivalTime, handleImagesSuccess } from '../../actions'
 import '../../Main.scss';
 import Display from '../Display/Display';
 import NavBar from '../../components/NavBar/NavBar'
@@ -18,20 +19,20 @@ export class App extends Component {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
     let apiKey = process.env.REACT_APP_NASA_APIKEY;
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
-
-    const objectsURL = 'https://travelr-be.herokuapp.com/api/v1/objects'
-
-    this.props.handleObjects(objectsURL)
+    const serverURL = 'https://travelr-be.herokuapp.com/api/v1'
+    
+    this.props.handleObjects(serverURL + '/objects')
+    this.props.handleImages(serverURL + '/images', handleImagesSuccess)
     this.props.fetchApod(nasaURL);
     this.props.setArrivalTime(Date.now())
   }
 
   render() {
-    const { arrivalTime, objects, userInfo } = this.props;
+    const { arrivalTime, objects, images, userInfo } = this.props;
     const { media_type, url } = this.props.content;
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
-
+    
     return (
       <div className="App">
         <h1 className="logo">TRAVELR</h1>
@@ -41,7 +42,9 @@ export class App extends Component {
           <Route path='/objects/:id' render={({ match }) => {
             const { id } = match.params
             const info = objects.find(obj => obj.object_name.toLowerCase() === id)
-            return <Display key={id} info={info} />
+            const objImg = images.length ? images.find(img => img.object_id === info.id) : ''
+            
+            return <Display key={id} info={info} images={objImg}/>
           }} />
           <Route component={NotFound} />
         </Switch>
@@ -54,11 +57,13 @@ export const mapDispatchToProps = (dispatch) => ({
   setArrivalTime: (time) => dispatch(setArrivalTime(time)),
   fetchApod: (url) => dispatch(fetchApod(url)),
   handleObjects: (url) => dispatch(handleObjects(url)),
+  handleImages: (url, actionToDispatch) => dispatch(handleImages(url, actionToDispatch))
 })
 
 export const mapStateToProps = (state) => ({
   content: state.content,
   objects: state.objects,
+  images: state.images,
   arrivalTime: state.arrivalTime,
   userInfo: state.userInfo,
 })
@@ -67,15 +72,17 @@ App.propTypes = {
   arrivalTime: PropTypes.number,
   content: PropTypes.object,
   fetchApod: PropTypes.func,
+  handleObjects: PropTypes.func,
+  handleImages: PropTypes.func,
   objects: PropTypes.array,
   setArrivalTime: PropTypes.func,
-  setBodies: PropTypes.func,
   userInfo: PropTypes.object,
 }
 
 App.defaultProps = {
   arrivalTime: 0,
   handleObjects: [],
+  handleImages: [],
   content: {},
   userInfo: { userDate: "", elapsedDays: 0 },
 }
