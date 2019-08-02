@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { handleObjects } from '../../thunks/handleObjects';
 import { handleImages } from '../../thunks/handleImages';
-import { setArrivalTime, handleImagesSuccess, handleApodImage, handleObjectImages } from '../../actions'
+import { setArrivalTime, handleApodImage, handleObjectImages } from '../../actions'
 import '../../Main.scss';
 import Display from '../Display/Display';
 import NavBar from '../../components/NavBar/NavBar'
