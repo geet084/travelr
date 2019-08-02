@@ -1,5 +1,4 @@
-const initialState = {items: [{href: ''}], href: ''}
-export const handleImagesReducer = (state = initialState, action) => {
+export const handleImagesReducer = (state = [], action) => {
   switch (action.type) {
     case 'HANDLE_IMAGES_SUCCESS':
       return action.images;
