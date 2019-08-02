@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { handleObjects } from '../../thunks/handleObjects';
 import { handleImages } from '../../thunks/handleImages';
-import { setArrivalTime, handleImagesSuccess, fetchApodSuccess } from '../../actions'
+import { setArrivalTime, handleImagesSuccess, fetchApodSuccess, handleObjectImages } from '../../actions'
 import '../../Main.scss';
 import Display from '../Display/Display';
 import NavBar from '../../components/NavBar/NavBar'
@@ -14,7 +14,7 @@ import PropTypes from 'prop-types';
 
 export class App extends Component {
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
     let apiKey = process.env.REACT_APP_NASA_APIKEY;
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
@@ -22,12 +22,12 @@ export class App extends Component {
     
     this.props.handleImages(nasaURL, fetchApodSuccess)
     this.props.handleObjects(serverURL + '/objects')
-    this.props.handleImages(serverURL + '/images', handleImagesSuccess)
+    this.props.handleImages(serverURL + '/images', handleObjectImages)
     this.props.setArrivalTime(Date.now())
   }
 
   render() {
-    const { arrivalTime, objects, images, userInfo } = this.props;
+    const { arrivalTime, objects, userInfo } = this.props;
     const { media_type, url } = this.props.content;
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
@@ -41,9 +41,8 @@ export class App extends Component {
           <Route path='/objects/:id' render={({ match }) => {
             const { id } = match.params
             const info = objects.find(obj => obj.object_name.toLowerCase() === id)
-            const objImg = images.length ? images.find(img => img.object_id === info.id) : ''
             
-            return <Display key={id} info={info} images={objImg}/>
+            return <Display key={id} info={info} />
           }} />
           <Route component={NotFound} />
         </Switch>

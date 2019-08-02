@@ -7,10 +7,10 @@ import PropTypes from 'prop-types';
 export class Display extends Component {
 
   componentDidMount = () => {
-    let { images, handleImages } = this.props;
-    const url = `https://images-api.nasa.gov/asset/${images.image_id}`
+    let { info, handleImages } = this.props;
+    const url = `https://images-api.nasa.gov/asset/${info.images[0]}`
     
-    if(images.image_id) handleImages(url, getImageSuccess)
+    if (info.images !== []) handleImages(url, getImageSuccess)
   }
 
   render() {
