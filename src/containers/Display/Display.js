@@ -1,23 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchImages } from '../../thunks/fetchImages';
+import { handleImages } from '../../thunks/handleImages';
 import PropTypes from 'prop-types';
 
 export class Display extends Component {
 
   componentDidMount = () => {
-    let { info, images, fetchImages } = this.props;
+    let { info, images, handleImages } = this.props;
     const url = 'https://images-api.nasa.gov/asset/'
 
-    if (info && images.items !== []) fetchImages(url + info.imageIDs)
+    if (info && images.items !== []) handleImages(url + info.imageIDs)
   }
 
   render() {
     const { info, images } = this.props;
     return (
       <div className='display'>
-        {info && <p>{'Name  - ' + info.name}</p>}
-        {info && <p>{'Avg. Temp  - ' + info.average_temperature}</p>}
+        {info && <p>{'Name  - ' + info.object_name}</p>}
+        {info && <p>{'Avg. Temp  - ' + info.average_temp}</p>}
         {info && <p>{'Distance from the sun  - '}</p>}
         {info && <p>{info.distance_from_sun}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
@@ -30,7 +30,7 @@ export class Display extends Component {
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchImages: (url) => dispatch(fetchImages(url))
+  handleImages: (url) => dispatch(handleImages(url))
 })
 
 export const mapStateToProps = (state) => ({
@@ -38,7 +38,7 @@ export const mapStateToProps = (state) => ({
 })
 
 Display.propTypes = {
-  fetchImages: PropTypes.func,
+  handleImages: PropTypes.func,
   images: PropTypes.object,
   info: PropTypes.object,
 }
