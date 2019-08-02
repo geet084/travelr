@@ -23,6 +23,11 @@ export const handleImagesSuccess = (images) => ({
   images
 })
 
+export const handleObjectImages = (objectImages) => ({
+  type: 'HANDLE_OBJECT_IMAGES',
+  objectImages
+})
+
 export const getImageSuccess = (currentImage) => ({
   type: 'GET_IMAGE_SUCCESS',
   currentImage
