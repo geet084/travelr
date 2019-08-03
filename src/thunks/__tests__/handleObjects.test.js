@@ -1,13 +1,13 @@
-import { isLoading, hasErrored, fetchPlanetsSuccess } from '../../actions'
-import { fetchPlanets } from '../';
+import { isLoading, hasErrored, handleObjectsSuccess } from '../../actions'
+import { handleObjects } from '../handleObjects';
 
-describe('fetchPlanets', () => {
+describe('handleObjects', () => {
   const mockURL = 'https://someurl';
   const mockDispatch = jest.fn();
-  const mockPlanets = [{}]
+  const mockObjects = [{}]
   
   it('should dispatch isLoading(true)', () => {
-    const thunk = fetchPlanets(mockURL);
+    const thunk = handleObjects(mockURL);
     thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(isLoading(true));
@@ -18,7 +18,7 @@ describe('fetchPlanets', () => {
       ok: false,
       statusText: 'not OK'
     }));
-    const thunk = fetchPlanets(mockURL);
+    const thunk = handleObjects(mockURL);
     await thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('not OK'))
@@ -26,20 +26,20 @@ describe('fetchPlanets', () => {
 
   it('should dispatch isLoading(false) if response is OK', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ ok: true }));
-    const thunk = fetchPlanets(mockURL);
+    const thunk = handleObjects(mockURL);
     await thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
   })
 
-  it.skip('should dispatch fetchPlanetsSuccess with the retrieved planets', async () => {
+  it('should dispatch handleObjectsSuccess with the retrieved planets', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockPlanets),
+      json: () => Promise.resolve(mockObjects),
       ok: true
     }))
-    const thunk = fetchPlanets(mockURL);
+    const thunk = handleObjects(mockURL);
     await thunk(mockDispatch);
 
-    expect(mockDispatch).toHaveBeenCalledWith(fetchPlanetsSuccess(mockPlanets))
+    expect(mockDispatch).toHaveBeenCalledWith(handleObjectsSuccess(mockObjects))
   })
 })
