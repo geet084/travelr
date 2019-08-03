@@ -8,22 +8,20 @@ describe('Display', () => {
   describe('initial state', () => {
 
     it('should match snapshot with no props', () => {
-      const mockInfo = undefined
       const mockProps = {
-        fetchImages: jest.fn(),
-        info: mockInfo,
-        images: []
+        handleImages: jest.fn(),
+        info: { images: [] },
+        images: { currentImage: { href: '' } },
       }
       wrapper = shallow(<Display {...mockProps} />)
       expect(wrapper).toMatchSnapshot();
     })
 
     it('should match snapshot with props', () => {
-      const mockInfo = { name: 'some name' }
       const mockProps = {
-        fetchImages: jest.fn(),
-        info: mockInfo,
-        images: { items: [{ href: 'some url' }] },
+        handleImages: jest.fn(),
+        info: { images: ['image_id'] },
+        images: { currentImage: { href: 'some href' } },
       }
       wrapper = shallow(<Display {...mockProps} />)
       expect(wrapper).toMatchSnapshot();
@@ -36,7 +34,7 @@ describe('Display', () => {
       const mockArr = [];
       const mappedProps = mapDispatchToProps(mockDispatch);
 
-      mappedProps.fetchImages(mockArr)
+      mappedProps.handleImages(mockArr)
       expect(mockDispatch).toHaveBeenCalled()
     })
   })

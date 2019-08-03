@@ -3,7 +3,24 @@
 exports[`Display initial state should match snapshot with no props 1`] = `
 <div
   className="display"
-/>
+>
+  <p>
+    Name  - undefined
+  </p>
+  <p>
+    Avg. Temp  - undefined
+  </p>
+  <p>
+    Distance from the sun  - 
+  </p>
+  <p />
+  <p>
+    Length of day  - undefined
+  </p>
+  <p>
+    Orbital period  - undefined
+  </p>
+</div>
 `;
 
 exports[`Display initial state should match snapshot with props 1`] = `
@@ -11,7 +28,7 @@ exports[`Display initial state should match snapshot with props 1`] = `
   className="display"
 >
   <p>
-    Name  - some name
+    Name  - undefined
   </p>
   <p>
     Avg. Temp  - undefined
@@ -29,7 +46,7 @@ exports[`Display initial state should match snapshot with props 1`] = `
   <img
     alt=""
     className="imgs"
-    src="some url"
+    src="some href"
   />
 </div>
 `;
