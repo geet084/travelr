@@ -1,13 +1,14 @@
-import { isLoading, hasErrored, fetchImagesSuccess } from '../../actions'
-import { fetchImages } from '../';
+import { isLoading, hasErrored } from '../../actions'
+import { handleImages } from '../handleImages';
 
-describe('fetchImages', () => {
+describe('handleImages', () => {
   const mockURL = 'https://nasa';
   const mockDispatch = jest.fn();
-  const mockContent = 'a NASA picture obj'
+  const mockResult = 'a NASA picture obj'
 
   it('should dispatch isLoading(true)', () => {
-    const thunk = fetchImages(mockURL);
+    const actionToDispatch = jest.fn()
+    const thunk = handleImages(mockURL, actionToDispatch);
     thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(isLoading(true))
@@ -18,7 +19,8 @@ describe('fetchImages', () => {
       ok: false,
       statusText: 'not OK'
     }));
-    const thunk = fetchImages(mockURL);
+    const actionToDispatch = jest.fn()
+    const thunk = handleImages(mockURL, actionToDispatch);
     await thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(hasErrored('not OK'));
@@ -26,19 +28,22 @@ describe('fetchImages', () => {
 
   it('should dispatch isLoading(false) if response is OK', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({ ok: true }));
-    const thunk = fetchImages(mockURL);
+    const actionToDispatch = jest.fn()
+    const thunk = handleImages(mockURL, actionToDispatch);
     await thunk(mockDispatch);
 
     expect(mockDispatch).toHaveBeenCalledWith(isLoading(false))
   })
 
-  it('should dispatch fetchImageSuccess with the retrieved urls', async () => {
+  it('should dispatch handleImagesuccess with the retrieved urls', async () => {
     window.fetch = jest.fn().mockImplementation(() => Promise.resolve({
-      json: () => Promise.resolve(mockContent),
+      json: () => Promise.resolve(mockResult),
       ok: true
     }));
-    const thunk = fetchImages(mockURL);
+    const actionToDispatch = jest.fn()
+    const thunk = handleImages(mockURL, actionToDispatch);
     await thunk(mockDispatch)
-    expect(mockDispatch).toHaveBeenCalledWith(fetchImagesSuccess(mockContent.collection))
+    
+    expect(mockDispatch).toHaveBeenCalledWith(actionToDispatch(mockResult))
   })
 })

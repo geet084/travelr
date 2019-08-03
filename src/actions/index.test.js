@@ -25,38 +25,50 @@ describe('actions', () => {
     })
   })
 
-  describe('fetchApodSuccess', () => {
-    it('should have a type of FETCH_APOD_SUCCESS', () => {
+  describe('handleApodImage', () => {
+    it('should have a type of HANDLE_APOD_IMAGE', () => {
       const expected = {
-        type: 'FETCH_APOD_SUCCESS',
-        content: { url: 'some url' }
+        type: 'HANDLE_APOD_IMAGE',
+        apodImage: { url: 'some url' }
       }
 
-      const result = actions.fetchApodSuccess({ url: 'some url' });
+      const result = actions.handleApodImage({ url: 'some url' });
       expect(result).toEqual(expected)
     })
   })
 
-  describe('fetchPlanetsSuccess', () => {
-    it('should have a type of FETCH_PLANETS_SUCCESS', () => {
+  describe('handleObjectsSuccess', () => {
+    it('should have a type of HANDLE_OBJECTS_SUCCESS', () => {
       const expected = {
-        type: 'FETCH_PLANETS_SUCCESS',
-        planets: [{ name: 'earth' }, { name: 'mars' }]
+        type: 'HANDLE_OBJECTS_SUCCESS',
+        objects: [{ name: 'earth' }, { name: 'mars' }]
       }
 
-      const result = actions.fetchPlanetsSuccess([{ name: 'earth' }, { name: 'mars' }]);
+      const result = actions.handleObjectsSuccess([{ name: 'earth' }, { name: 'mars' }]);
       expect(result).toEqual(expected)
     })
   })
 
-  describe('fetchImagesSuccess', () => {
-    it('should have a type of FETCH_IMAGES_SUCCESS', () => {
+  describe('handleObjectImages', () => {
+    it('should have a type of HANDLE_OBJECT_IMAGES', () => {
       const expected = {
-        type: 'FETCH_IMAGES_SUCCESS',
-        images: [{ href: 'some url' }, { href: 'another url' }]
+        type: 'HANDLE_OBJECT_IMAGES',
+        objectImages: [{ href: 'some url' }, { href: 'another url' }]
       }
 
-      const result = actions.fetchImagesSuccess([{ href: 'some url' }, { href: 'another url' }]);
+      const result = actions.handleObjectImages([{ href: 'some url' }, { href: 'another url' }]);
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('getImageSuccess', () => {
+    it('should have a type of GET_IMAGE_SUCCESS', () => {
+      const expected = {
+        type: 'GET_IMAGE_SUCCESS',
+        currentImage: [{ href: 'some url' }, { href: 'another url' }]
+      }
+
+      const result = actions.getImageSuccess([{ href: 'some url' }, { href: 'another url' }]);
       expect(result).toEqual(expected)
     })
   })
@@ -69,18 +81,6 @@ describe('actions', () => {
       }
 
       const result = actions.setArrivalTime(117);
-      expect(result).toEqual(expected)
-    })
-  })
-
-  describe('setBodies', () => {
-    it('should have a type of SET_BODIES', () => {
-      const expected = {
-        type: 'SET_BODIES',
-        bodies: [{ name: 'sun' }, { name: 'moon' }]
-      }
-
-      const result = actions.setBodies([{ name: 'sun' }, { name: 'moon' }]);
       expect(result).toEqual(expected)
     })
   })

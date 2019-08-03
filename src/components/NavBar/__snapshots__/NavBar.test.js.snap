@@ -36,52 +36,59 @@ exports[`NavBar should match snapshot 1`] = `
       triggerTagName="span"
     >
       <NavBtn
+        key="Sun"
         name="Sun"
-        path="/sun"
+        path="/objects/Sun"
       />
       <NavBtn
+        key="Moon"
         name="Moon"
-        path="/moon"
+        path="/objects/Moon"
       />
       <NavBtn
         key="Mercury"
         name="Mercury"
-        path="/planets/Mercury"
+        path="/objects/Mercury"
       />
       <NavBtn
         key="Venus"
         name="Venus"
-        path="/planets/Venus"
+        path="/objects/Venus"
       />
       <NavBtn
         key="Earth"
         name="Earth"
-        path="/planets/Earth"
+        path="/objects/Earth"
       />
       <NavBtn
         key="Mars"
         name="Mars"
-        path="/planets/Mars"
+        path="/objects/Mars"
       />
       <NavBtn
         key="Jupiter"
         name="Jupiter"
-        path="/planets/Jupiter"
+        path="/objects/Jupiter"
       />
       <NavBtn
         key="Saturn"
         name="Saturn"
-        path="/planets/Saturn"
+        path="/objects/Saturn"
       />
       <NavBtn
         key="Uranus"
         name="Uranus"
-        path="/planets/Uranus"
+        path="/objects/Uranus"
       />
       <NavBtn
         key="Neptune"
         name="Neptune"
-        path="/planets/Neptune"
+        path="/objects/Neptune"
+      />
+      <NavBtn
+        key="Pluto"
+        name="Pluto"
+        path="/objects/Pluto"
       />
     </Collapsible>
   </ul>
