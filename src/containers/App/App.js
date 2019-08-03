@@ -10,6 +10,7 @@ import NavBar from '../../components/NavBar/NavBar'
 import Home from '../../components/Home/Home'
 import NotFound from '../../components/NotFound/NotFound'
 import backupUrl from '../../images/back-img.jpg';
+import addBodiesInfo from '../../utils/addBodiesInfo'
 import PropTypes from 'prop-types';
 
 export class App extends Component {
@@ -24,6 +25,8 @@ export class App extends Component {
     this.props.handleObjects(serverURL + '/objects')
     this.props.handleImages(serverURL + '/images', handleObjectImages)
     this.props.setArrivalTime(Date.now())
+    const bodies = addBodiesInfo()
+    this.props.setBodies(bodies);
   }
 
   render() {
@@ -38,12 +41,14 @@ export class App extends Component {
         <NavBar />
         <Switch>
           <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo} />} />
-          <Route path='/objects/:id' render={({ match }) => {
+          <Route path='/moon' render={() => <Display key='moon' info={bodies[1]} />} />
+          <Route path='/planets/:id' render={({ match }) => {
             const { id } = match.params
             const info = objects.find(obj => obj.object_name.toLowerCase() === id)
             
             return <Display key={id} info={info} />
           }} />
+          <Route path='/sun' render={() => <Display key='sun' info={bodies[0]} />} />
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -62,11 +67,13 @@ export const mapStateToProps = (state) => ({
   objects: state.objects,
   images: state.images,
   arrivalTime: state.arrivalTime,
+  bodies: state.bodies,
   userInfo: state.userInfo,
 })
 
 App.propTypes = {
   arrivalTime: PropTypes.number,
+  bodies: PropTypes.array,
   content: PropTypes.object,
   handleObjects: PropTypes.func,
   handleImages: PropTypes.func,
@@ -80,6 +87,7 @@ App.defaultProps = {
   handleObjects: [],
   handleImages: [],
   content: {},
+  planets: [],
   userInfo: { userDate: "", elapsedDays: 0 },
 }
 
