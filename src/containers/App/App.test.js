@@ -17,13 +17,15 @@ describe('App', () => {
   const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunk)))
   let wrapper;
   const mockProps = {
-    content: { media_type: 'image', url: 'http:/someurl' },
-    planets: [{}],
+    images: {
+      apod: { media_type: 'image', url: 'http:/someurl' },
+      currentImage: {}
+    },
+    objects: [{}],
     arrivalTime: 117,
-    bodies: [{}],
     userInfo: { userDate: '10-1-2018', elapsedDays: 0 },
-    fetchApod: jest.fn(),
-    fetchPlanets: jest.fn(),
+    handleObjects: jest.fn(),
+    handleImages: jest.fn(),
     setArrivalTime: jest.fn(),
     setBodies: jest.fn(),
   }
@@ -47,7 +49,7 @@ describe('App', () => {
 
   it('should match snapshot with bad url', () => {
     let badMockProps = mockProps;
-    badMockProps.content.media_type = 'video'
+    badMockProps.images.apod.media_type = 'video'
     wrapper = shallow(<App {...badMockProps} />)
     expect(wrapper).toMatchSnapshot()
   })
@@ -75,30 +77,21 @@ describe('App', () => {
       expect(mockDispatch).toHaveBeenCalled()
     })
 
-    it('should mapDispatchToProps for fetchApod', () => {
+    it('should mapDispatchToProps for handleObjects', () => {
       const mockDispatch = jest.fn();
       const mockUrl = 'mock url';
       const mappedProps = mapDispatchToProps(mockDispatch);
 
-      mappedProps.fetchApod(mockUrl)
+      mappedProps.handleObjects(mockUrl)
       expect(mockDispatch).toHaveBeenCalled()
     })
 
-    it('should mapDispatchToProps for fetchPlanets', () => {
+    it('should mapDispatchToProps for handleImages', () => {
       const mockDispatch = jest.fn();
       const mockUrl = 'mock url';
       const mappedProps = mapDispatchToProps(mockDispatch);
 
-      mappedProps.fetchPlanets(mockUrl)
-      expect(mockDispatch).toHaveBeenCalled()
-    })
-
-    it('should mapDispatchToProps for setBodies', () => {
-      const mockDispatch = jest.fn();
-      const mockBodies = ['mock bodies'];
-      const mappedProps = mapDispatchToProps(mockDispatch);
-
-      mappedProps.setBodies(mockBodies)
+      mappedProps.handleImages(mockUrl)
       expect(mockDispatch).toHaveBeenCalled()
     })
   })
@@ -106,19 +99,17 @@ describe('App', () => {
   describe('mapStateToProps', () => {
     it('should mapStateToProps', () => {
       const mockState = {
-        content: [{ url: 'some url' }],
-        planets: [{ id: 1 }],
+        images: [{ id: 1 }],
         arrivalTime: 99,
-        bodies: [{ name: 'sun' }, { name: 'moon' }],
+        objects: [{ name: 'sun' }, { name: 'moon' }],
         userInfo: { arrivalTime: 5, elapsedTime: 88 },
         fakeData1: "should't show up",
         fakeData2: 'stuff'
       }
       const expected = {
-        content: [{ url: 'some url' }],
-        planets: [{ id: 1 }],
+        images: [{ id: 1 }],
         arrivalTime: 99,
-        bodies: [{ name: 'sun' }, { name: 'moon' }],
+        objects: [{ name: 'sun' }, { name: 'moon' }],
         userInfo: { arrivalTime: 5, elapsedTime: 88 },
       }
       const mappedProps = mapStateToProps(mockState);
