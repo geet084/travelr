@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchImages } from '../../thunks';
+import { handleImages } from '../../thunks/handleImages';
+import { getImageSuccess } from '../../actions/';
 import PropTypes from 'prop-types';
 
 export class Display extends Component {
 
   componentDidMount = () => {
-    let { info, images, fetchImages } = this.props;
-    const url = 'https://images-api.nasa.gov/asset/'
-
-    if (info && images.items !== []) fetchImages(url + info.imageIDs)
+    let { info, handleImages } = this.props;
+    const url = `https://images-api.nasa.gov/asset/${info.images[0]}`
+    
+    if (info.images !== []) handleImages(url, getImageSuccess)
   }
 
   render() {
-    const { info, images } = this.props;
+    const { info } = this.props;
+    const { currentImage } = this.props.images;
+    
     return (
       <div className='display'>
-        {info && <p>{'Name  - ' + info.name}</p>}
-        {info && <p>{'Avg. Temp  - ' + info.average_temperature}</p>}
+        {info && <p>{'Name  - ' + info.object_name}</p>}
+        {info && <p>{'Avg. Temp  - ' + info.average_temp}</p>}
         {info && <p>{'Distance from the sun  - '}</p>}
         {info && <p>{info.distance_from_sun}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
 
-        {images.length !== 0 && <img className='imgs' src={images.items[0].href} alt="" />}
+        {currentImage.href !== '' && <img className='imgs' src={currentImage.href} alt="" />}
       </div>
     )
   }
 }
 
 export const mapDispatchToProps = (dispatch) => ({
-  fetchImages: (url) => dispatch(fetchImages(url))
+  handleImages: (url, actionToDispatch) => dispatch(handleImages(url, actionToDispatch))
 })
 
 export const mapStateToProps = (state) => ({
@@ -38,7 +41,7 @@ export const mapStateToProps = (state) => ({
 })
 
 Display.propTypes = {
-  fetchImages: PropTypes.func,
+  handleImages: PropTypes.func,
   images: PropTypes.object,
   info: PropTypes.object,
 }

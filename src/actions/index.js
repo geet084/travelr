@@ -8,29 +8,29 @@ export const hasErrored = (message) => ({
   message
 })
 
-export const fetchApodSuccess = (content) => ({
-  type: 'FETCH_APOD_SUCCESS',
-  content
+export const handleApodImage = (apodImage) => ({
+  type: 'HANDLE_APOD_IMAGE',
+  apodImage
 })
 
-export const fetchPlanetsSuccess = (planets) => ({
-  type: 'FETCH_PLANETS_SUCCESS',
-  planets
+export const handleObjectsSuccess = (objects) => ({
+  type: 'HANDLE_OBJECTS_SUCCESS',
+  objects
 })
 
-export const fetchImagesSuccess = (images) => ({
-  type: 'FETCH_IMAGES_SUCCESS',
-  images
+export const handleObjectImages = (objectImages) => ({
+  type: 'HANDLE_OBJECT_IMAGES',
+  objectImages
+})
+
+export const getImageSuccess = (currentImage) => ({
+  type: 'GET_IMAGE_SUCCESS',
+  currentImage
 })
 
 export const setArrivalTime = (arrivalTime) => ({
   type: 'SET_ARRIVAL_TIME',
   arrivalTime
-})
-
-export const setBodies = (bodies) => ({
-  type: 'SET_BODIES',
-  bodies
 })
 
 export const setUserInfo = ({ userDate, elapsedDays }) => ({
