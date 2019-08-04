@@ -16,9 +16,9 @@ export class App extends Component {
 
   componentDidMount = () => {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
-    let apiKey = process.env.REACT_APP_NASA_APIKEY;
+    const apiKey = process.env.REACT_APP_NASA_APIKEY;
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
-    const serverURL = 'https://travelr-be.herokuapp.com/api/v1'
+    const serverURL = process.env.REACT_APP_SERVER_URL;
 
     this.props.handleImages(nasaURL, handleApodImage)
     this.props.handleObjects(serverURL + '/objects')
@@ -32,15 +32,31 @@ export class App extends Component {
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
 
+    const planets = objects.filter(obj => obj.planet).map(obj => obj.object_name)
+    const moons = objects.filter(obj => obj.moon).map(obj => obj.object_name)
+    const bodies = objects.filter(obj => !obj.planet && !obj.moon).map(obj => obj.object_name)
+
     return (
       <div className="App">
         <h1 className="logo">TRAVELR</h1>
-        <NavBar />
+        <NavBar planets={planets} moons={moons} bodies={bodies} />
         <Switch>
           <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo} />} />
           <Route path='/objects/:id' render={({ match }) => {
             const { id } = match.params
             const info = objects.find(obj => obj.object_name.toLowerCase() === id)
+
+            return <Display key={id} info={info} />
+          }} />
+          <Route path='/moons/:id' render={({ match }) => {
+            const { id } = match.params
+            const info = objects.find(moon => moon.object_name.toLowerCase() === id)
+
+            return <Display key={id} info={info} />
+          }} />
+          <Route path="/bodies/:id" render={({ match }) => {
+            const { id } = match.params
+            const info = objects.find(body => body.object_name.toLowerCase() === id)
 
             return <Display key={id} info={info} />
           }} />
