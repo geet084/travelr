@@ -13,9 +13,24 @@ export const handleApodImage = (apodImage) => ({
   apodImage
 })
 
-export const handleObjectsSuccess = (objects) => ({
-  type: 'HANDLE_OBJECTS_SUCCESS',
-  objects
+export const handlePlanetsSuccess = (planets) => ({
+  type: 'HANDLE_PLANETS_SUCCESS',
+  planets
+})
+
+export const handleMoonsSuccess = (moons) => ({
+  type: 'HANDLE_MOONS_SUCCESS',
+  moons
+})
+
+export const handleStarsSuccess = (stars) => ({
+  type: 'HANDLE_STARS_SUCCESS',
+  stars
+})
+
+export const handleBodiesSuccess = (bodies) => ({
+  type: 'HANDLE_BODIES_SUCCESS',
+  bodies
 })
 
 export const handleObjectImages = (objectImages) => ({
