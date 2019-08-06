@@ -26,40 +26,39 @@ export class App extends Component {
     this.props.setArrivalTime(Date.now())
   }
 
+  setRouteFor = (path) => {
+    const category = path.split('/')[1]
+    return (
+      <Route path={path} render={({ match }) => {
+        const { id } = match.params
+        const info = this.props[category].find(data => data.name.toLowerCase() === id)
+
+        return <Display key={id} info={info} />
+      }} />
+    )
+  }
+
   render() {
-    const { arrivalTime, objects, userInfo } = this.props;
+    const { arrivalTime, userInfo } = this.props;
     const { media_type, url } = this.props.images.apod;
     let currentUrl = url
     if (media_type === 'video' || url === undefined) currentUrl = backupUrl
 
-    const planets = objects.filter(obj => obj.planet).map(obj => obj.object_name)
-    const moons = objects.filter(obj => obj.moon).map(obj => obj.object_name)
-    const bodies = objects.filter(obj => !obj.planet && !obj.moon).map(obj => obj.object_name)
+    const planets = this.props.planets.map(obj => obj.name)
+    const moons = this.props.moons.map(obj => obj.name)
+    const stars = this.props.stars.map(obj => obj.name)
+    const bodies = this.props.bodies.map(obj => obj.name)
 
     return (
       <div className="App">
         <h1 className="logo">TRAVELR</h1>
-        <NavBar planets={planets} moons={moons} bodies={bodies} />
+        <NavBar planets={planets} moons={moons} stars={stars} bodies={bodies} />
         <Switch>
           <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo} />} />
-          <Route path='/objects/:id' render={({ match }) => {
-            const { id } = match.params
-            const info = objects.find(obj => obj.object_name.toLowerCase() === id)
-
-            return <Display key={id} info={info} />
-          }} />
-          <Route path='/moons/:id' render={({ match }) => {
-            const { id } = match.params
-            const info = objects.find(moon => moon.object_name.toLowerCase() === id)
-
-            return <Display key={id} info={info} />
-          }} />
-          <Route path="/bodies/:id" render={({ match }) => {
-            const { id } = match.params
-            const info = objects.find(body => body.object_name.toLowerCase() === id)
-
-            return <Display key={id} info={info} />
-          }} />
+          {this.setRouteFor('/planets/:id')}
+          {this.setRouteFor('/moons/:id')}
+          {this.setRouteFor('/bodies/:id')}
+          {this.setRouteFor('/stars/:id')}
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -74,7 +73,10 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export const mapStateToProps = (state) => ({
-  objects: state.objects,
+  planets: state.planets,
+  moons: state.moons,
+  stars: state.stars,
+  bodies: state.bodies,
   images: state.images,
   arrivalTime: state.arrivalTime,
   userInfo: state.userInfo,
