@@ -3,29 +3,25 @@ import NavBtn from '../NavBtn/NavBtn';
 import Collapsible from 'react-collapsible';
 
 class NavBar extends Component {
-  render() {
-    let { planets, moons, bodies } = this.props;
-    bodies = bodies.filter(name => name !== 'Sun')
 
+  setCategory = (title, path) => {
+    return (
+      <Collapsible className="drop-down" trigger={`${title} ˅`} triggerWhenOpen={`${title} ˄`}>
+        {this.props[path].map(name => <NavBtn name={name} path={`/${path}/${name}`} key={name} />)}
+      </Collapsible>
+    )
+  }
+
+  render() {
     return (
       <nav className="nav-bar">
         <ul>
           <NavBtn name={'Home'} path='/' />
           <Collapsible className="drop-down" trigger="Solar System ˅" triggerWhenOpen="Solar System ˄">
-
-            <Collapsible className="drop-down" trigger="Sun & Planets ˅" triggerWhenOpen="Sun & Planets ˄">
-              <NavBtn name={'Sun'} path={'/objects/Sun'} key={'Sun'} />
-              {planets.map(name => <NavBtn name={name} path={`/objects/${name}`} key={name} />)}
-            </Collapsible>
-
-            <Collapsible className="drop-down" trigger="Moons ˅" triggerWhenOpen="Moons ˄">
-              {moons.map(name => <NavBtn name={name} path={`/moons/${name}`} key={name} />)}
-            </Collapsible>
-
-            <Collapsible className="drop-down" trigger="Other Bodies ˅" triggerWhenOpen="Other Bodies ˄">
-              {bodies.map(name => <NavBtn name={name} path={`/bodies/${name}`} key={name} />)}
-            </Collapsible>
-
+            {this.setCategory('Sun & Planets', 'planets')}
+            {this.setCategory('Moons', 'moons')}
+            {this.setCategory('Other Bodies', 'bodies')}
+            {this.setCategory('Stars', 'stars')}
           </Collapsible>
         </ul>
       </nav>
