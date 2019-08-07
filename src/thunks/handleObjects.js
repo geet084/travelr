@@ -1,4 +1,4 @@
-import { isLoading, hasErrored, handleObjectsSuccess } from '../actions';
+import { isLoading, hasErrored, handlePlanetsSuccess, handleMoonsSuccess, handleStarsSuccess, handleBodiesSuccess } from '../actions';
 
 export const handleObjects = (url) => {
   return async (dispatch) => {
@@ -10,7 +10,10 @@ export const handleObjects = (url) => {
       }
       dispatch(isLoading(false));
       const result = await response.json();
-      dispatch(handleObjectsSuccess(result))
+      dispatch(handlePlanetsSuccess(result.data.planets))
+      dispatch(handleMoonsSuccess(result.data.moons))
+      dispatch(handleStarsSuccess(result.data.stars))
+      dispatch(handleBodiesSuccess(result.data.bodies))
     } catch (error) {
       dispatch(hasErrored(error.message));
     }

@@ -16,13 +16,13 @@ export class Display extends Component {
   render() {
     const { info } = this.props;
     const { currentImage } = this.props.images;
-    
+
     return (
       <div className='display'>
-        {info && <p>{'Name  - ' + info.object_name}</p>}
+        {info && <p>{'Name  - ' + info.name}</p>}
         {info && <p>{'Avg. Temp  - ' + info.average_temp}</p>}
         {info && <p>{'Distance from the sun  - '}</p>}
-        {info && <p>{info.distance_from_sun}</p>}
+        {info && <p>{info.perihelion + ' / ' + info.aphelion}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
 

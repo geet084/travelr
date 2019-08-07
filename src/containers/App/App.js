@@ -16,9 +16,9 @@ export class App extends Component {
 
   componentDidMount = () => {
     const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
-    let apiKey = process.env.REACT_APP_NASA_APIKEY;
+    const apiKey = process.env.REACT_APP_NASA_APIKEY;
     const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
-    const serverURL = 'https://travelr-be.herokuapp.com/api/v1'
+    const serverURL = process.env.REACT_APP_SERVER_URL;
 
     this.props.handleImages(nasaURL, handleApodImage)
     this.props.handleObjects(serverURL + '/objects')
@@ -26,24 +26,48 @@ export class App extends Component {
     this.props.setArrivalTime(Date.now())
   }
 
-  render() {
-    const { arrivalTime, objects, userInfo } = this.props;
+  setApodUrl() {
     const { media_type, url } = this.props.images.apod;
-    let currentUrl = url
-    if (media_type === 'video' || url === undefined) currentUrl = backupUrl
+    return (media_type === 'video' || url === undefined) ? backupUrl : url;
+  }
+
+  buildRouteWith = (path) => {
+    const category = path.split('/')[1]
+    return (
+      <Route key={path} path={path} render={({ match }) => {
+        const { id } = match.params
+        const info = this.props[category].find(data => data.name.toLowerCase() === id)
+
+        return <Display key={id} info={info} />
+      }} />
+    )
+  }
+
+  buildNavBar = () => {
+    const { planets, moons, stars, bodies } = this.props
+    return <NavBar
+      planets={planets.map(obj => obj.name)}
+      moons={moons.map(obj => obj.name)}
+      stars={stars.map(obj => obj.name)}
+      bodies={bodies.map(obj => obj.name)}
+    />
+  }
+
+  render() {
+    const routeList = ['/planets/:id', '/moons/:id', '/bodies/:id', '/stars/:id']
+    const { arrivalTime, userInfo } = this.props;
+    
+    const navBar = this.buildNavBar();
+    const apodUrl = this.setApodUrl();
+    const routes = routeList.map(route => this.buildRouteWith(route))
 
     return (
       <div className="App">
         <h1 className="logo">TRAVELR</h1>
-        <NavBar />
+        {navBar}
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo} />} />
-          <Route path='/objects/:id' render={({ match }) => {
-            const { id } = match.params
-            const info = objects.find(obj => obj.object_name.toLowerCase() === id)
-
-            return <Display key={id} info={info} />
-          }} />
+          <Route exact path='/' render={() => <Home key='home' url={apodUrl} time={arrivalTime} userInfo={userInfo} />} />
+          {routes}
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -58,7 +82,10 @@ export const mapDispatchToProps = (dispatch) => ({
 })
 
 export const mapStateToProps = (state) => ({
-  objects: state.objects,
+  planets: state.planets,
+  moons: state.moons,
+  stars: state.stars,
+  bodies: state.bodies,
   images: state.images,
   arrivalTime: state.arrivalTime,
   userInfo: state.userInfo,
