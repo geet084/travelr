@@ -56,7 +56,7 @@ export class App extends Component {
   render() {
     const routeList = ['/planets/:id', '/moons/:id', '/bodies/:id', '/stars/:id']
     const { arrivalTime, userInfo } = this.props;
-    
+
     const navBar = this.buildNavBar();
     const apodUrl = this.setApodUrl();
     const routes = routeList.map(route => this.buildRouteWith(route))
@@ -95,7 +95,10 @@ App.propTypes = {
   arrivalTime: PropTypes.number,
   handleObjects: PropTypes.func,
   handleImages: PropTypes.func,
-  objects: PropTypes.array,
+  planets: PropTypes.array,
+  moons: PropTypes.array,
+  bodies: PropTypes.array,
+  stars: PropTypes.array,
   setArrivalTime: PropTypes.func,
   userInfo: PropTypes.object,
 }
