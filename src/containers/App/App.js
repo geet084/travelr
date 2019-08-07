@@ -26,10 +26,15 @@ export class App extends Component {
     this.props.setArrivalTime(Date.now())
   }
 
-  setRouteFor = (path) => {
+  setApodUrl() {
+    const { media_type, url } = this.props.images.apod;
+    return (media_type === 'video' || url === undefined) ? backupUrl : url;
+  }
+
+  buildRouteWith = (path) => {
     const category = path.split('/')[1]
     return (
-      <Route path={path} render={({ match }) => {
+      <Route key={path} path={path} render={({ match }) => {
         const { id } = match.params
         const info = this.props[category].find(data => data.name.toLowerCase() === id)
 
@@ -38,27 +43,31 @@ export class App extends Component {
     )
   }
 
-  render() {
-    const { arrivalTime, userInfo } = this.props;
-    const { media_type, url } = this.props.images.apod;
-    let currentUrl = url
-    if (media_type === 'video' || url === undefined) currentUrl = backupUrl
+  buildNavBar = () => {
+    const { planets, moons, stars, bodies } = this.props
+    return <NavBar
+      planets={planets.map(obj => obj.name)}
+      moons={moons.map(obj => obj.name)}
+      stars={stars.map(obj => obj.name)}
+      bodies={bodies.map(obj => obj.name)}
+    />
+  }
 
-    const planets = this.props.planets.map(obj => obj.name)
-    const moons = this.props.moons.map(obj => obj.name)
-    const stars = this.props.stars.map(obj => obj.name)
-    const bodies = this.props.bodies.map(obj => obj.name)
+  render() {
+    const routeList = ['/planets/:id', '/moons/:id', '/bodies/:id', '/stars/:id']
+    const { arrivalTime, userInfo } = this.props;
+    
+    const navBar = this.buildNavBar();
+    const apodUrl = this.setApodUrl();
+    const routes = routeList.map(route => this.buildRouteWith(route))
 
     return (
       <div className="App">
         <h1 className="logo">TRAVELR</h1>
-        <NavBar planets={planets} moons={moons} stars={stars} bodies={bodies} />
+        {navBar}
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={currentUrl} time={arrivalTime} userInfo={userInfo} />} />
-          {this.setRouteFor('/planets/:id')}
-          {this.setRouteFor('/moons/:id')}
-          {this.setRouteFor('/bodies/:id')}
-          {this.setRouteFor('/stars/:id')}
+          <Route exact path='/' render={() => <Home key='home' url={apodUrl} time={arrivalTime} userInfo={userInfo} />} />
+          {routes}
           <Route component={NotFound} />
         </Switch>
       </div>
