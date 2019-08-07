@@ -18,10 +18,10 @@ class NavBar extends Component {
         <ul>
           <NavBtn name={'Home'} path='/' />
           <Collapsible className="drop-down" trigger="Solar System ˅" triggerWhenOpen="Solar System ˄">
-            {this.setCategory('Sun & Planets', 'planets')}
+            {this.setCategory('Stars', 'stars')}
+            {this.setCategory('Planets', 'planets')}
             {this.setCategory('Moons', 'moons')}
             {this.setCategory('Other Bodies', 'bodies')}
-            {this.setCategory('Stars', 'stars')}
           </Collapsible>
         </ul>
       </nav>
