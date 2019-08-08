@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export const NotFound = () => {
   return (
-    <div class='not-found'>
+    <div className='not-found'>
       <h3>404 NOT FOUND</h3>
       <Link to='/'>HOME</Link>
     </div>
