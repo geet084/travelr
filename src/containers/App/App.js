@@ -46,9 +46,9 @@ export class App extends Component {
   buildNavBar = () => {
     const { planets, moons, stars, bodies } = this.props
     return <NavBar
+      stars={stars.map(obj => obj.name)}
       planets={planets.map(obj => obj.name)}
       moons={moons.map(obj => obj.name)}
-      stars={stars.map(obj => obj.name)}
       bodies={bodies.map(obj => obj.name)}
     />
   }
