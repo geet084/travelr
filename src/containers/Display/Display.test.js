@@ -2,11 +2,12 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Display } from './Display';
 import { mapStateToProps, mapDispatchToProps } from './Display'
+import { getImageSuccess } from '../../actions';
 
 describe('Display', () => {
   let wrapper;
-  describe('initial state', () => {
 
+  describe('initial state with NO props', () => {
     it('should match snapshot with no props', () => {
       const mockProps = {
         handleImages: jest.fn(),
@@ -14,17 +15,57 @@ describe('Display', () => {
         images: { currentImage: { href: '' } },
       }
       wrapper = shallow(<Display {...mockProps} />)
+
       expect(wrapper).toMatchSnapshot();
     })
+  })
 
-    it('should match snapshot with props', () => {
-      const mockProps = {
+  describe('initial state with props', () => {
+    let mockProps;
+
+    beforeEach(() => {
+      mockProps = {
         handleImages: jest.fn(),
         info: { images: ['image_id'] },
         images: { currentImage: { href: 'some href' } },
       }
       wrapper = shallow(<Display {...mockProps} />)
+    });
+
+    it('should match snapshot with props', () => {
       expect(wrapper).toMatchSnapshot();
+    })
+
+    it('should call handleImages with url when component mounts', () => {
+      const expectedUrl = 'https://images-api.nasa.gov/asset/image_id';
+
+      expect(mockProps.handleImages).toHaveBeenCalledWith(expectedUrl, getImageSuccess)
+    })
+  })
+
+  describe('getDisplayImage', () => {
+    it('should get image to display if there is an image id present', () => {
+      let mockProps = {
+        handleImages: jest.fn(),
+        info: { images: ['image21'] },
+        images: { currentImage: { href: '' } },
+      }
+      wrapper = shallow(<Display {...mockProps} />)
+
+      const expectedUrl = 'https://images-api.nasa.gov/asset/image21';
+
+      expect(mockProps.handleImages).toHaveBeenCalledWith(expectedUrl, getImageSuccess)
+    })
+
+    it('should NOT get image to display if there is an image id present', () => {
+      let mockProps = {
+        handleImages: jest.fn(),
+        info: {},
+        images: { currentImage: { href: '' } },
+      }
+      wrapper = shallow(<Display {...mockProps} />)
+
+      expect(mockProps.handleImages).not.toBeCalled()
     })
   })
 
