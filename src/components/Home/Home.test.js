@@ -27,11 +27,13 @@ describe('Home', () => {
         galaxyMovement: 280,
         totalMovement: 852.92,
       };
-      //NEED TO PREVENT CDM??
+      
       expect(wrapper.state()).toEqual(expected);
     })
 
     it('should match snapshot', () => {
+      wrapper.instance().setState({ today: 'October 01, 2018'});
+
       expect(wrapper).toMatchSnapshot();
     })
   })
