@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App'
 import Home from '../../components/Home/Home'
+import Display from '../../containers/Display/Display'
 import { shallow, mount } from 'enzyme'
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
@@ -67,6 +68,18 @@ describe('App', () => {
         </Provider>
       )
       expect(wrapper.find(Home)).toHaveLength(1)
+    })
+
+    it('should render a specific object when on that route', () => {
+      mockProps.stars = [{ name: 'Sun' }];
+      const wrapper = mount(
+        <Provider store={store}>
+          <MemoryRouter initialEntries={['/stars/sun']}>
+            <App {...mockProps} />
+          </MemoryRouter>
+        </Provider>
+      )
+      expect(wrapper.find(Display)).toHaveLength(1)
     })
   })
 
