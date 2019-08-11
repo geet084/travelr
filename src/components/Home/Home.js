@@ -18,9 +18,8 @@ export class Home extends Component {
     }
   }
 
-  componentDidMount = async () => {
-    await this.props.time;
-    await this.calculateDateAndTime();
+  componentDidMount = () => {
+    this.calculateDateAndTime();
   }
 
   calculateDateAndTime = () => {
