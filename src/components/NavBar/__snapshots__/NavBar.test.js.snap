@@ -65,7 +65,7 @@ exports[`NavBar should match snapshot with no props 1`] = `
         triggerWhenOpen="Planets ˄"
       >
         <NavBtn
-          key=""
+          key="planets"
           name=""
           path="/planets/"
         />
@@ -99,7 +99,7 @@ exports[`NavBar should match snapshot with no props 1`] = `
         triggerWhenOpen="Moons ˄"
       >
         <NavBtn
-          key=""
+          key="moons"
           name=""
           path="/moons/"
         />
@@ -133,7 +133,7 @@ exports[`NavBar should match snapshot with no props 1`] = `
         triggerWhenOpen="Stars ˄"
       >
         <NavBtn
-          key=""
+          key="stars"
           name=""
           path="/stars/"
         />
@@ -167,7 +167,7 @@ exports[`NavBar should match snapshot with no props 1`] = `
         triggerWhenOpen="Bodies ˄"
       >
         <NavBtn
-          key=""
+          key="bodies"
           name=""
           path="/bodies/"
         />
@@ -242,12 +242,12 @@ exports[`NavBar should match snapshout with props 1`] = `
         triggerWhenOpen="Planets ˄"
       >
         <NavBtn
-          key="name1"
+          key="planetsname1"
           name="name1"
           path="/planets/name1"
         />
         <NavBtn
-          key="name2"
+          key="planetsname2"
           name="name2"
           path="/planets/name2"
         />
@@ -281,17 +281,17 @@ exports[`NavBar should match snapshout with props 1`] = `
         triggerWhenOpen="Moons ˄"
       >
         <NavBtn
-          key="name1"
+          key="moonsname1"
           name="name1"
           path="/moons/name1"
         />
         <NavBtn
-          key="name2"
+          key="moonsname2"
           name="name2"
           path="/moons/name2"
         />
         <NavBtn
-          key="name3"
+          key="moonsname3"
           name="name3"
           path="/moons/name3"
         />
@@ -325,7 +325,7 @@ exports[`NavBar should match snapshout with props 1`] = `
         triggerWhenOpen="Stars ˄"
       >
         <NavBtn
-          key="name8"
+          key="starsname8"
           name="name8"
           path="/stars/name8"
         />
@@ -359,12 +359,12 @@ exports[`NavBar should match snapshout with props 1`] = `
         triggerWhenOpen="Bodies ˄"
       >
         <NavBtn
-          key="name5"
+          key="bodiesname5"
           name="name5"
           path="/bodies/name5"
         />
         <NavBtn
-          key="name4"
+          key="bodiesname4"
           name="name4"
           path="/bodies/name4"
         />
