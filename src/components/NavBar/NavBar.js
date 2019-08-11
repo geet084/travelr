@@ -12,7 +12,7 @@ export class NavBar extends Component {
   }
 
   populateCategory = (pathname) => {
-    return this.props[pathname].map(name => <NavBtn name={name} path={`/${pathname}/${name}`} key={name} />)
+    return this.props[pathname].map(name => <NavBtn name={name} path={`/${pathname}/${name}`} key={pathname + name} />)
   }
 
   render() {
