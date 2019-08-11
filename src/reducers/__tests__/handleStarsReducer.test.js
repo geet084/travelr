@@ -21,7 +21,7 @@ describe('handleStarsReducer', () => {
     const expected = [{ id: 6, images: ['img13', 'img21'] }, { id: 11, images: ['img13', 'img55', 'img72'] }];
 
     const result = handleStarsReducer(initialState, actions.handleObjectImages(
-      [{ object_id: 6, image_id: 'img13' }, { object_id: 6, image_id: 'img21' }, { object_id: 11, image_id: 'img13' }, { object_id: 11, image_id: 'img55' }, { object_id: 6, image_id: 'img72' }]
+      [{ object_id: 6, image_id: 'img13' }, { object_id: 6, image_id: 'img21' }, { object_id: 11, image_id: 'img13' }, { object_id: 11, image_id: 'img55' }, { object_id: 11, image_id: 'img72' }]
     ))
 
     expect(result).toEqual(expected);
