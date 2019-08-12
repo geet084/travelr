@@ -37,14 +37,50 @@ describe('actions', () => {
     })
   })
 
-  describe('handleObjectsSuccess', () => {
-    it('should have a type of HANDLE_OBJECTS_SUCCESS', () => {
+  describe('handlePlanetsSuccess', () => {
+    it('should have a type of HANDLE_PLANETS_SUCCESS', () => {
       const expected = {
-        type: 'HANDLE_OBJECTS_SUCCESS',
-        objects: [{ name: 'earth' }, { name: 'mars' }]
+        type: 'HANDLE_PLANETS_SUCCESS',
+        planets: [{ name: 'earth' }, { name: 'mars' }]
       }
 
-      const result = actions.handleObjectsSuccess([{ name: 'earth' }, { name: 'mars' }]);
+      const result = actions.handlePlanetsSuccess([{ name: 'earth' }, { name: 'mars' }]);
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('handleMoonsSuccess', () => {
+    it('should have a type of HANDLE_MOONS_SUCCESS', () => {
+      const expected = {
+        type: 'HANDLE_MOONS_SUCCESS',
+        moons: [{ name: 'titan' }, { name: 'io' }]
+      }
+
+      const result = actions.handleMoonsSuccess([{ name: 'titan' }, { name: 'io' }]);
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('handleStarsSuccess', () => {
+    it('should have a type of HANDLE_STARS_SUCCESS', () => {
+      const expected = {
+        type: 'HANDLE_STARS_SUCCESS',
+        stars: [{ name: 'sun' }, { name: 'rigel' }]
+      }
+
+      const result = actions.handleStarsSuccess([{ name: 'sun' }, { name: 'rigel' }]);
+      expect(result).toEqual(expected)
+    })
+  })
+
+  describe('handleBodiesSuccess', () => {
+    it('should have a type of HANDLE_BODIES_SUCCESS', () => {
+      const expected = {
+        type: 'HANDLE_BODIES_SUCCESS',
+        bodies: [{ name: 'asteroid belt' }, { name: 'oort cloud' }]
+      }
+
+      const result = actions.handleBodiesSuccess([{ name: 'asteroid belt' }, { name: 'oort cloud' }]);
       expect(result).toEqual(expected)
     })
   })

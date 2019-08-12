@@ -29,8 +29,8 @@ exports[`Home initial state should match snapshot 1`] = `
         Enter a date to find out:
         <Connect(DateForm)
           className="test"
-          key="Mon Feb 25 2019"
-          today="Mon Feb 25 2019"
+          key="October 01, 2018"
+          today="October 01, 2018"
         />
       </h3>
       <div>

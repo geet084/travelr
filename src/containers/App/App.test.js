@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App'
 import Home from '../../components/Home/Home'
+import Display from '../../containers/Display/Display'
 import { shallow, mount } from 'enzyme'
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
@@ -21,7 +22,10 @@ describe('App', () => {
       apod: { media_type: 'image', url: 'http:/someurl' },
       currentImage: {}
     },
-    objects: [{}],
+    stars: [{}],
+    planets: [{}],
+    moons: [{}],
+    bodies: [{}],
     arrivalTime: 117,
     userInfo: { userDate: '10-1-2018', elapsedDays: 0 },
     handleObjects: jest.fn(),
@@ -65,6 +69,18 @@ describe('App', () => {
       )
       expect(wrapper.find(Home)).toHaveLength(1)
     })
+
+    it('should render a specific object when on that route', () => {
+      mockProps.stars = [{ name: 'Sun' }];
+      const wrapper = mount(
+        <Provider store={store}>
+          <MemoryRouter initialEntries={['/stars/sun']}>
+            <App {...mockProps} />
+          </MemoryRouter>
+        </Provider>
+      )
+      expect(wrapper.find(Display)).toHaveLength(1)
+    })
   })
 
   describe('mapDispatchToProps', () => {
@@ -101,7 +117,10 @@ describe('App', () => {
       const mockState = {
         images: [{ id: 1 }],
         arrivalTime: 99,
-        objects: [{ name: 'sun' }, { name: 'moon' }],
+        stars: [{ name: 'sun' }],
+        planets: [{ name: 'earth' },{name: 'mars'}],
+        moons: [{ name: 'titan' }, { name: 'moon' }],
+        bodies: [{ name: 'asteroid belt' }, { name: 'oort cloud' }],
         userInfo: { arrivalTime: 5, elapsedTime: 88 },
         fakeData1: "should't show up",
         fakeData2: 'stuff'
@@ -109,7 +128,10 @@ describe('App', () => {
       const expected = {
         images: [{ id: 1 }],
         arrivalTime: 99,
-        objects: [{ name: 'sun' }, { name: 'moon' }],
+        stars: [{ name: 'sun' }],
+        planets: [{ name: 'earth' },{name: 'mars'}],
+        moons: [{ name: 'titan' }, { name: 'moon' }],
+        bodies: [{ name: 'asteroid belt' }, { name: 'oort cloud' }],
         userInfo: { arrivalTime: 5, elapsedTime: 88 },
       }
       const mappedProps = mapStateToProps(mockState);

@@ -9,7 +9,28 @@ exports[`App should match snapshot with bad url 1`] = `
   >
     TRAVELR
   </h1>
-  <NavBar />
+  <NavBar
+    bodies={
+      Array [
+        undefined,
+      ]
+    }
+    moons={
+      Array [
+        undefined,
+      ]
+    }
+    planets={
+      Array [
+        undefined,
+      ]
+    }
+    stars={
+      Array [
+        undefined,
+      ]
+    }
+  />
   <Switch>
     <Route
       exact={true}
@@ -17,7 +38,23 @@ exports[`App should match snapshot with bad url 1`] = `
       render={[Function]}
     />
     <Route
-      path="/objects/:id"
+      key="/planets/:id"
+      path="/planets/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/moons/:id"
+      path="/moons/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/bodies/:id"
+      path="/bodies/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/stars/:id"
+      path="/stars/:id"
       render={[Function]}
     />
     <Route
@@ -36,7 +73,28 @@ exports[`App should match snapshot with good url 1`] = `
   >
     TRAVELR
   </h1>
-  <NavBar />
+  <NavBar
+    bodies={
+      Array [
+        undefined,
+      ]
+    }
+    moons={
+      Array [
+        undefined,
+      ]
+    }
+    planets={
+      Array [
+        undefined,
+      ]
+    }
+    stars={
+      Array [
+        undefined,
+      ]
+    }
+  />
   <Switch>
     <Route
       exact={true}
@@ -44,7 +102,23 @@ exports[`App should match snapshot with good url 1`] = `
       render={[Function]}
     />
     <Route
-      path="/objects/:id"
+      key="/planets/:id"
+      path="/planets/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/moons/:id"
+      path="/moons/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/bodies/:id"
+      path="/bodies/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/stars/:id"
+      path="/stars/:id"
       render={[Function]}
     />
     <Route

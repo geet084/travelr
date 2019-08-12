@@ -8,7 +8,10 @@ describe('rootReducer', () => {
     let expected = {
       isLoading: true,
       hasErrored: '',
-      objects: [],
+      stars: [],
+      planets: [],
+      moons: [],
+      bodies: [],
       images: { "apod": {}, "currentImage": { "href": "" } },
       arrivalTime: 0,
       userInfo: { userDate: '', elapsedDays: 0 },
@@ -33,12 +36,36 @@ describe('rootReducer', () => {
     expect(store.getState().hasErrored).toEqual(expected)
   })
 
-  it('should dispatch objects action', () => {
-    let action = { type: 'HANDLE_OBJECTS_SUCCESS', objects: [] }
+  it('should dispatch planets action', () => {
+    let action = { type: 'HANDLE_PLANETS_SUCCESS', planets: [] }
     let expected = [];
 
     store.dispatch(action)
-    expect(store.getState().objects).toEqual(expected)
+    expect(store.getState().planets).toEqual(expected)
+  })
+
+  it('should dispatch moons action', () => {
+    let action = { type: 'HANDLE_MOONS_SUCCESS', moons: [] }
+    let expected = [];
+
+    store.dispatch(action)
+    expect(store.getState().moons).toEqual(expected)
+  })
+
+  it('should dispatch stars action', () => {
+    let action = { type: 'HANDLE_STARS_SUCCESS', stars: [] }
+    let expected = [];
+
+    store.dispatch(action)
+    expect(store.getState().stars).toEqual(expected)
+  })
+
+  it('should dispatch bodies action', () => {
+    let action = { type: 'HANDLE_BODIES_SUCCESS', bodies: [] }
+    let expected = [];
+
+    store.dispatch(action)
+    expect(store.getState().bodies).toEqual(expected)
   })
 
   it('should dispatch images action', () => {

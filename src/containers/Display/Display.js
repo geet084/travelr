@@ -5,17 +5,24 @@ import { getImageSuccess } from '../../actions/';
 import PropTypes from 'prop-types';
 
 export class Display extends Component {
-
   componentDidMount = () => {
-    let { info, handleImages } = this.props;
-    const url = `https://images-api.nasa.gov/asset/${info.images[0]}`
-    
-    if (info.images !== []) handleImages(url, getImageSuccess)
+    this.getDisplayImage()
+  }
+
+  getDisplayImage = () => {
+    const { info, handleImages } = this.props;
+    const url = 'https://images-api.nasa.gov/asset/'
+
+    if (info.images) {
+      const urlWithFirstImage = url + info.images[0]
+      handleImages(urlWithFirstImage, getImageSuccess)
+    }
   }
 
   render() {
     const { info } = this.props;
     const { currentImage } = this.props.images;
+    if (currentImage.href === "") this.getDisplayImage()
 
     return (
       <div className='display'>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavBar should match snapshot 1`] = `
+exports[`NavBar should match snapshot with no props 1`] = `
 <nav
   className="nav-bar"
 >
@@ -27,69 +27,348 @@ exports[`NavBar should match snapshot 1`] = `
       tabIndex={null}
       transitionCloseTime={null}
       transitionTime={400}
-      trigger="Solar System"
+      trigger="Solar System ˅"
       triggerClassName=""
       triggerDisabled={false}
       triggerOpenedClassName=""
       triggerSibling={null}
       triggerStyle={null}
       triggerTagName="span"
+      triggerWhenOpen="Solar System ˄"
     >
-      <NavBtn
-        key="Sun"
-        name="Sun"
-        path="/objects/Sun"
-      />
-      <NavBtn
-        key="Moon"
-        name="Moon"
-        path="/objects/Moon"
-      />
-      <NavBtn
-        key="Mercury"
-        name="Mercury"
-        path="/objects/Mercury"
-      />
-      <NavBtn
-        key="Venus"
-        name="Venus"
-        path="/objects/Venus"
-      />
-      <NavBtn
-        key="Earth"
-        name="Earth"
-        path="/objects/Earth"
-      />
-      <NavBtn
-        key="Mars"
-        name="Mars"
-        path="/objects/Mars"
-      />
-      <NavBtn
-        key="Jupiter"
-        name="Jupiter"
-        path="/objects/Jupiter"
-      />
-      <NavBtn
-        key="Saturn"
-        name="Saturn"
-        path="/objects/Saturn"
-      />
-      <NavBtn
-        key="Uranus"
-        name="Uranus"
-        path="/objects/Uranus"
-      />
-      <NavBtn
-        key="Neptune"
-        name="Neptune"
-        path="/objects/Neptune"
-      />
-      <NavBtn
-        key="Pluto"
-        name="Pluto"
-        path="/objects/Pluto"
-      />
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="planets"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Planets ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Planets ˄"
+      >
+        <NavBtn
+          key="planets"
+          name=""
+          path="/planets/"
+        />
+      </Collapsible>
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="moons"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Moons ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Moons ˄"
+      >
+        <NavBtn
+          key="moons"
+          name=""
+          path="/moons/"
+        />
+      </Collapsible>
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="stars"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Stars ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Stars ˄"
+      >
+        <NavBtn
+          key="stars"
+          name=""
+          path="/stars/"
+        />
+      </Collapsible>
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="bodies"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Bodies ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Bodies ˄"
+      >
+        <NavBtn
+          key="bodies"
+          name=""
+          path="/bodies/"
+        />
+      </Collapsible>
+    </Collapsible>
+  </ul>
+</nav>
+`;
+
+exports[`NavBar should match snapshout with props 1`] = `
+<nav
+  className="nav-bar"
+>
+  <ul>
+    <NavBtn
+      name="Home"
+      path="/"
+    />
+    <Collapsible
+      className="drop-down"
+      classParentString="Collapsible"
+      contentContainerTagName="div"
+      contentInnerClassName=""
+      contentOuterClassName=""
+      easing="linear"
+      lazyRender={false}
+      onClose={[Function]}
+      onClosing={[Function]}
+      onOpen={[Function]}
+      onOpening={[Function]}
+      open={false}
+      openedClassName=""
+      overflowWhenOpen="hidden"
+      tabIndex={null}
+      transitionCloseTime={null}
+      transitionTime={400}
+      trigger="Solar System ˅"
+      triggerClassName=""
+      triggerDisabled={false}
+      triggerOpenedClassName=""
+      triggerSibling={null}
+      triggerStyle={null}
+      triggerTagName="span"
+      triggerWhenOpen="Solar System ˄"
+    >
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="planets"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Planets ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Planets ˄"
+      >
+        <NavBtn
+          key="planetsname1"
+          name="name1"
+          path="/planets/name1"
+        />
+        <NavBtn
+          key="planetsname2"
+          name="name2"
+          path="/planets/name2"
+        />
+      </Collapsible>
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="moons"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Moons ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Moons ˄"
+      >
+        <NavBtn
+          key="moonsname1"
+          name="name1"
+          path="/moons/name1"
+        />
+        <NavBtn
+          key="moonsname2"
+          name="name2"
+          path="/moons/name2"
+        />
+        <NavBtn
+          key="moonsname3"
+          name="name3"
+          path="/moons/name3"
+        />
+      </Collapsible>
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="stars"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Stars ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Stars ˄"
+      >
+        <NavBtn
+          key="starsname8"
+          name="name8"
+          path="/stars/name8"
+        />
+      </Collapsible>
+      <Collapsible
+        className="drop-down"
+        classParentString="Collapsible"
+        contentContainerTagName="div"
+        contentInnerClassName=""
+        contentOuterClassName=""
+        easing="linear"
+        key="bodies"
+        lazyRender={false}
+        onClose={[Function]}
+        onClosing={[Function]}
+        onOpen={[Function]}
+        onOpening={[Function]}
+        open={false}
+        openedClassName=""
+        overflowWhenOpen="hidden"
+        tabIndex={null}
+        transitionCloseTime={null}
+        transitionTime={400}
+        trigger="Bodies ˅"
+        triggerClassName=""
+        triggerDisabled={false}
+        triggerOpenedClassName=""
+        triggerSibling={null}
+        triggerStyle={null}
+        triggerTagName="span"
+        triggerWhenOpen="Bodies ˄"
+      >
+        <NavBtn
+          key="bodiesname5"
+          name="name5"
+          path="/bodies/name5"
+        />
+        <NavBtn
+          key="bodiesname4"
+          name="name4"
+          path="/bodies/name4"
+        />
+      </Collapsible>
     </Collapsible>
   </ul>
 </nav>
