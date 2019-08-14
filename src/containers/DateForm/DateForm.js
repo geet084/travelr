@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { setUserInfo } from '../../actions';
-// import DateInput from 'date-input';
 import PropTypes from 'prop-types';
 
 export class DateForm extends Component {
@@ -11,64 +8,18 @@ export class DateForm extends Component {
     this.dayRef = React.createRef();
     this.yearRef = React.createRef();
     this.state = {
-      minDate: '0000-01-01',
-      maxDate: '',
-      userDate: '',
-      elapsedDays: 0,
       month: '',
       day: '',
       year: '',
     };
   }
 
-  componentDidMount = () => {
-    this.setMaxDate();
-  };
-
-  setMaxDate = () => {
-    const date = new Date(this.props.today);
-    let month = '' + (date.getMonth() + 1);
-    let day = '' + (parseInt(date.getDate()) + 1);
-    const year = date.getFullYear();
-
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    const maxDate = [year, month, day].join('-');
-
-    this.setState({ maxDate });
-  };
-
-  handleDate = (e) => {
-    let userDate = new Date(e);
-    userDate.setDate(userDate.getDate());
-    const singleDay = (1000 * 60 * 60 * 24);
-    const thisTime = new Date();
-    const diff = thisTime.getTime() - userDate.getTime();
-    let elapsedDays = (diff / singleDay);
-    const date = e.split('');
-
-    elapsedDays = this.fixElapsedDays(elapsedDays, date);
-    userDate = this.fixDateError(userDate);
-
-    this.setState({ userDate, elapsedDays });
-    if (elapsedDays > 0) this.props.setUserInfo({ userDate, elapsedDays });
-  };
-
-  fixElapsedDays = (elapsedDays, date) => {
-    let days;
-    if (date.length < 10 || elapsedDays <= 0) days = 0;
-    else days = elapsedDays.toFixed(2);
-    return days;
-  };
-
-  fixDateError = (date) => {
-    let days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-    date = date.toDateString().split(' ');
-    date[0] = (days[days.indexOf(date[0]) + 1]);
-    date[2] = (parseInt(date[2]) + 1).toString();
-
-    return date.join(' ');
-  };
+  componentWillUpdate(prevProps, prevState) {
+    const { month, day, year } = prevState;
+    const isFullDate = month.length === 2 && day.length === 2 && year.length === 4;
+    
+    if (isFullDate) this.props.updateUserDate(`${month}-${day}-${year}`);
+  }
 
   buildDateInputs(dateTypes) {
     return Object.keys(dateTypes).map(key => {
@@ -115,7 +66,6 @@ export class DateForm extends Component {
 
     return (
       <div className='date-form'>
-        {/* <DateInput shouldValidate minDate={minDate} maxDate={maxDate} onChange={this.handleDate} /> */}
         <form id='form'>
           {dateInputs}
         </form>
@@ -124,12 +74,8 @@ export class DateForm extends Component {
   }
 }
 
-export const mapDispatchToProps = (dispatch) => ({
-  setUserInfo: (userInfo) => dispatch(setUserInfo(userInfo)),
-});
-
 DateForm.propTypes = {
-  setUserInfo: PropTypes.func,
+  updateUserDate: PropTypes.func,
   today: PropTypes.string,
 };
 
@@ -137,4 +83,4 @@ DateForm.defaultProps = {
   today: '',
 };
 
-export default connect(null, mapDispatchToProps)(DateForm);
+export default DateForm;
