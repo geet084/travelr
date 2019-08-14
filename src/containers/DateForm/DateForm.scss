@@ -6,3 +6,37 @@
   right: -217px;
   margin: 0;
 }
+
+#form {
+  border-bottom: 1px solid rgba(0, 0, 0, .2);
+  width: 130px;
+  padding-bottom: 11px;
+  padding-left: 10px;
+}
+input {
+  border: none;
+  width: 35px;
+  outline: none;
+  font-size: 15px;
+  padding: none;
+  margin: none;
+  text-align: left;
+}
+
+input::placeholder {
+  opacity: .5;
+  font-weight: 300;
+  color: red;
+}
+#day {
+  width: 20px;
+}
+#month {
+  width: 35px;
+}
+span {
+  color: #434353;
+}
+.first-span {
+  margin-left: -10px;
+}
