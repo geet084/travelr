@@ -1,64 +1,49 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { DateForm } from './DateForm';
-import { mapDispatchToProps } from './DateForm'
 
 describe('DateForm', () => {
   let wrapper;
-  const mockToday = 'Mon Oct 01 2018'
-  const mockSetUserInfo = jest.fn()
-
+  const mockUpdateUserDate = jest.fn();
+  
   beforeEach(() => {
-    wrapper = shallow(<DateForm setUserInfo={mockSetUserInfo} today={mockToday} />)
-  })
-
+    wrapper = shallow(<DateForm updateUserDate={mockUpdateUserDate} />)
+  });
+  
   describe('initial state', () => {
     it('should match snapshot', () => {
       expect(wrapper).toMatchSnapshot();
-    })
-
+    });
+    
     it('should have a default state', () => {
       const expected = {
-        minDate: '0000-01-01',
-        maxDate: '2018-10-02',
-        userDate: '',
-        elapsedDays: 0,
-      }
-      expect(wrapper.state()).toEqual(expected)
+        month: '',
+        day: '',
+        year: '',
+      };
+      expect(wrapper.state()).toEqual(expected);
+    });
+  });
+  
+  describe('componentWillUpdate', () => {
+    const mockMonthEvent = { target: { id: 'month', value: '07', min: '01', max: '12' } };
+    const mockDayEvent = { target: { id: 'day', value: '08', min: '01', max: '31' } };
+    const mockYearEvent = { target: { id: 'year', value: '1999', min: '0100', max: '2999' } }; 
+    
+    it('should NOT call updateUserDate if date is not complete', () => {
+      wrapper.find('#month').simulate('change', mockMonthEvent);
+      
+      expect(mockUpdateUserDate).toHaveBeenCalledTimes(0);
+    });
+    
+    it('should call updateUserDate if the date IS complete', () => {
+      const expected = '07-08-1999';
 
-    })
-  })
+      wrapper.find('#month').simulate('change', mockMonthEvent);
+      wrapper.find('#day').simulate('change', mockDayEvent);
+      wrapper.find('#year').simulate('change', mockYearEvent);
 
-  describe('handleDate', () => {
-    it('should handle the date the user types in', () => {
-      const constantDate = new Date('10-02-2018')
-      /*eslint no-global-assign:off*/
-      Date = class extends Date {
-        constructor() {
-          return constantDate
-        }
-      }
-      const initial = new Date('10-02-2018')
-      const currentDate = 'Tue Oct 2 2018'
-      initial.setDate(initial.getDate() - 1);
-
-      const expectedElapsedDays = 0
-
-
-      wrapper.instance().handleDate(initial.toDateString())
-      expect(wrapper.state('userDate')).toEqual(currentDate)
-      expect(wrapper.state('elapsedDays')).toEqual(expectedElapsedDays)
-    })
-  })
-
-  describe('matchDispatchToProps', () => {
-    it('should mapDispatchToProps', () => {
-      const mockDispatch = jest.fn();
-      const mockUserInfo = 'I am a user'
-      const mappedProps = mapDispatchToProps(mockDispatch);
-
-      mappedProps.setUserInfo(mockUserInfo);
-      expect(mockDispatch).toHaveBeenCalled()
-    })
-  })
+      expect(mockUpdateUserDate).toHaveBeenCalledWith(expected);
+    });
+  });
 })
