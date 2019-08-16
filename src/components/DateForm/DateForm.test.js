@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { DateForm } from './DateForm';
 
 describe('DateForm', () => {
@@ -87,7 +87,7 @@ describe('DateForm', () => {
       wrapper.instance().handleNumberVerification = jest.fn().mockImplementation(() => mockMonthEvent.target.value);
 
       wrapper.instance().handleDateInput(mockMonthEvent);
-      
+
       expect(wrapper.instance().handleNumberVerification).toHaveBeenCalledWith(mockMonthEvent.target);
     });
 
@@ -95,7 +95,7 @@ describe('DateForm', () => {
       const mockValue = mockDayEvent.target.value;
       wrapper.instance().handleNumberVerification = jest.fn().mockImplementation(() => mockValue);
       wrapper.instance().handleInputFocus = jest.fn();
-      
+
       wrapper.instance().handleDateInput(mockDayEvent);
 
       expect(wrapper.instance().handleInputFocus).toHaveBeenCalledWith(mockDayEvent.target, mockValue);
@@ -141,7 +141,7 @@ describe('DateForm', () => {
 
     it('should return NaN if anything but a number is entered', () => {
       const result = wrapper.instance().handleNumberVerification(mockNaNTarget);
-      
+
       expect(result).toEqual(NaN);
     });
 
@@ -151,10 +151,47 @@ describe('DateForm', () => {
       expect(result).toEqual('12');
     });
 
-    it('should return the minimum if the number entered is too small', () => { 
+    it('should return the minimum if the number entered is too small', () => {
       const result = wrapper.instance().handleNumberVerification(mockTooSmallTarget);
 
       expect(result).toEqual('0100');
+    });
+  });
+
+  describe('handleInputFocus', () => {
+    let wrapper;
+    const mockMonthTarget = { id: 'month', value: '02', maxLength: 2 };
+    const mockDayTarget = { id: 'day', value: '16', maxLength: 2 };
+    const mockYearTarget = { id: 'year', value: '1900', maxLength: 4 };
+
+    beforeEach(() => {
+      wrapper = mount(<DateForm updateUserDate={mockUpdateUserDate} />);
+      wrapper.instance().refs.monthRef.focus = jest.fn();
+      wrapper.instance().refs.dayRef.focus = jest.fn();
+      wrapper.instance().refs.yearRef.focus = jest.fn();
+      wrapper.instance().refs.yearRef.blur = jest.fn();
+    });
+
+    it('should change focus to the day input when month is filled out', () => {
+      wrapper.instance().handleInputFocus(mockMonthTarget, mockMonthTarget.value);
+
+      expect(wrapper.instance().refs.monthRef.focus).toHaveBeenCalledTimes(0);
+      expect(wrapper.instance().refs.dayRef.focus).toHaveBeenCalledTimes(1);
+      expect(wrapper.instance().refs.yearRef.focus).toHaveBeenCalledTimes(0);
+    });
+
+    it('should change focus to the year input when day is filled out', () => {
+      wrapper.instance().handleInputFocus(mockDayTarget, mockDayTarget.value);
+
+      expect(wrapper.instance().refs.dayRef.focus).toHaveBeenCalledTimes(0);
+      expect(wrapper.instance().refs.yearRef.focus).toHaveBeenCalledTimes(1);
+    });
+
+    it('should change focus off of the year input when it is filled out', () => {
+      wrapper.instance().handleInputFocus(mockYearTarget, mockYearTarget.value);
+
+      expect(wrapper.instance().refs.yearRef.focus).toHaveBeenCalledTimes(0);
+      expect(wrapper.instance().refs.yearRef.blur).toHaveBeenCalledTimes(1);
     });
   });
 });
