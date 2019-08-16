@@ -44,18 +44,20 @@ export class DateForm extends Component {
 
   handleDateInput = ({ target }) => {
     const value = this.handleNumberVerification(target);
+    
     this.handleInputFocus(target, value);
-
     this.setState({ [target.id]: value });
   };
 
   handleNumberVerification = ({ value, min, max }) => {
-    const isNum = Number(value) >= 0 && Number(value) <= Number(max);
+    value = value.trim()
+    const isNumber = Number(value) >= 0 && Number(value) <= Number(max);
     const higherThanMax = Number(value) >= Number(max);
-    const lessThanMin = value.length === max.length && Number(value) < Number(min)
-    value = lessThanMin ? min : value
-    
-    return isNum && !higherThanMax ? value : max;
+    const lessThanMin = value.length === max.length && Number(value) < Number(min);
+    if (lessThanMin) return min
+    else if (higherThanMax) return max
+    else if(!isNumber) return NaN
+    else return value
   }
 
   handleInputFocus(target, value) {
