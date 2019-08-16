@@ -75,12 +75,7 @@ export class DateForm extends Component {
 }
 
 DateForm.propTypes = {
-  updateUserDate: PropTypes.func,
-  today: PropTypes.string,
-};
-
-DateForm.defaultProps = {
-  today: '',
+  updateUserDate: PropTypes.func
 };
 
 export default DateForm;
