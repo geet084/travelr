@@ -65,4 +65,58 @@ describe('DateForm', () => {
       expect(result[1].props.value).toEqual('');
     });
   });
+
+  describe('handleDateInput', () => {
+    const mockMonthEvent = {
+      target: { id: 'month', value: '11', min: '01', max: '12' }
+    };
+    const mockDayEvent = {
+      target: { id: 'day', value: '24', min: '01', max: '31' }
+    };
+    const mockYearEvent = {
+      target: { id: 'year', value: '2000', min: '0100', max: '2999' }
+    };
+    const expectedState = {
+      month: '11',
+      day: '24',
+      year: '2000'
+    };
+
+
+    it('should call handleNumberVerification with target info', () => {
+      wrapper.instance().handleNumberVerification = jest.fn().mockImplementation(() => mockMonthEvent.target.value);
+
+      wrapper.instance().handleDateInput(mockMonthEvent);
+      
+      expect(wrapper.instance().handleNumberVerification).toHaveBeenCalledWith(mockMonthEvent.target);
+    });
+
+    it('should call handleInputFocus with target and value', () => {
+      const mockValue = mockDayEvent.target.value;
+      wrapper.instance().handleNumberVerification = jest.fn().mockImplementation(() => mockValue);
+      wrapper.instance().handleInputFocus = jest.fn();
+      
+      wrapper.instance().handleDateInput(mockDayEvent);
+
+      expect(wrapper.instance().handleInputFocus).toHaveBeenCalledWith(mockDayEvent.target, mockValue);
+    });
+
+    it('should update state when a MONTH value is entered', () => {
+      wrapper.instance().handleDateInput(mockMonthEvent);
+
+      expect(wrapper.state('month')).toEqual(expectedState.month);
+    });
+
+    it('should update state when a DAY value is entered', () => {
+      wrapper.instance().handleDateInput(mockDayEvent);
+
+      expect(wrapper.state('day')).toEqual(expectedState.day);
+    });
+
+    it('should update state when a YEAR value is entered', () => {
+      wrapper.instance().handleDateInput(mockYearEvent);
+
+      expect(wrapper.state('year')).toEqual(expectedState.year);
+    });
+  });
 });
