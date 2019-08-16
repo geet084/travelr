@@ -119,4 +119,42 @@ describe('DateForm', () => {
       expect(wrapper.state('year')).toEqual(expectedState.year);
     });
   });
+
+  describe('handleNumberVerification', () => {
+    const mockExtraSpaceTarget = { value: ' 1   ', min: '01', max: '12' };
+    const mockGoodTarget = { value: '11', min: '01', max: '12' };
+    const mockNaNTarget = { value: 'a', min: '01', max: '31' };
+    const mockTooSmallTarget = { value: '0070', min: '0100', max: '2999' };
+    const mockTooBigTarget = { value: '9999', min: '01', max: '12' };
+
+    it('should not accept spaces when tying in a number', () => {
+      const result = wrapper.instance().handleNumberVerification(mockExtraSpaceTarget);
+
+      expect(result).toEqual('1');
+    })
+
+    it('should return same number when within specific input guidelines', () => {
+      const result = wrapper.instance().handleNumberVerification(mockGoodTarget);
+
+      expect(result).toEqual(mockGoodTarget.value);
+    });
+
+    it('should return NaN if anything but a number is entered', () => {
+      const result = wrapper.instance().handleNumberVerification(mockNaNTarget);
+      
+      expect(result).toEqual(NaN);
+    });
+
+    it('should return the maximum if the number entered is too large', () => {
+      const result = wrapper.instance().handleNumberVerification(mockTooBigTarget);
+
+      expect(result).toEqual('12');
+    });
+
+    it('should return the minimum if the number entered is too small', () => { 
+      const result = wrapper.instance().handleNumberVerification(mockTooSmallTarget);
+
+      expect(result).toEqual('0100');
+    });
+  });
 });
