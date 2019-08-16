@@ -17,7 +17,7 @@ export class DateForm extends Component {
   componentWillUpdate(prevProps, prevState) {
     const { month, day, year } = prevState;
     const isFullDate = month.length === 2 && day.length === 2 && year.length === 4;
-    
+
     if (isFullDate) this.props.updateUserDate(`${month}-${day}-${year}`);
   }
 
@@ -30,8 +30,9 @@ export class DateForm extends Component {
           key={key}
           max={dateType.max}
           maxLength={dateType.length}
-          onBlur={this.verifyDateInput}
-          onChange={this.verifyDateInput}
+          min={dateType.min}
+          onBlur={this.handleDateInput}
+          onChange={this.handleDateInput}
           placeholder={dateType.placeholder}
           ref={`${key}Ref`}
           type='text'
@@ -41,26 +42,35 @@ export class DateForm extends Component {
     });
   }
 
-  verifyDateInput = ({ target }) => {
-    let value = this.state[target.id];
-    const isNumber = Number(target.value) >= 0 && Number(target.value) <= Number(target.max);
-    const higherThanMax = Number(target.value) >= Number(target.max);
-
-    if (isNumber) value = target.value;
-    else if (higherThanMax) value = target.max;
-
-    if (target.id === 'month' && value.length === 2) this.refs.dayRef.focus();
-    if (target.id === 'day' && value.length === 2) this.refs.yearRef.focus();
-    if (target.id === 'year' && value.length === 4) this.refs.yearRef.blur();
+  handleDateInput = ({ target }) => {
+    const value = this.handleNumberVerification(target);
+    this.handleInputFocus(target, value);
 
     this.setState({ [target.id]: value });
   };
 
+  handleNumberVerification = ({ value, min, max }) => {
+    const isNum = Number(value) >= 0 && Number(value) <= Number(max);
+    const higherThanMax = Number(value) >= Number(max);
+    const lessThanMin = value.length === max.length && Number(value) < Number(min)
+    value = lessThanMin ? min : value
+    
+    return isNum && !higherThanMax ? value : max;
+  }
+
+  handleInputFocus(target, value) {
+    const isMaxLength = value.length === target.maxLength
+
+    if (target.id === 'month' && isMaxLength) this.refs.dayRef.focus();
+    if (target.id === 'day' && isMaxLength) this.refs.yearRef.focus();
+    if (target.id === 'year' && isMaxLength) this.refs.yearRef.blur();
+  }
+
   render() {
     const dateTypes = {
-      month: { placeholder: 'mm', length: 2, max: 12 },
-      day: { placeholder: 'dd', length: 2, max: 31 },
-      year: { placeholder: 'yyyy', length: 4, max: 2999 }
+      month: { placeholder: 'mm', length: 2, min: '01', max: '12' },
+      day: { placeholder: 'dd', length: 2, min: '01', max: '31' },
+      year: { placeholder: 'yyyy', length: 4, min: '0100', max: '2999' }
     };
     const dateInputs = this.buildDateInputs(dateTypes);
 
