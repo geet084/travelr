@@ -21,6 +21,7 @@ describe('DateForm', () => {
         day: '',
         year: '',
       };
+
       expect(wrapper.state()).toEqual(expected);
     });
   });
@@ -48,43 +49,52 @@ describe('DateForm', () => {
   });
 
   describe('buildDateInputs', () => {
-    it('should build date inputs with provided date types object', () => {
-      const mockDateTypes = {
-        month: { placeholder: 'mm', length: 2, min: '01', max: '12' },
-        day: { placeholder: 'dddd', length: 5, min: '15', max: '86' },
-        year: { placeholder: 'yyyy', length: 4, min: '0100', max: '2999' }
-      }
-      const result = wrapper.instance().buildDateInputs(mockDateTypes);
+    const mockDateTypes = {
+      month: { placeholder: 'mm', length: 2, min: '01', max: '12' },
+      day: { placeholder: 'dddd', length: 5, min: '15', max: '86' },
+      year: { placeholder: 'yyyy', length: 4, min: '0100', max: '2999' }
+    }
+    const expectedKey = 'day';
+    // MOCKDATETYPES & EXPECTED KEY 
+    // WILL DYNAMICALLY UPDATE THE REST OF THIS TEST
 
-      expect(result.length).toEqual(3);
-      expect(result[1].props.id).toEqual('day');
-      expect(result[1].props.max).toEqual('86');
-      expect(result[1].props.maxLength).toEqual(5);
-      expect(result[1].props.min).toEqual('15');
-      expect(result[1].props.placeholder).toEqual('dddd');
-      expect(result[1].props.value).toEqual('');
+    it('should build date inputs with provided date types object', () => {
+      const expected = {
+        size: Object.keys(mockDateTypes).length,
+        id: expectedKey,
+        max: mockDateTypes[expectedKey].max,
+        maxLength: mockDateTypes[expectedKey].length,
+        min: mockDateTypes[expectedKey].min,
+        placeholder: mockDateTypes[expectedKey].placeholder,
+        value: '',
+      };
+
+      const result = wrapper.instance().buildDateInputs(mockDateTypes);
+      const resKey = Object.keys(mockDateTypes).indexOf(expectedKey);
+
+      expect(result.length).toEqual(expected.size);
+      expect(result[resKey].props.id).toEqual(expected.id);
+      expect(result[resKey].props.max).toEqual(expected.max);
+      expect(result[resKey].props.maxLength).toEqual(expected.maxLength);
+      expect(result[resKey].props.min).toEqual(expected.min);
+      expect(result[resKey].props.placeholder).toEqual(expected.placeholder);
+      expect(result[resKey].props.value).toEqual(expected.value);
     });
   });
 
   describe('handleDateInput', () => {
-    const mockMonthEvent = {
-      target: { id: 'month', value: '11', min: '01', max: '12' }
-    };
-    const mockDayEvent = {
-      target: { id: 'day', value: '24', min: '01', max: '31' }
-    };
-    const mockYearEvent = {
-      target: { id: 'year', value: '2000', min: '0100', max: '2999' }
-    };
+    const mockMonthEvent = { target: { id: 'month', value: '11', min: '01', max: '12' } };
+    const mockDayEvent = { target: { id: 'day', value: '24', min: '01', max: '31' } };
+    const mockYearEvent = { target: { id: 'year', value: '2000', min: '0100', max: '2999' } };
     const expectedState = {
       month: '11',
       day: '24',
       year: '2000'
     };
 
-
     it('should call handleNumberVerification with target info', () => {
-      wrapper.instance().handleNumberVerification = jest.fn().mockImplementation(() => mockMonthEvent.target.value);
+      const mockValue = mockMonthEvent.target.value;
+      wrapper.instance().handleNumberVerification = jest.fn().mockImplementation(() => mockValue);
 
       wrapper.instance().handleDateInput(mockMonthEvent);
 
@@ -121,37 +131,41 @@ describe('DateForm', () => {
   });
 
   describe('handleNumberVerification', () => {
-    const mockExtraSpaceTarget = { value: ' 1   ', min: '01', max: '12' };
-    const mockGoodTarget = { value: '11', min: '01', max: '12' };
-    const mockNaNTarget = { value: 'a', min: '01', max: '31' };
-    const mockTooSmallTarget = { value: '0070', min: '0100', max: '2999' };
-    const mockTooBigTarget = { value: '9999', min: '01', max: '12' };
-
     it('should not accept spaces when tying in a number', () => {
-      const result = wrapper.instance().handleNumberVerification(mockExtraSpaceTarget);
+      const mockExtraSpaceTarget = { value: ' 1   ', min: '01', max: '12' };
 
+      const result = wrapper.instance().handleNumberVerification(mockExtraSpaceTarget);
+      
       expect(result).toEqual('1');
     })
-
+    
     it('should return same number when within specific input guidelines', () => {
+      const mockGoodTarget = { value: '11', min: '01', max: '12' };
+      
       const result = wrapper.instance().handleNumberVerification(mockGoodTarget);
-
+      
       expect(result).toEqual(mockGoodTarget.value);
     });
-
+    
     it('should return NaN if anything but a number is entered', () => {
+      const mockNaNTarget = { value: 'a', min: '01', max: '31' };
+      
       const result = wrapper.instance().handleNumberVerification(mockNaNTarget);
-
+      
       expect(result).toEqual(NaN);
     });
-
+    
     it('should return the maximum if the number entered is too large', () => {
+      const mockTooBigTarget = { value: '9999', min: '01', max: '12' };
+      
       const result = wrapper.instance().handleNumberVerification(mockTooBigTarget);
-
+      
       expect(result).toEqual('12');
     });
-
+    
     it('should return the minimum if the number entered is too small', () => {
+      const mockTooSmallTarget = { value: '0070', min: '0100', max: '2999' };
+      
       const result = wrapper.instance().handleNumberVerification(mockTooSmallTarget);
 
       expect(result).toEqual('0100');
@@ -160,34 +174,36 @@ describe('DateForm', () => {
 
   describe('handleInputFocus', () => {
     let wrapper;
-    const mockMonthTarget = { id: 'month', value: '02', maxLength: 2 };
-    const mockDayTarget = { id: 'day', value: '16', maxLength: 2 };
-    const mockYearTarget = { id: 'year', value: '1900', maxLength: 4 };
-
+    let refs = ['monthRef', 'dayRef', 'yearRef'];
+    
     beforeEach(() => {
       wrapper = mount(<DateForm updateUserDate={mockUpdateUserDate} />);
-      wrapper.instance().refs.monthRef.focus = jest.fn();
-      wrapper.instance().refs.dayRef.focus = jest.fn();
-      wrapper.instance().refs.yearRef.focus = jest.fn();
+      refs.map(ref => wrapper.instance().refs[ref].focus = jest.fn());
       wrapper.instance().refs.yearRef.blur = jest.fn();
     });
-
+    
     it('should change focus to the day input when month is filled out', () => {
+      const mockMonthTarget = { id: 'month', value: '02', maxLength: 2 };
+      
       wrapper.instance().handleInputFocus(mockMonthTarget, mockMonthTarget.value);
-
+      
       expect(wrapper.instance().refs.monthRef.focus).toHaveBeenCalledTimes(0);
       expect(wrapper.instance().refs.dayRef.focus).toHaveBeenCalledTimes(1);
       expect(wrapper.instance().refs.yearRef.focus).toHaveBeenCalledTimes(0);
     });
-
+    
     it('should change focus to the year input when day is filled out', () => {
+      const mockDayTarget = { id: 'day', value: '16', maxLength: 2 };
+      
       wrapper.instance().handleInputFocus(mockDayTarget, mockDayTarget.value);
-
+      
       expect(wrapper.instance().refs.dayRef.focus).toHaveBeenCalledTimes(0);
       expect(wrapper.instance().refs.yearRef.focus).toHaveBeenCalledTimes(1);
     });
-
+    
     it('should change focus off of the year input when it is filled out', () => {
+      const mockYearTarget = { id: 'year', value: '1900', maxLength: 4 };
+      
       wrapper.instance().handleInputFocus(mockYearTarget, mockYearTarget.value);
 
       expect(wrapper.instance().refs.yearRef.focus).toHaveBeenCalledTimes(0);
