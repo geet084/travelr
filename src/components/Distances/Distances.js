@@ -1,8 +1,9 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
 
-export const Distances = () => {
-  const { counter, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement } = this.props;
+export const Distances = (props) => {
+  const { counter, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement } = props;
+  
   return (
     <Collapsible className="test extra" trigger="Show More">
       <div className='stats'>
