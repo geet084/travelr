@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const UserDate = ({ days, hours, num}) => {
+export const UserDate = ({ userDate, days, hours, num}) => {
   return (
-    <div>
-      <p className="test">Time elapsed since {this.state.userDate}: </p>
+    <div id="bob">
+      <p className="test">Time elapsed since {userDate}: </p>
       <p className="test">
         <span>{days} days and </span>
         <span> ~{hours} hours</span>
