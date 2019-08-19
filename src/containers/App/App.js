@@ -7,10 +7,11 @@ import { setArrivalTime, handleApodImage, handleObjectImages } from '../../actio
 import '../../Main.scss';
 import Display from '../Display/Display';
 import NavBar from '../../components/NavBar/NavBar'
-import Home from '../../components/Home/Home'
+import Home from '../../containers/Home/Home'
 import NotFound from '../../components/NotFound/NotFound'
 import backupUrl from '../../images/back-img.jpg';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 
 export class App extends Component {
 
@@ -23,7 +24,9 @@ export class App extends Component {
     this.props.handleImages(nasaURL, handleApodImage)
     this.props.handleObjects(serverURL + '/objects')
     this.props.handleImages(serverURL + '/images', handleObjectImages)
-    this.props.setArrivalTime(Date.now())
+    let arrivalTime = moment()
+    arrivalTime.format()
+    this.props.setArrivalTime(arrivalTime)
   }
 
   setApodUrl() {
@@ -55,7 +58,6 @@ export class App extends Component {
 
   render() {
     const routeList = ['/planets/:id', '/moons/:id', '/bodies/:id', '/stars/:id']
-    const { arrivalTime, userInfo } = this.props;
 
     const navBar = this.buildNavBar();
     const apodUrl = this.setApodUrl();
@@ -66,7 +68,7 @@ export class App extends Component {
         <h1 className="logo">TRAVELR</h1>
         {navBar}
         <Switch>
-          <Route exact path='/' render={() => <Home key='home' url={apodUrl} time={arrivalTime} userInfo={userInfo} />} />
+          <Route exact path='/' render={() => <Home key={this.props.arrivalTime} url={apodUrl} />} />
           {routes}
           <Route component={NotFound} />
         </Switch>
@@ -92,7 +94,7 @@ export const mapStateToProps = (state) => ({
 })
 
 App.propTypes = {
-  arrivalTime: PropTypes.number,
+  arrivalTime: PropTypes.object,
   handleObjects: PropTypes.func,
   handleImages: PropTypes.func,
   planets: PropTypes.array,
@@ -104,7 +106,7 @@ App.propTypes = {
 }
 
 App.defaultProps = {
-  arrivalTime: 0,
+  arrivalTime: {},
   handleObjects: [],
   handleImages: [],
   planets: [],
