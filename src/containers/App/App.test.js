@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { App } from './App'
-import Home from '../../components/Home/Home'
+import Home from '../../containers/Home/Home'
 import Display from '../../containers/Display/Display'
 import { shallow, mount } from 'enzyme'
 import { BrowserRouter, MemoryRouter } from 'react-router-dom';
