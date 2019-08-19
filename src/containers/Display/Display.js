@@ -9,6 +9,11 @@ export class Display extends Component {
     this.getDisplayImage()
   }
 
+  componentDidUpdate = (prevProps, prevState) => {
+    this.getDisplayImage()
+  }
+  
+
   getDisplayImage = () => {
     const { info, handleImages } = this.props;
     const url = 'https://images-api.nasa.gov/asset/'
@@ -22,7 +27,6 @@ export class Display extends Component {
   render() {
     const { info } = this.props;
     const { currentImage } = this.props.images;
-    if (currentImage.href === "") this.getDisplayImage()
 
     return (
       <div className='display'>
@@ -32,7 +36,7 @@ export class Display extends Component {
         {info && <p>{info.perihelion + ' / ' + info.aphelion}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
-
+        
         {currentImage.href !== '' && <img className='imgs' src={currentImage.href} alt="" />}
       </div>
     )
