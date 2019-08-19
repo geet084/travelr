@@ -38,12 +38,12 @@ describe('NavBar', () => {
     expect(result).toEqual(expected);
   });
 
-  it.skip('should populate the category with items given a category path', () => {
-    const expected = [<NavBtn name="name1" path="/moons/name1" />, <NavBtn name="name2" path="/moons/name2" />, <NavBtn name="name3" path="/moons/name3" />];
+  it('should populate the category with items given a category path', () => {
+    const expected = wrapper.instance().props.moons.length;
     const mockPath = 'moons';
 
     const result = wrapper.instance().populateCategory(mockPath);
 
-    expect(result).toEqual(expected);
+    expect(result).toHaveLength(expected);
   });
 })

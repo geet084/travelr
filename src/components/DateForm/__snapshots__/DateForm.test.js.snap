@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DateForm initial state should match snapshot 1`] = `
+<div
+  className="date-form"
+>
+  <form
+    id="form"
+  >
+    <input
+      id="month"
+      key="month"
+      max="12"
+      maxLength={2}
+      min="01"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="mm"
+      type="text"
+      value=""
+    />
+    <input
+      id="day"
+      key="day"
+      max="31"
+      maxLength={2}
+      min="01"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="dd"
+      type="text"
+      value=""
+    />
+    <input
+      id="year"
+      key="year"
+      max="2999"
+      maxLength={4}
+      min="0100"
+      onBlur={[Function]}
+      onChange={[Function]}
+      placeholder="yyyy"
+      type="text"
+      value=""
+    />
+  </form>
+</div>
+`;

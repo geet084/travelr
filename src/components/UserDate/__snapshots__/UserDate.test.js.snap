@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserDate initial state should match snapshot 1`] = `
+<div
+  id="bob"
+>
+  <p
+    className="test"
+  >
+    Time elapsed since 
+    : 
+  </p>
+  <p
+    className="test"
+  >
+    <span>
+      3
+       days and 
+    </span>
+    <span>
+       ~
+      7
+       hours
+    </span>
+  </p>
+  <p
+    className="test"
+  >
+    Approx. total miles you've gone in that time: 
+  </p>
+  <p
+    className="test user-dist"
+  >
+    123456789
+  </p>
+</div>
+`;

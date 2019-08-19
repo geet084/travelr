@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home initial state should match initial snapshot 1`] = `
+<div
+  className="home"
+>
+  <img
+    alt="apod"
+    className="apod-img"
+    src="http://someurl"
+  />
+  <header>
+    <div
+      className="prompt"
+    >
+      <h3
+        className="test"
+      >
+        How far do you think you've traveled today?
+      </h3>
+      <h3
+        className="test"
+      >
+        How far have you traveled this week?
+      </h3>
+      <h3
+        className="test"
+      >
+        Today is: 
+      </h3>
+      <h3
+        className="test input-date"
+      >
+        Enter a date to find out:
+        <DateForm
+          className="test"
+          key=""
+          updateUserDate={[Function]}
+        />
+      </h3>
+    </div>
+  </header>
+</div>
+`;

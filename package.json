@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "date-input": "github:geet084/date-input",
+    "moment": "^2.24.0",
     "react": "^16.8.3",
     "react-collapsible": "^2.5.0",
     "react-countup": "^4.1.1",
