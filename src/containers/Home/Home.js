@@ -28,15 +28,15 @@ export class Home extends Component {
   }
 
   calculateDateAndTime = () => {
-    const arrivalTime = parseInt(this.props.arrivalTime);
-    const now = parseInt(moment().format('x'));
-    const elapsedTimeSinceArrival = (now - arrivalTime) / 1000;
-    const timeInSeconds = (arrivalTime === 0) ? .001 : elapsedTimeSinceArrival
-    const today = moment().format('llll');
+    const { arrivalTime } = this.props;
+    const now = moment();
+
+    const elapsedTimeSinceArrival = now.diff(arrivalTime);
+    const timeInSeconds = elapsedTimeSinceArrival / 1000
 
     this.setState({
       timeInSeconds,
-      today,
+      today: now,
       earthSpin: (timeInSeconds * .28),
       earthOrbit: (timeInSeconds * 18.5),
       solarSystemOrbit: (timeInSeconds * 124.45),
@@ -45,12 +45,12 @@ export class Home extends Component {
     });
   }
 
-  updateUserDate = (enteredDate) => {
+  updateUserDate = (inputDate) => {
     // TODO: set time to a local noon or midnight?
     const { arrivalTime } = this.props;
-    const userDate = moment(enteredDate).format('llll');
-    const elapsedTime = moment(arrivalTime).diff(moment(enteredDate), 'x');
-
+    const userDate = moment(inputDate, 'MM-DD-YYYY');
+    const elapsedTime = moment(arrivalTime).diff(userDate);
+    
     this.setState({
       userDate,
       elapsedTime
@@ -58,6 +58,8 @@ export class Home extends Component {
   }
 
   counter = (start, end, decimal = 0) => {
+    //IGNORING COUNTUP PACKAGE FOR TESTING ... COUNTUPREF IS NOT TESTABLE
+    /* istanbul ignore next line */
     return (
       <CountUp
         start={start} end={end} decimals={decimal} duration='1000000' delay={0} useEasing={false} separator=','>
@@ -67,20 +69,18 @@ export class Home extends Component {
   }
 
   render() {
-    const { url, userInfo } = this.props;
-    const { userDate, elapsedDays } = this.props.userInfo;
-    let { today, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement, } = this.state;
+    const { url } = this.props;
+    let { userDate, today, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement, } = this.state;
 
-    let userEnteredDate = moment(this.state.userDate)
-    let arrivalDate = moment(this.state.today)
+    const hasDate = today !== ''
 
-    const hasUserDate = this.state.userDate !== '';
-    const days = hasUserDate ? arrivalDate.diff(userEnteredDate, 'days') : 0
-    const hours = hasUserDate ? arrivalDate.diff(userEnteredDate, 'hours') - (days * 24) : 0
+    const days = hasDate ? today.diff(userDate, 'days') : 0
+    const hours = hasDate ? today.diff(userDate, 'hours') - (days * 24) : 0
+    const todaysDate = hasDate ? today.format('llll') : '';
+
     const total = ((days + (hours / 24)) * 18424000);
-
     const num = this.counter((total + totalMovement), (total + totalMovement + 213230000), 1);
-
+    
     return (
       <div className='home'>
         <img className='apod-img' src={url} alt="apod" />
@@ -88,15 +88,16 @@ export class Home extends Component {
           <div className="prompt">
             <h3 className="test">How far do you think you've traveled today?</h3>
             <h3 className="test">How far have you traveled this week?</h3>
+            <h3 className="test">Today is: {todaysDate}</h3>
             <h3 className="test input-date">
               Enter a date to find out:
-              <DateForm className="test" key={this.state.userDate} updateUserDate={this.updateUserDate} />
+              <DateForm className="test" key={userDate} updateUserDate={this.updateUserDate} />
             </h3>
-            {days !== 0 && <UserDate days={days} hours={hours} num={num} />}
+            {userDate !== '' && <UserDate userDate={userDate.format('llll')} days={days} hours={hours} num={num} />}
           </div>
         </header>
         {
-          days !== 0 &&
+          this.state.userDate !== '' &&
           <Distances
             counter={this.counter}
             timeInSeconds={timeInSeconds}
@@ -114,19 +115,16 @@ export class Home extends Component {
 
 export const mapStateToProps = (state) => ({
   arrivalTime: state.arrivalTime,
-  userInfo: state.userInfo,
 })
 
 Home.propTypes = {
-  time: PropTypes.number,
+  arrivalTime: PropTypes.object,
   url: PropTypes.string,
-  userInfo: PropTypes.object,
 }
 
 Home.defaultProps = {
-  time: 0,
+  arrivalTime: {},
   url: '',
-  userInfo: {},
 }
 
 export default connect(mapStateToProps)(Home);
