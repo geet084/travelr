@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const UserDate = ({ userDate, days, hours, num}) => {
+export const UserDate = ({ userDate, days, hours, num }) => {
   return (
     <div id="bob">
       <p className="test">Time elapsed since {userDate}: </p>

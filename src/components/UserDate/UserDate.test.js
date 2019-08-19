@@ -10,6 +10,7 @@ describe('UserDate', () => {
       days: 3,
       hours: 7,
       num: 123456789,
+      userDate: '',
     }
     wrapper = shallow(<UserDate {...mockProps}/>);
   });
