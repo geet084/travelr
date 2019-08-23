@@ -4,7 +4,7 @@ export const UserDate = ({ userDate, days, hours, num }) => {
   return (
     <div id="bob">
       <p className="test">Time elapsed since {userDate}: </p>
-      <p className="test">
+      <p className="test user-dist">
         <span>{days} days and </span>
         <span> ~{hours} hours</span>
       </p>
