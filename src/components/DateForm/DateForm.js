@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 export class DateForm extends Component {
-  constructor() {
-    super();
-    this.monthRef = React.createRef();
-    this.dayRef = React.createRef();
-    this.yearRef = React.createRef();
-    this.state = {
-      month: '',
-      day: '',
-      year: '',
-    };
-  }
+  monthRef = React.createRef();
+  dayRef = React.createRef();
+  yearRef = React.createRef();
+  state = {
+    month: '',
+    day: '',
+    year: '',
+  };
 
   componentWillUpdate(prevProps, prevState) {
     const { month, day, year } = prevState;
@@ -23,17 +20,16 @@ export class DateForm extends Component {
 
   buildDateInputs(dateTypes) {
     return Object.keys(dateTypes).map(key => {
-      let dateType = dateTypes[key];
       return (
         <input
           id={key}
           key={key}
-          max={dateType.max}
-          maxLength={dateType.length}
-          min={dateType.min}
+          max={dateTypes[key].max}
+          maxLength={dateTypes[key].length}
+          min={dateTypes[key].min}
           onBlur={this.handleDateInput}
           onChange={this.handleDateInput}
-          placeholder={dateType.placeholder}
+          placeholder={dateTypes[key].placeholder}
           ref={`${key}Ref`}
           type='text'
           value={this.state[key]}
@@ -44,24 +40,25 @@ export class DateForm extends Component {
 
   handleDateInput = ({ target }) => {
     const value = this.handleNumberVerification(target);
-    
+
     this.handleInputFocus(target, value);
     this.setState({ [target.id]: value });
   };
 
   handleNumberVerification = ({ value, min, max }) => {
-    value = value.trim()
+    value = value.trim();
     const isNumber = Number(value) >= 0 && Number(value) <= Number(max);
     const higherThanMax = Number(value) >= Number(max);
     const lessThanMin = value.length === max.length && Number(value) < Number(min);
-    if (lessThanMin) return min
-    else if (higherThanMax) return max
-    else if(!isNumber) return NaN
-    else return value
+
+    if (lessThanMin) return min;
+    else if (higherThanMax) return max;
+    else if (!isNumber) return NaN;
+    else return value;
   }
 
   handleInputFocus(target, value) {
-    const isMaxLength = value.length === target.maxLength
+    const isMaxLength = value.length === target.maxLength;
 
     if (target.id === 'month' && isMaxLength) this.refs.dayRef.focus();
     if (target.id === 'day' && isMaxLength) this.refs.yearRef.focus();
@@ -69,16 +66,15 @@ export class DateForm extends Component {
   }
 
   render() {
-    const dateTypes = {
+    const dateInputs = this.buildDateInputs({
       month: { placeholder: 'mm', length: 2, min: '01', max: '12' },
       day: { placeholder: 'dd', length: 2, min: '01', max: '31' },
       year: { placeholder: 'yyyy', length: 4, min: '0100', max: '2999' }
-    };
-    const dateInputs = this.buildDateInputs(dateTypes);
+    });
 
     return (
       <div className='date-form'>
-        <form id='form'>
+        <form>
           {dateInputs}
         </form>
       </div>

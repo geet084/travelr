@@ -91,7 +91,7 @@ export class Home extends Component {
             <h3 className="test">Today is: {todaysDate}</h3>
             <h3 className="test input-date">
               Enter a date to find out:
-              <DateForm className="test" key={userDate} updateUserDate={this.updateUserDate} />
+              <DateForm key={userDate} updateUserDate={this.updateUserDate} />
             </h3>
             {userDate !== '' && <UserDate userDate={userDate.format('llll')} days={days} hours={hours} num={num} />}
           </div>

@@ -1,42 +1,43 @@
 .date-form {
   background-color: #fff;
-  width: 170px;
   position: relative;
   top: -25px;
   right: -217px;
   margin: 0;
+  width: 170px;
 }
 
-#form {
-  border-bottom: 1px solid rgba(0, 0, 0, .2);
-  width: 130px;
+.date-form form {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 11px;
   padding-left: 10px;
-}
-input {
-  border: none;
-  width: 35px;
-  outline: none;
-  font-size: 15px;
-  padding: none;
-  margin: none;
-  text-align: left;
+  width: 130px;
 }
 
-input::placeholder {
-  opacity: .5;
-  font-weight: 300;
-  color: red;
+.date-form input {
+  border: none;
+  font-size: 15px;
+  margin: none;
+  outline: none;
+  padding: none;
+  text-align: left;
+  width: 35px;
 }
+
+.date-form input::placeholder {
+  color: #ff0000;
+  font-weight: 300;
+  opacity: 0.5;
+}
+
 #day {
   width: 20px;
 }
+
 #month {
   width: 35px;
 }
-span {
+
+.date-form span {
   color: #fff;
-}
-.first-span {
-  margin-left: -10px;
 }
