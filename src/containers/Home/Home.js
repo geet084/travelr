@@ -89,7 +89,7 @@ export class Home extends Component {
             <h3 className="test">How far do you think you've traveled today?</h3>
             <h3 className="test">How far have you traveled this week?</h3>
             <h3 className="test">Today is: {todaysDate}</h3>
-            <h3 className="test input-date">
+            <h3 className="test">
               Enter a date to find out:
               <DateForm key={userDate} updateUserDate={this.updateUserDate} />
             </h3>
