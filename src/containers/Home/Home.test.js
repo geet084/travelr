@@ -11,7 +11,7 @@ describe('Home', () => {
   beforeEach(() => {
     const mockProps = {
       url: 'http://someurl',
-      arrivalTime: 1538373600000,
+      arrivalTime: {_d: '1538373600000'},
     };
 
     wrapper = shallow(<Home {...mockProps} />);
@@ -43,7 +43,7 @@ describe('Home', () => {
     it('should match initial snapshot', () => {
       const mockProps = {
         url: 'http://someurl',
-        arrivalTime: 0,
+        arrivalTime: { _d: '0'},
       };
       wrapper = shallow(<Home {...mockProps} />, { disableLifecycleMethods: true });
 

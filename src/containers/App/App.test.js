@@ -26,7 +26,7 @@ describe('App', () => {
     planets: [{}],
     moons: [{}],
     bodies: [{}],
-    arrivalTime: 117,
+    arrivalTime: { _d: '117' },
     userInfo: { userDate: '10-1-2018', elapsedDays: 0 },
     handleObjects: jest.fn(),
     handleImages: jest.fn(),
