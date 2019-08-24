@@ -6,6 +6,7 @@ exports[`NavBar should match snapshot with no props 1`] = `
 >
   <ul>
     <NavBtn
+      key="home"
       name="Home"
       path="/"
     />
@@ -183,6 +184,7 @@ exports[`NavBar should match snapshout with props 1`] = `
 >
   <ul>
     <NavBtn
+      key="home"
       name="Home"
       path="/"
     />
