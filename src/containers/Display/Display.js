@@ -10,9 +10,9 @@ export class Display extends Component {
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    this.getDisplayImage()
+    if (prevProps.images.currentImage.href === '') this.getDisplayImage()
   }
-  
+
 
   getDisplayImage = () => {
     const { info, handleImages } = this.props;
@@ -36,7 +36,7 @@ export class Display extends Component {
         {info && <p>{info.perihelion + ' / ' + info.aphelion}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
-        
+
         {currentImage.href !== '' && <img className='imgs' src={currentImage.href} alt="" />}
       </div>
     )
