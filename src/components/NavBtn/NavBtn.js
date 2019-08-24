@@ -3,9 +3,14 @@ import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types';
 
 export const NavBtn = ({ name, path }) => {
+  
   return (
     <li>
-      <NavLink to={path.toLowerCase()} exact={true}>
+      <NavLink
+        to={path.toLowerCase()}
+        exact={true}
+        activeClassName="active"
+      >
         {name}
       </NavLink>
     </li>
