@@ -2,7 +2,7 @@
 
 exports[`Distances initial state should match snapshot 1`] = `
 <Collapsible
-  className="test extra"
+  className=""
   classParentString="Collapsible"
   contentContainerTagName="div"
   contentInnerClassName=""
@@ -28,49 +28,37 @@ exports[`Distances initial state should match snapshot 1`] = `
   triggerTagName="span"
 >
   <div
-    className="stats"
+    className="stats text-bg"
   >
-    <h4
-      className="test"
-    >
+    <h4>
       HOW FAST YOU ARE MOVING RIGHT NOW
     </h4>
-    <h6
-      className="test"
-    >
+    <h6>
       distance from new york to san francisco: 
       <span>
         2,569 miles
       </span>
     </h6>
-    <h6
-      className="test"
-    >
+    <h6>
       distance from san francisco to paris: 
       <span>
         5,560 miles
       </span>
        
     </h6>
-    <h6
-      className="test"
-    >
+    <h6>
       distance from new york to australia: 
       <span>
         10,512 miles
       </span>
     </h6>
-    <h6
-      className="test"
-    >
+    <h6>
       circumference of the earth: 
       <span>
         24,901 miles
       </span>
     </h6>
-    <h6
-      className="test"
-    >
+    <h6>
       distance to the moon: 
       <span>
         238,900 miles
@@ -81,60 +69,36 @@ exports[`Distances initial state should match snapshot 1`] = `
     className="details"
   >
     <div
-      className="title"
+      className="title text-bg"
     >
-      <p
-        className="test"
-      >
+      <p>
         elapsed time since you arrived on this page in seconds
       </p>
-      <p
-        className="test"
-      >
+      <p>
         Distance covered in miles due to Earth spinning
       </p>
-      <p
-        className="test"
-      >
+      <p>
         Distance covered in miles due to the Earth orbiting the Sun
       </p>
-      <p
-        className="test"
-      >
+      <p>
         Distance covered in miles due to the Solar system orbiting in the galaxy
       </p>
-      <p
-        className="test"
-      >
+      <p>
         Distance covered in miles due to the Milky Way moving towards Andromeda
       </p>
-      <p
-        className="test"
-      >
+      <p>
         Your total distance covered in that time
       </p>
     </div>
     <div
-      className="counter-info"
+      className="counter-info text-bg"
     >
-      <p
-        className="test"
-      />
-      <p
-        className="test"
-      />
-      <p
-        className="test"
-      />
-      <p
-        className="test"
-      />
-      <p
-        className="test"
-      />
-      <p
-        className="test"
-      />
+      <p />
+      <p />
+      <p />
+      <p />
+      <p />
+      <p />
     </div>
   </section>
 </Collapsible>

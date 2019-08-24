@@ -11,7 +11,7 @@ exports[`UserDate initial state should match snapshot 1`] = `
     : 
   </p>
   <p
-    className="test"
+    className="test user-dist"
   >
     <span>
       3

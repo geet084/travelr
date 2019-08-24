@@ -29,11 +29,10 @@ exports[`Home initial state should match initial snapshot 1`] = `
         Today is: 
       </h3>
       <h3
-        className="test input-date"
+        className="test"
       >
         Enter a date to find out:
         <DateForm
-          className="test"
           key=""
           updateUserDate={[Function]}
         />
