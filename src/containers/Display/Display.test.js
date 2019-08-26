@@ -6,10 +6,11 @@ import { getImageSuccess } from '../../actions';
 
 describe('Display', () => {
   let wrapper;
+  let mockProps;
 
   describe('initial state with NO props', () => {
     it('should match snapshot with no props', () => {
-      const mockProps = {
+      mockProps = {
         handleImages: jest.fn(),
         info: { images: [] },
         images: { currentImage: { href: '' } },
@@ -21,8 +22,6 @@ describe('Display', () => {
   })
 
   describe('initial state with props', () => {
-    let mockProps;
-
     beforeEach(() => {
       mockProps = {
         handleImages: jest.fn(),
@@ -43,9 +42,39 @@ describe('Display', () => {
     })
   })
 
+  describe('componentDidUpdate', () => {
+    it('should not call getDisplayImage if there is an href provided', () => {
+      mockProps = {
+        handleImages: jest.fn(),
+        info: { images: ['image_id'] },
+        images: { currentImage: { href: 'some href' } },
+      }
+      wrapper = shallow(<Display {...mockProps} />)
+      wrapper.instance().getDisplayImage = jest.fn();
+      wrapper.setProps({ images: { currentImage: { href: '' } } });
+      
+      expect(wrapper.instance().getDisplayImage).toHaveBeenCalledTimes(0);
+    })
+
+    it('should should call getDisplayImage if there is NO href provided (page reload)', () => {
+      mockProps = {
+        handleImages: jest.fn(),
+        info: { images: ['image_id'] },
+        images: { currentImage: { href: '' } },
+      }
+      wrapper = shallow(<Display {...mockProps} />)
+      wrapper.instance().getDisplayImage = jest.fn();
+
+      wrapper.setProps({ images: { currentImage: { href: '' } } });
+
+      expect(wrapper.instance().getDisplayImage).toHaveBeenCalledTimes(1);
+    })
+  })
+  
+
   describe('getDisplayImage', () => {
     it('should get image to display if there is an image id present', () => {
-      let mockProps = {
+      mockProps = {
         handleImages: jest.fn(),
         info: { images: ['image21'] },
         images: { currentImage: { href: '' } },
@@ -58,7 +87,7 @@ describe('Display', () => {
     })
 
     it('should NOT get image to display if there is an image id present', () => {
-      let mockProps = {
+      mockProps = {
         handleImages: jest.fn(),
         info: {},
         images: { currentImage: { href: '' } },
