@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import NavBar from './NavBar';
+import NavBar, { getCategoryTitles, getNavCategoryItems, populateNavItems } from './NavBar';
 
 describe('NavBar', () => {
   let wrapper;
@@ -32,21 +32,29 @@ describe('NavBar', () => {
   });
 
   it('should get category title from props', () => {
-    const expected = ["Planets", "Moons", "Stars", "Bodies"];
-    const result = wrapper.instance().getCategoryTitles();
+    const expected = ['Planets', 'Moons', 'Stars', 'Bodies'];
+    const result = getCategoryTitles(mockProps);
 
     expect(result).toEqual(expected);
   });
 
-  it('should populate the nav bar with categories and items', () => {
-    const moonIndex = Object.keys(mockProps).indexOf('moons');
-    const moons = Object.keys(mockProps)[moonIndex]
-    const expected = wrapper.instance().props[moons].length;
+  it('should get category items from props and category title', () => {
+    const expected = mockProps['stars'].length;
+    const mockTitle = 'Stars';
+    const result = getNavCategoryItems(mockProps, mockTitle);
 
-    const mockCategories = ["Planets", "Moons", "Stars", "Bodies"];
+    expect(result).toHaveLength(expected);
+  });
+  
+
+  it('should populate the nav bar with categories and items', () => {
+    const resIndex = Object.keys(mockProps).indexOf('moons');
+    const expected = mockProps['moons'].length;
+
+    const mockCategories = ['Planets', 'Moons', 'Stars', 'Bodies'];
+
+    const result = populateNavItems(mockProps, mockCategories);
     
-    const result = wrapper.instance().populateNavItems(mockCategories);
-    
-    expect(result[moonIndex].props.children).toHaveLength(expected);
+    expect(result[resIndex].props.children).toHaveLength(expected);
   });
 })

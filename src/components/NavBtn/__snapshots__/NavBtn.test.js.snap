@@ -3,7 +3,7 @@
 exports[`NavBtn should match snapshot 1`] = `
 <li>
   <NavLink
-    activeClassName="active-link"
+    activeClassName="active"
     aria-current="page"
     exact={true}
     to="/"
