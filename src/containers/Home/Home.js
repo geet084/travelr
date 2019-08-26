@@ -86,10 +86,10 @@ export class Home extends Component {
         <img className='apod-img' src={url} alt="apod" />
         <header>
           <div className="prompt">
-            <h3 className="test">How far do you think you've traveled today?</h3>
-            <h3 className="test">How far have you traveled this week?</h3>
-            <h3 className="test">Today is: {todaysDate}</h3>
-            <h3 className="test">
+            <h3>How far do you think you've traveled today?</h3>
+            <h3>How far have you traveled this week?</h3>
+            <h3>Today is: {todaysDate}</h3>
+            <h3>
               Enter a date to find out:
               <DateForm key={userDate} updateUserDate={this.updateUserDate} />
             </h3>
