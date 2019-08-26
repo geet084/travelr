@@ -2,16 +2,14 @@
 
 exports[`UserDate initial state should match snapshot 1`] = `
 <div
-  id="bob"
+  className="user-date"
 >
-  <p
-    className="test"
-  >
+  <p>
     Time elapsed since 
     : 
   </p>
   <p
-    className="test user-dist"
+    className="user-info"
   >
     <span>
       3
@@ -23,13 +21,11 @@ exports[`UserDate initial state should match snapshot 1`] = `
        hours
     </span>
   </p>
-  <p
-    className="test"
-  >
+  <p>
     Approx. total miles you've gone in that time: 
   </p>
   <p
-    className="test user-dist"
+    className="user-info"
   >
     123456789
   </p>
