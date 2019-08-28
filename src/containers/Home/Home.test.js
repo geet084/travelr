@@ -102,15 +102,4 @@ describe('Home', () => {
       expect(wrapper.state('elapsedTime')).toEqual(expected.elapsedTime);
     });
   });
-
-  describe('counter', () => {
-    it('should return a counter object with the times entered', () => {
-      const expected = { start: 1, end: 4 };
-
-      const result = wrapper.instance().counter(1, 4);
-
-      expect(result.props.start).toEqual(expected.start);
-      expect(result.props.end).toEqual(expected.end);
-    });
-  });
 });

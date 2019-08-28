@@ -1,8 +1,9 @@
 import React from 'react';
 import Collapsible from 'react-collapsible';
+import Counter from '../Counter/Counter';
 
 export const Distances = (props) => {
-  const { counter, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement } = props;
+  const { timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement } = props;
 
   return (
     <Collapsible trigger='Show More'>
@@ -24,12 +25,12 @@ export const Distances = (props) => {
           <p>Your total distance covered in that time</p>
         </div>
         <div className="counter-info text-bg">
-          <p>{counter(timeInSeconds, (timeInSeconds + 1000000), 1)}</p>
-          <p>{counter(earthSpin, (earthSpin + 280000), 1)}</p>
-          <p>{counter(earthOrbit, (earthOrbit, 18500000))}</p>
-          <p>{counter(solarSystemOrbit, (solarSystemOrbit, 124450000))}</p>
-          <p>{counter(galaxyMovement, (galaxyMovement, 70000000))}</p>
-          <p>{counter(totalMovement, (totalMovement, 213230000))}</p>
+          <p><Counter start={timeInSeconds} end={timeInSeconds + 1000000} decimal={1} /></p>
+          <p><Counter start={earthSpin} end={earthSpin + 280000} decimal={1} /></p>
+          <p><Counter start={earthOrbit} end={earthOrbit + 18500000} /></p>
+          <p><Counter start={solarSystemOrbit} end={solarSystemOrbit + 124450000} /></p>
+          <p><Counter start={galaxyMovement} end={galaxyMovement + 70000000} /></p>
+          <p><Counter start={totalMovement} end={totalMovement + 213230000} /></p>
         </div>
       </section>
     </Collapsible>

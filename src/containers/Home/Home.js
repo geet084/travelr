@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import CountUp from 'react-countup';
 import DateForm from '../../components/DateForm/DateForm';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import UserDate from '../../components/UserDate/UserDate';
 import Distances from '../../components/Distances/Distances';
+import Counter from '../../components/Counter/Counter';
 
 export class Home extends Component {
   constructor() {
@@ -57,17 +57,6 @@ export class Home extends Component {
     });
   }
 
-  counter = (start, end, decimal = 0) => {
-    //IGNORING COUNTUP PACKAGE FOR TESTING ... COUNTUPREF IS NOT TESTABLE
-    /* istanbul ignore next line */
-    return (
-      <CountUp
-        start={start} end={end} decimals={decimal} duration='1000000' delay={0} useEasing={false} separator=','>
-        {({ countUpRef }) => <span ref={countUpRef} />}
-      </CountUp>
-    );
-  }
-
   render() {
     const { url } = this.props;
     let { userDate, today, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement, } = this.state;
@@ -79,7 +68,7 @@ export class Home extends Component {
     const todaysDate = hasDate ? today.format('llll') : '';
 
     const total = ((days + (hours / 24)) * 18424000);
-    const num = this.counter((total + totalMovement), (total + totalMovement + 213230000), 1);
+    const num = <Counter start={(total + totalMovement)} end={(total + totalMovement + 213230000)} decimal={1} />;
     
     return (
       <div className='home'>
@@ -99,7 +88,6 @@ export class Home extends Component {
         {
           this.state.userDate !== '' &&
           <Distances
-            counter={this.counter}
             timeInSeconds={timeInSeconds}
             earthSpin={earthSpin}
             earthOrbit={earthOrbit}

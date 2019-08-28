@@ -93,12 +93,44 @@ exports[`Distances initial state should match snapshot 1`] = `
     <div
       className="counter-info text-bg"
     >
-      <p />
-      <p />
-      <p />
-      <p />
-      <p />
-      <p />
+      <p>
+        <Counter
+          decimal={1}
+          end={1000000.01}
+          start={0.01}
+        />
+      </p>
+      <p>
+        <Counter
+          decimal={1}
+          end={280000.0028}
+          start={0.0028000000000000004}
+        />
+      </p>
+      <p>
+        <Counter
+          end={18500000.185}
+          start={0.185}
+        />
+      </p>
+      <p>
+        <Counter
+          end={124450001.2445}
+          start={1.2445000000000002}
+        />
+      </p>
+      <p>
+        <Counter
+          end={70000000.7}
+          start={0.7000000000000001}
+        />
+      </p>
+      <p>
+        <Counter
+          end={213230002.1323}
+          start={2.1323}
+        />
+      </p>
     </div>
   </section>
 </Collapsible>
