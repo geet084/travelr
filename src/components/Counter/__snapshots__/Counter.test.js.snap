@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter should match initial snapshot 1`] = `
+<CountUp$$1
+  decimal="."
+  decimals={0}
+  delay={0}
+  duration="1000000"
+  easingFn={null}
+  end={19}
+  formattingFn={null}
+  onEnd={[Function]}
+  onPauseResume={[Function]}
+  onReset={[Function]}
+  onStart={[Function]}
+  onUpdate={[Function]}
+  prefix=""
+  redraw={false}
+  separator=","
+  start={4}
+  suffix=""
+  useEasing={false}
+>
+  <Component />
+</CountUp$$1>
+`;
