@@ -93,40 +93,56 @@ exports[`Distances initial state should match snapshot 1`] = `
     <div
       className="counter-info text-bg"
     >
-      <p>
+      <p
+        key="timeInSeconds"
+      >
         <Counter
           decimal={1}
           end={1000000.01}
           start={0.01}
         />
       </p>
-      <p>
+      <p
+        key="earthSpin"
+      >
         <Counter
           decimal={1}
           end={280000.0028}
           start={0.0028000000000000004}
         />
       </p>
-      <p>
+      <p
+        key="earthOrbit"
+      >
         <Counter
+          decimal={0}
           end={18500000.185}
           start={0.185}
         />
       </p>
-      <p>
+      <p
+        key="solarSystemOrbit"
+      >
         <Counter
+          decimal={0}
           end={124450001.2445}
           start={1.2445000000000002}
         />
       </p>
-      <p>
+      <p
+        key="galaxyMovement"
+      >
         <Counter
+          decimal={0}
           end={70000000.7}
           start={0.7000000000000001}
         />
       </p>
-      <p>
+      <p
+        key="totalMovement"
+      >
         <Counter
+          decimal={0}
           end={213230002.1323}
           start={2.1323}
         />
