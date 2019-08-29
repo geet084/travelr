@@ -29,12 +29,14 @@ describe('Home', () => {
         today: '',
         userDate: '',
         elapsedTime: 0,
-        timeInSeconds: 0,
-        earthSpin: 0,
-        earthOrbit: 0,
-        solarSystemOrbit: 0,
-        galaxyMovement: 0,
-        totalMovement: 0,
+        elapsed: {
+          timeInSeconds: 0,
+          earthSpin: 0,
+          earthOrbit: 0,
+          solarSystemOrbit: 0,
+          galaxyMovement: 0,
+          totalMovement: 0
+        }
       };
 
       expect(wrapper.state()).toEqual(expected);
@@ -67,13 +69,15 @@ describe('Home', () => {
   describe('calculateDateAndTime', () => {
     it('should calculate date and time ', () => {
       const expected = {
-        timeInSeconds: 32400,
         today: mockArrivalTime._d,
-        earthSpin: 9072,
-        earthOrbit: 599400,
-        solarSystemOrbit: 4032180,
-        galaxyMovement: 2268000,
-        totalMovement: 6908652,
+        elapsed: {
+          timeInSeconds: 32400,
+          earthSpin: 9072,
+          earthOrbit: 599400,
+          solarSystemOrbit: 4032180,
+          galaxyMovement: 2268000,
+          totalMovement: 6908652
+        }
       };
 
       wrapper.instance().calculateDateAndTime()

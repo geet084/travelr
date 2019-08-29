@@ -8,18 +8,17 @@ import Distances from '../../components/Distances/Distances';
 import Counter from '../../components/Counter/Counter';
 
 export class Home extends Component {
-  constructor() {
-    super();
-    this.state = {
-      today: '',
-      userDate: '',
-      elapsedTime: 0,
+  state = {
+    today: '',
+    userDate: '',
+    elapsedTime: 0,
+    elapsed: {
       timeInSeconds: 0,
       earthSpin: 0,
       earthOrbit: 0,
       solarSystemOrbit: 0,
       galaxyMovement: 0,
-      totalMovement: 0,
+      totalMovement: 0
     }
   }
 
@@ -35,13 +34,15 @@ export class Home extends Component {
     const timeInSeconds = elapsedTimeSinceArrival / 1000
 
     this.setState({
-      timeInSeconds,
       today: now,
-      earthSpin: (timeInSeconds * .28),
-      earthOrbit: (timeInSeconds * 18.5),
-      solarSystemOrbit: (timeInSeconds * 124.45),
-      galaxyMovement: (timeInSeconds * 70),
-      totalMovement: (timeInSeconds * 213.23),
+      elapsed: {
+        timeInSeconds,
+        earthSpin: (timeInSeconds * .28),
+        earthOrbit: (timeInSeconds * 18.5),
+        solarSystemOrbit: (timeInSeconds * 124.45),
+        galaxyMovement: (timeInSeconds * 70),
+        totalMovement: (timeInSeconds * 213.23)
+      }
     });
   }
 
@@ -50,7 +51,7 @@ export class Home extends Component {
     const { arrivalTime } = this.props;
     const userDate = moment(inputDate, 'MM-DD-YYYY');
     const elapsedTime = moment(arrivalTime).diff(userDate);
-    
+
     this.setState({
       userDate,
       elapsedTime
@@ -59,17 +60,15 @@ export class Home extends Component {
 
   render() {
     const { url } = this.props;
-    let { userDate, today, timeInSeconds, earthSpin, earthOrbit, solarSystemOrbit, galaxyMovement, totalMovement, } = this.state;
+    let { userDate, today, elapsed } = this.state;
 
-    const hasDate = today !== ''
+    const days = today !== '' ? today.diff(userDate, 'days') : 0
+    const hours = today !== '' ? today.diff(userDate, 'hours') - (days * 24) : 0
+    const todaysDate = today !== '' ? today.format('llll') : '';
 
-    const days = hasDate ? today.diff(userDate, 'days') : 0
-    const hours = hasDate ? today.diff(userDate, 'hours') - (days * 24) : 0
-    const todaysDate = hasDate ? today.format('llll') : '';
+    const total = ((days + (hours / 24)) * 18424000) + elapsed.totalMovement;
+    const num = <Counter start={(total)} end={(total + 213230000)} decimal={1} />;
 
-    const total = ((days + (hours / 24)) * 18424000);
-    const num = <Counter start={(total + totalMovement)} end={(total + totalMovement + 213230000)} decimal={1} />;
-    
     return (
       <div className='home'>
         <img className='apod-img' src={url} alt="apod" />
@@ -82,20 +81,13 @@ export class Home extends Component {
               Enter a date to find out:
               <DateForm key={userDate} updateUserDate={this.updateUserDate} />
             </h3>
-            {userDate !== '' && <UserDate userDate={userDate.format('llll')} days={days} hours={hours} num={num} />}
+            {
+              userDate !== '' &&
+              <UserDate userDate={userDate.format('llll')} days={days} hours={hours} num={num} />
+            }
           </div>
         </header>
-        {
-          this.state.userDate !== '' &&
-          <Distances
-            timeInSeconds={timeInSeconds}
-            earthSpin={earthSpin}
-            earthOrbit={earthOrbit}
-            solarSystemOrbit={solarSystemOrbit}
-            galaxyMovement={galaxyMovement}
-            totalMovement={totalMovement}
-          />
-        }
+        {userDate !== '' && <Distances {...elapsed} />}
       </div>
     )
   }
