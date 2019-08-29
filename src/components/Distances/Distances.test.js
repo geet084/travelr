@@ -7,7 +7,6 @@ describe('Distances', () => {
 
   beforeEach(() => {
     const mockProps = {
-      counter: jest.fn(),
       timeInSeconds: .01,
       earthSpin: (.01 * .28),
       earthOrbit: (.01 * 18.5),

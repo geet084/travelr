@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleImages } from '../../thunks/handleImages';
-import { getImageSuccess } from '../../actions/';
+import { getImageSuccess } from '../../actions';
 import PropTypes from 'prop-types';
 
-export class Display extends Component {
+export class ObjectsDisplay extends Component {
   componentDidMount = () => {
     this.getDisplayImage()
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    this.getDisplayImage()
+    if (prevProps.images.currentImage.href === '') this.getDisplayImage()
   }
-  
+
 
   getDisplayImage = () => {
     const { info, handleImages } = this.props;
@@ -36,7 +36,7 @@ export class Display extends Component {
         {info && <p>{info.perihelion + ' / ' + info.aphelion}</p>}
         {info && <p>{'Length of day  - ' + info.length_of_day}</p>}
         {info && <p>{'Orbital period  - ' + info.orbital_period}</p>}
-        
+
         {currentImage.href !== '' && <img className='imgs' src={currentImage.href} alt="" />}
       </div>
     )
@@ -51,15 +51,15 @@ export const mapStateToProps = (state) => ({
   images: state.images,
 })
 
-Display.propTypes = {
+ObjectsDisplay.propTypes = {
   handleImages: PropTypes.func,
   images: PropTypes.object,
   info: PropTypes.object,
 }
 
-Display.defaultProps = {
+ObjectsDisplay.defaultProps = {
   images: {},
   info: {},
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Display);
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectsDisplay);

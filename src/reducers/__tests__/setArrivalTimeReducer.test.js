@@ -3,7 +3,7 @@ import * as actions from '../../actions';
 
 describe('setArrivalTimeReducer', () => {
   it('should return an initial state', () => {
-    const expected = 0;
+    const expected = {};
     const result = setArrivalTimeReducer(undefined, 0);
     expect(result).toEqual(expected);
   })

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should match snapshot with bad url 1`] = `
+exports[`App initial state should match initial snapshot with NO data 1`] = `
 <div
   className="App"
 >
@@ -64,7 +64,71 @@ exports[`App should match snapshot with bad url 1`] = `
 </div>
 `;
 
-exports[`App should match snapshot with good url 1`] = `
+exports[`App setApodUrl should match snapshot with bad url 1`] = `
+<div
+  className="App"
+>
+  <h1
+    className="logo"
+  >
+    TRAVELR
+  </h1>
+  <NavBar
+    bodies={
+      Array [
+        undefined,
+      ]
+    }
+    moons={
+      Array [
+        undefined,
+      ]
+    }
+    planets={
+      Array [
+        undefined,
+      ]
+    }
+    stars={
+      Array [
+        undefined,
+      ]
+    }
+  />
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      key="/planets/:id"
+      path="/planets/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/moons/:id"
+      path="/moons/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/bodies/:id"
+      path="/bodies/:id"
+      render={[Function]}
+    />
+    <Route
+      key="/stars/:id"
+      path="/stars/:id"
+      render={[Function]}
+    />
+    <Route
+      component={[Function]}
+    />
+  </Switch>
+</div>
+`;
+
+exports[`App setApodUrl should match snapshot with good url 1`] = `
 <div
   className="App"
 >

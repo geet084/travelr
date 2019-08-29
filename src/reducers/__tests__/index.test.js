@@ -13,7 +13,7 @@ describe('rootReducer', () => {
       moons: [],
       bodies: [],
       images: { "apod": {}, "currentImage": { "href": "" } },
-      arrivalTime: 0,
+      arrivalTime: {},
       userInfo: { userDate: '', elapsedDays: 0 },
     }
 

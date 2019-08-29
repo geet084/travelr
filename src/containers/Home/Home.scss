@@ -8,15 +8,10 @@
   margin: 0 auto;
 }
 
-.test {
-  background-color: rgba(0,0,0,0.7);
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.7);
-}
-
 .apod-img {
   height: 100%;
-  position: fixed; 
-  left: 50%; 
+  position: fixed;
+  left: 50%;
   top: 0;
   transform: translateX(-50%);
   z-index: -1;
@@ -28,51 +23,10 @@ header {
   padding: 10px 0 0 0;
 }
 
-.details {
- display: flex;
- justify-content: center;
-}
-
-.stats {
-  width: 300px;
-  margin: 0 auto;
-}
-
-.stats h4, .stats h6 {
-  padding: 2px;
-  margin: 0;
-}
-
-.title {
-  text-align: right;
-  margin: 10px 5px 10px 10px;
-  height: 250px;
-}
-
-.home .Collapsible {
-  position: relative;
-}
-
-.extra {
-  width: 390px;
-}
-
-.counter-info {
-  text-align: left;
-  margin: 10px 10px 10px 5px;
-  height: 250px;
-  min-width: 100px;
-}
-
 .prompt {
   text-align: left;
-}
-
-.input-date {
-  height: 33px;
-  padding-top: 5px;
-}
-
-.user-dist {
-  text-align: center;
+  h3 {
+    background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.7);
+  }
 }

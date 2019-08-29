@@ -1,20 +1,31 @@
-ul {
-  list-style-type: none;
-  padding: 0 0 0 27px;
-}
-
-nav {
+.nav-bar {
   font-size: calc(10px + 2vmin);
   color: white;
   position: fixed;
   top: 10%;
   width: 175px;
   border-radius: 7px;
-}
+  color: white;
+  background-color: rgba(255, 255, 255, 0.075);
+  box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.8);
 
-li {
-  &:hover {
-    color: red;
+  ul {
+    list-style-type: none;
+    padding: 0 0 0 27px;
+  }
+
+  li {
+    &:hover {
+      color: red;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    &:hover {
+      color: blue;
+    }
   }
 }
 
@@ -25,20 +36,6 @@ li {
   }
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
-  &:hover {
-    color: blue;
-  }
-}
-
-.nav-bar {
-  color: white;
-  background-color: rgba(255,255,255, 0.075);
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.8);
-}
-
-.drop-down {
-  color: lightblue;
+.active-link {
+  color: yellow;
 }

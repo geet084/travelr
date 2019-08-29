@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { withRouter, Route, Switch } from 'react-router-dom';
 import { handleObjects } from '../../thunks/handleObjects';
 import { handleImages } from '../../thunks/handleImages';
-import { setArrivalTime, handleApodImage, handleObjectImages } from '../../actions'
+import { setArrivalTime, handleApodImage, handleObjectImages } from '../../actions';
 import '../../Main.scss';
-import Display from '../Display/Display';
-import NavBar from '../../components/NavBar/NavBar'
-import Home from '../../containers/Home/Home'
-import NotFound from '../../components/NotFound/NotFound'
+import ObjectsDisplay from '../ObjectsDisplay/ObjectsDisplay';
+import Home from '../../containers/Home/Home';
+import NavBar from '../../components/NavBar/NavBar';
+import NotFound from '../../components/NotFound/NotFound';
 import backupUrl from '../../images/back-img.jpg';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -16,17 +16,23 @@ import moment from 'moment';
 export class App extends Component {
 
   componentDidMount = () => {
-    const corsPrefix = 'https://cors-anywhere.herokuapp.com/'
-    const apiKey = process.env.REACT_APP_NASA_APIKEY;
-    const nasaURL = `${corsPrefix}https://api.nasa.gov/planetary/apod?api_key=${apiKey}`
-    const serverURL = process.env.REACT_APP_SERVER_URL;
+    this.loadData();
+    this.setUserArrivalTime();
+  }
 
-    this.props.handleImages(nasaURL, handleApodImage)
-    this.props.handleObjects(serverURL + '/objects')
-    this.props.handleImages(serverURL + '/images', handleObjectImages)
-    let arrivalTime = moment()
-    arrivalTime.format()
-    this.props.setArrivalTime(arrivalTime)
+  loadData() {
+    const nasaURL = process.env.REACT_APP_NASA_URL;
+    const serverURL = process.env.REACT_APP_SERVER_URL;
+    
+    this.props.handleImages(nasaURL, handleApodImage);
+    this.props.handleObjects(serverURL + '/objects');
+    this.props.handleImages(serverURL + '/images', handleObjectImages);
+  }
+
+  setUserArrivalTime() {
+    let arrivalTime = moment();
+    arrivalTime.format();
+    this.props.setArrivalTime(arrivalTime);
   }
 
   setApodUrl() {
@@ -35,19 +41,19 @@ export class App extends Component {
   }
 
   buildRouteWith = (path) => {
-    const category = path.split('/')[1]
+    const category = path.split('/')[1];
     return (
       <Route key={path} path={path} render={({ match }) => {
-        const { id } = match.params
-        const info = this.props[category].find(data => data.name.toLowerCase() === id)
+        const { id } = match.params;
+        const info = this.props[category].find(data => data.name.toLowerCase() === id);
 
-        return <Display key={id} info={info} />
+        return <ObjectsDisplay key={id} info={info} />;
       }} />
-    )
+    );
   }
 
   buildNavBar = () => {
-    const { planets, moons, stars, bodies } = this.props
+    const { planets, moons, stars, bodies } = this.props;
     return <NavBar
       stars={stars.map(obj => obj.name)}
       planets={planets.map(obj => obj.name)}
@@ -57,11 +63,11 @@ export class App extends Component {
   }
 
   render() {
-    const routeList = ['/planets/:id', '/moons/:id', '/bodies/:id', '/stars/:id']
+    const routeList = ['/planets/:id', '/moons/:id', '/bodies/:id', '/stars/:id'];
 
     const navBar = this.buildNavBar();
     const apodUrl = this.setApodUrl();
-    const routes = routeList.map(route => this.buildRouteWith(route))
+    const routes = routeList.map(route => this.buildRouteWith(route));
 
     return (
       <div className="App">

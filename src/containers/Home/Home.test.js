@@ -11,7 +11,7 @@ describe('Home', () => {
   beforeEach(() => {
     const mockProps = {
       url: 'http://someurl',
-      arrivalTime: 1538373600000,
+      arrivalTime: {_d: '1538373600000'},
     };
 
     wrapper = shallow(<Home {...mockProps} />);
@@ -29,12 +29,14 @@ describe('Home', () => {
         today: '',
         userDate: '',
         elapsedTime: 0,
-        timeInSeconds: 0,
-        earthSpin: 0,
-        earthOrbit: 0,
-        solarSystemOrbit: 0,
-        galaxyMovement: 0,
-        totalMovement: 0,
+        elapsed: {
+          timeInSeconds: 0,
+          earthSpin: 0,
+          earthOrbit: 0,
+          solarSystemOrbit: 0,
+          galaxyMovement: 0,
+          totalMovement: 0
+        }
       };
 
       expect(wrapper.state()).toEqual(expected);
@@ -43,7 +45,7 @@ describe('Home', () => {
     it('should match initial snapshot', () => {
       const mockProps = {
         url: 'http://someurl',
-        arrivalTime: 0,
+        arrivalTime: { _d: '0'},
       };
       wrapper = shallow(<Home {...mockProps} />, { disableLifecycleMethods: true });
 
@@ -67,13 +69,15 @@ describe('Home', () => {
   describe('calculateDateAndTime', () => {
     it('should calculate date and time ', () => {
       const expected = {
-        timeInSeconds: 32400,
         today: mockArrivalTime._d,
-        earthSpin: 9072,
-        earthOrbit: 599400,
-        solarSystemOrbit: 4032180,
-        galaxyMovement: 2268000,
-        totalMovement: 6908652,
+        elapsed: {
+          timeInSeconds: 32400,
+          earthSpin: 9072,
+          earthOrbit: 599400,
+          solarSystemOrbit: 4032180,
+          galaxyMovement: 2268000,
+          totalMovement: 6908652
+        }
       };
 
       wrapper.instance().calculateDateAndTime()
@@ -100,17 +104,6 @@ describe('Home', () => {
 
       expect(wrapper.state('userDate')._d).toEqual(expected.userDate);
       expect(wrapper.state('elapsedTime')).toEqual(expected.elapsedTime);
-    });
-  });
-
-  describe('counter', () => {
-    it('should return a counter object with the times entered', () => {
-      const expected = { start: 1, end: 4 };
-
-      const result = wrapper.instance().counter(1, 4);
-
-      expect(result.props.start).toEqual(expected.start);
-      expect(result.props.end).toEqual(expected.end);
     });
   });
 });

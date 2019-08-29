@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Display initial state with NO props should match snapshot with no props 1`] = `
+exports[`ObjectsDisplay initial state with NO props should match snapshot with no props 1`] = `
 <div
   className="display"
 >
@@ -25,7 +25,7 @@ exports[`Display initial state with NO props should match snapshot with no props
 </div>
 `;
 
-exports[`Display initial state with props should match snapshot with props 1`] = `
+exports[`ObjectsDisplay initial state with props should match snapshot with props 1`] = `
 <div
   className="display"
 >
