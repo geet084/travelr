@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleImages } from '../../thunks/handleImages';
-import { getImageSuccess } from '../../actions/';
+import { getImageSuccess } from '../../actions';
 import PropTypes from 'prop-types';
 
-export class Display extends Component {
+export class ObjectsDisplay extends Component {
   componentDidMount = () => {
     this.getDisplayImage()
   }
@@ -51,15 +51,15 @@ export const mapStateToProps = (state) => ({
   images: state.images,
 })
 
-Display.propTypes = {
+ObjectsDisplay.propTypes = {
   handleImages: PropTypes.func,
   images: PropTypes.object,
   info: PropTypes.object,
 }
 
-Display.defaultProps = {
+ObjectsDisplay.defaultProps = {
   images: {},
   info: {},
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Display);
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectsDisplay);

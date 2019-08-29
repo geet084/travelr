@@ -5,7 +5,7 @@ import { handleObjects } from '../../thunks/handleObjects';
 import { handleImages } from '../../thunks/handleImages';
 import { setArrivalTime, handleApodImage, handleObjectImages } from '../../actions';
 import '../../Main.scss';
-import Display from '../Display/Display';
+import ObjectsDisplay from '../ObjectsDisplay/ObjectsDisplay';
 import Home from '../../containers/Home/Home';
 import NavBar from '../../components/NavBar/NavBar';
 import NotFound from '../../components/NotFound/NotFound';
@@ -47,7 +47,7 @@ export class App extends Component {
         const { id } = match.params;
         const info = this.props[category].find(data => data.name.toLowerCase() === id);
 
-        return <Display key={id} info={info} />;
+        return <ObjectsDisplay key={id} info={info} />;
       }} />
     );
   }

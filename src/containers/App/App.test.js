@@ -7,7 +7,7 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { shallow, mount } from 'enzyme';
 import { App, mapStateToProps, mapDispatchToProps } from './App';
-import Display from '../../containers/Display/Display';
+import ObjectsDisplay from '../../containers/ObjectsDisplay/ObjectsDisplay';
 import Home from '../../containers/Home/Home';
 import { rootReducer } from '../../reducers/index';
 import * as actions from '../../actions/';
@@ -206,7 +206,7 @@ describe('App', () => {
         </Provider>
       );
 
-      expect(wrapper.find(Display)).toHaveLength(1);
+      expect(wrapper.find(ObjectsDisplay)).toHaveLength(1);
     });
   });
 
